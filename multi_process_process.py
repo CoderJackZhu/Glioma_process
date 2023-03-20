@@ -49,7 +49,7 @@ def try_get_data(img_path):
         print(f'----------failed to read file:{img_path}-----------------')
         f = "failed.txt"
         with open(f, "a") as file:
-            file.write(img_path + '\n')
+            file.write(img_path.encode('utf-8') + '\n'.encode('utf-8'))
 
 
 def multi_process_save():
