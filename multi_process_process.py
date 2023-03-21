@@ -66,7 +66,7 @@ def multi_process_save():
     with Pool(4) as p:
         all_data = p.map(try_get_data, images_paths)
     all_data = pd.concat(all_data, axis=0)
-    all_data.to_excel('all_dataset_result.xlsx')
+    all_data.to_excel('dataset_result.xlsx')
 
 
 if __name__ == "__main__":
