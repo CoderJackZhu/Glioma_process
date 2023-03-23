@@ -11,12 +11,12 @@ from multi_process_process import get_data_paths, try_get_data, multi_process_sa
 
 def analyze_MRISequence(SeriesDescription):
     if 't1' in SeriesDescription:
-        if 'flair' in SeriesDescription:
-            if '+c' in SeriesDescription:
-                return 'T1 FLAIR+C'
-            else:
-                return 'T1 FLAIR'
-        elif '+c' in SeriesDescription:
+        # if 'flair' in SeriesDescription:
+        #     if '+c' in SeriesDescription:
+        #         return 'T1 FLAIR+C'
+        #     else:
+        #         return 'T1 FLAIR'
+        if '+c' in SeriesDescription:
             return 'T1+C'
         else:
             return 'T1'
@@ -30,6 +30,8 @@ def analyze_MRISequence(SeriesDescription):
             return 'T2+C'
         else:
             return 'T2'
+    elif 'bravo' in SeriesDescription or 'mpeage' in SeriesDescription:
+        return 'T1'
 
 
 def analyze_ImagePlane(SeriesDescription):
