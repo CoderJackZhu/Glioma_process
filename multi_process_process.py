@@ -28,7 +28,7 @@ def get_data_paths():
             images_paths.append(img_path)
     images_paths.sort()
     # 将路径保存为txt文件
-    with open('image_path.txt', 'wb') as f:
+    with open('result_file/image_path.txt', 'wb') as f:
         for path in images_paths:
             f.write(path.encode('utf-8'))
             f.write('\n'.encode('utf-8'))
@@ -54,8 +54,8 @@ def try_get_data(img_path):
 
 def multi_process_save():
     # 如果已经存在路径文件，则直接读取
-    if os.path.exists('image_path.txt'):
-        with open('image_path.txt', 'rb') as f:
+    if os.path.exists('result_file/image_path.txt'):
+        with open('result_file/image_path.txt', 'rb') as f:
             images_paths = f.readlines()
             images_paths = [path.decode('utf-8').strip() for path in images_paths]
     else:
@@ -63,7 +63,7 @@ def multi_process_save():
     for path in images_paths:
         print(path)
     # 多进程读取数据
-    with Pool(4) as p:
+    with Pool(8) as p:
         all_data = p.map(try_get_data, images_paths)
     all_data = pd.concat(all_data, axis=0)
     all_data.to_excel('dataset_result.xlsx')

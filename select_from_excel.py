@@ -47,7 +47,7 @@ def analyze_ImagePlane(SeriesDescription):
 
 def select_sequence_from_excel():
     # 读取excel文件
-    data = pd.read_excel('all_dataset_result.xlsx')
+    data = pd.read_excel('./result_file/all_dataset_result.xlsx')
     for i in range(len(data)):
         if type(data.loc[i, 'SeriesDescription']) != str:
             continue
@@ -59,7 +59,7 @@ def select_sequence_from_excel():
 
 
 def find_patient_amount():
-    data = pd.read_excel('selected_result.xlsx')
+    data = pd.read_excel('./result_file/selected_result.xlsx')
     patient_amount = data['PatientID'].value_counts()
     # print(patient_amount)
     # Name: PatientID, Length: 3485, dtype: int64
@@ -158,7 +158,7 @@ def find_patient_amount():
     print('t1c_t2flair_t2_count: ', t1c_t2flair_t2_count)
     print('t1c_t1_t2flair_t2_count: ', t1c_t1_t2flair_t2_count)
 
-    with open('patient_count_information.txt', 'w') as f:
+    with open('result_file/patient_count_information.txt', 'w') as f:
         f.write(('Patient amount: ' + str(len(patient_amount))) + '\n')
         # f.write('T1 FLAIR+C: ' + str(T1_FLAIR_C_count) + '\n')
         # f.write('T1 FLAIR: ' + str(T1_FLAIR_count) + '\n')
@@ -174,12 +174,15 @@ def find_patient_amount():
         f.write('T1+C, T2 FLAIR, T2 all_count: ' + str(t1c_t2flair_t2_count) + '\n')
         # for key, value in attribute_combination_count.items():
         #     f.write(str(key) + ': ' + str(value) + '\n')
-    with open('t1c_t1_t2flair_t2_PATIENT_ID.txt', 'a') as f:
+
+    # 去除重复病人
+    t1c_t1_t2flair_t2_patients = list(set(t1c_t1_t2flair_t2_patients))
+    with open('result_file/t1c_t1_t2flair_t2_PATIENT_ID.txt', 'w') as f:
         for patient in t1c_t1_t2flair_t2_patients:
             f.write(patient + '\n')
     # print(patient_sequence_dict)
 
 
 if __name__ == "__main__":
-    select_sequence_from_excel()
+    # select_sequence_from_excel()
     find_patient_amount()
