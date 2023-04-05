@@ -4,15 +4,17 @@
 # @Time         :2023/4/5 20:44
 # @Author       :Jack Zhu
 import os
+from tqdm import tqdm
 import pandas as pd
 
-def count(file_path):
-    files = os.listdir(file_path)
+
+def count(dir_path):
+    files = os.listdir(dir_path)
     num_count = 0
-    for file in files:
-        file_path = os.path.join(file_path, file)
+    for file in tqdm(files):
+        file_path = os.path.join(dir_path, file)
         nii_files = os.listdir(file_path)
-        nii_list  = []
+        nii_list = []
         for nii_file in nii_files:
             nii_file_path = os.path.join(file_path, nii_file)
             modality = nii_file.split('_')[1]
@@ -20,12 +22,10 @@ def count(file_path):
                 nii_list.append(modality)
         if len(nii_list) == 4:
             num_count += 1
-            print(f'------------------{file}------------------')
-            with open('result_file/4modality.txt', 'w') as f:
+            with open('result_file/4modality.txt', 'a') as f:
                 f.write(file + '\n')
 
 
-
 if __name__ == "__main__":
-    file_path = 'G:/Nii_Dataset'
-    count(file_path)
+    dir_path = 'G:/Nii_Dataset'
+    count(dir_path)
