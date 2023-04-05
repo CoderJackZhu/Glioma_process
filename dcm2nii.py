@@ -232,7 +232,7 @@ def show_nii_images(nii_images_dict, save_visualize_basic_path):
         gc.collect()
 def main():
     dir_list = if_use_data()
-    dest_dir = 'G:/DCM_nii_Dataset'
+    dest_dir = 'G:/Nii_Dataset'
     if not os.path.exists(dest_dir):
         os.mkdir(dest_dir)
     # 并行处理
