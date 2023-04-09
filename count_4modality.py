@@ -7,7 +7,8 @@ import os
 from tqdm import tqdm
 import pandas as pd
 
-
+# 按日期和病人ID划分，得到7433个文件夹
+对其中每天每个病人的文件夹查找，找到4种模态全的文件夹，记录下来，共有2993个文件夹
 def count(dir_path):
     files = os.listdir(dir_path)
     num_count = 0
