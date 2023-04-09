@@ -7,12 +7,12 @@ import os
 import pydicom
 import pandas as pd
 from multiprocessing import Pool
-import SimpleITK as sitk
-import nibabel as nib
-import matplotlib.pyplot as plt
+# import SimpleITK as sitk
+# import nibabel as nib
+# import matplotlib.pyplot as plt
 import numpy as np
 from tqdm import tqdm
-import gc
+# import gc
 # import ants
 import dicom2nifti
 
@@ -21,76 +21,76 @@ import dicom2nifti
 # 2. 保存为nii.gz文件
 
 
-def dcm2nii_itk(dcms_path, nii_path):
-    if os.path.exists(nii_path):
-        return
-    # try:
-        # 1.构建dicom序列文件阅读器，并执行（即将dicom序列文件“打包整合”）
-    reader = sitk.ImageSeriesReader()
-    dicom_names = reader.GetGDCMSeriesFileNames(dcms_path)
-    reader.SetFileNames(dicom_names)
-    image2 = reader.Execute()
-    # 2.将整合后的数据转为array，并获取dicom文件基本信息
-    image_array = sitk.GetArrayFromImage(image2)
-    image_array = image_array.astype(np.float32)
-    image_array /= np.max(image_array)
-    image_array *= 255
-    image_array = image_array.astype(np.uint8)
-    # 3.将array转为nii.gz文件
-    image = sitk.GetImageFromArray(image_array)
-    sitk.WriteImage(image, nii_path)
-    # except:
-    #     print(f'----------failed to read file:{dcms_path}-----------------')
-    #     f = "failed_save_nii.txt"
-    #     with open(f, "a") as file:
-    #         file.write(dcms_path.encode('utf-8') + '\n'.encode('utf-8'))
+# def dcm2nii_itk(dcms_path, nii_path):
+#     if os.path.exists(nii_path):
+#         return
+#     # try:
+#         # 1.构建dicom序列文件阅读器，并执行（即将dicom序列文件“打包整合”）
+#     reader = sitk.ImageSeriesReader()
+#     dicom_names = reader.GetGDCMSeriesFileNames(dcms_path)
+#     reader.SetFileNames(dicom_names)
+#     image2 = reader.Execute()
+#     # 2.将整合后的数据转为array，并获取dicom文件基本信息
+#     image_array = sitk.GetArrayFromImage(image2)
+#     image_array = image_array.astype(np.float32)
+#     image_array /= np.max(image_array)
+#     image_array *= 255
+#     image_array = image_array.astype(np.uint8)
+#     # 3.将array转为nii.gz文件
+#     image = sitk.GetImageFromArray(image_array)
+#     sitk.WriteImage(image, nii_path)
+#     # except:
+#     #     print(f'----------failed to read file:{dcms_path}-----------------')
+#     #     f = "failed_save_nii.txt"
+#     #     with open(f, "a") as file:
+#     #         file.write(dcms_path.encode('utf-8') + '\n'.encode('utf-8'))
+#
+#
+#     # reader = sitk.ImageSeriesReader()
+#     # seriesIDs = reader.GetGDCMSeriesIDs(dcms_path)
+#     # N = len(seriesIDs)
+#     # lens = np.zeros([N])
+#     # for i in range(N):
+#     #     dicom_names = reader.GetGDCMSeriesFileNames(dcms_path, seriesIDs[i])
+#     #     lens[i] = len(dicom_names)
+#     # N_MAX = np.argmax(lens)
+#     # dicom_names = reader.GetGDCMSeriesFileNames(dcms_path, seriesIDs[N_MAX])
+#     # reader.SetFileNames(dicom_names)
+#     # image = reader.Execute()
+#     # sitk.WriteImage(image, nii_path)
 
 
-    # reader = sitk.ImageSeriesReader()
-    # seriesIDs = reader.GetGDCMSeriesIDs(dcms_path)
-    # N = len(seriesIDs)
-    # lens = np.zeros([N])
-    # for i in range(N):
-    #     dicom_names = reader.GetGDCMSeriesFileNames(dcms_path, seriesIDs[i])
-    #     lens[i] = len(dicom_names)
-    # N_MAX = np.argmax(lens)
-    # dicom_names = reader.GetGDCMSeriesFileNames(dcms_path, seriesIDs[N_MAX])
-    # reader.SetFileNames(dicom_names)
-    # image = reader.Execute()
-    # sitk.WriteImage(image, nii_path)
 
 
-
-
-def dcm2nii_nib(dcm_folder_path, nii_file_path):
-    if os.path.exists(nii_file_path):
-        return
-    print(dcm_folder_path)
-    # 获取DICOM文件列表
-    dcm_files = [os.path.join(dcm_folder_path, f) for f in os.listdir(dcm_folder_path)]
-
-    # 读取DICOM序列的第一个文件，获取图像尺寸和像素间距
-    first_dcm = pydicom.read_file(dcm_files[0])
-    x, y = first_dcm.Rows, first_dcm.Columns
-    slice_thickness = first_dcm.SliceThickness
-    pixel_spacing = first_dcm.PixelSpacing
-
-    # 创建一个3D Numpy数组存储所有的DICOM像素数据
-    img_array = np.zeros((x, y, len(dcm_files)), dtype=np.int16)
-
-    # 逐个读取DICOM文件，将像素数据存储到Numpy数组中
-    for i, f in enumerate(dcm_files):
-        dcm = pydicom.read_file(f)
-        img_array[:, :, i] = dcm.pixel_array
-
-    # 创建一个Nifti1Image对象并将像素数据填充到其中
-    nii_image = nib.Nifti1Image(img_array, np.eye(4))
-
-    # 设置Nifti1Image对象的像素尺寸和像素间距属性
-    nii_image.header.set_zooms((pixel_spacing[0], pixel_spacing[1], slice_thickness))
-
-    # 将Nifti1Image对象保存为NIfTI文件
-    nib.save(nii_image, nii_file_path)
+# def dcm2nii_nib(dcm_folder_path, nii_file_path):
+#     if os.path.exists(nii_file_path):
+#         return
+#     print(dcm_folder_path)
+#     # 获取DICOM文件列表
+#     dcm_files = [os.path.join(dcm_folder_path, f) for f in os.listdir(dcm_folder_path)]
+#
+#     # 读取DICOM序列的第一个文件，获取图像尺寸和像素间距
+#     first_dcm = pydicom.read_file(dcm_files[0])
+#     x, y = first_dcm.Rows, first_dcm.Columns
+#     slice_thickness = first_dcm.SliceThickness
+#     pixel_spacing = first_dcm.PixelSpacing
+#
+#     # 创建一个3D Numpy数组存储所有的DICOM像素数据
+#     img_array = np.zeros((x, y, len(dcm_files)), dtype=np.int16)
+#
+#     # 逐个读取DICOM文件，将像素数据存储到Numpy数组中
+#     for i, f in enumerate(dcm_files):
+#         dcm = pydicom.read_file(f)
+#         img_array[:, :, i] = dcm.pixel_array
+#
+#     # 创建一个Nifti1Image对象并将像素数据填充到其中
+#     nii_image = nib.Nifti1Image(img_array, np.eye(4))
+#
+#     # 设置Nifti1Image对象的像素尺寸和像素间距属性
+#     nii_image.header.set_zooms((pixel_spacing[0], pixel_spacing[1], slice_thickness))
+#
+#     # 将Nifti1Image对象保存为NIfTI文件
+#     nib.save(nii_image, nii_file_path)
 
 def dcm2nii(dcm_image_folder, save_nii_image_path, patient_id, nii_modality):
     if os.path.exists(save_nii_image_path):
@@ -162,7 +162,6 @@ def multi_process(dir_list, dest_dir):
         # 筛掉不用的模态
         modality = dir_list[i]['modility']
         if modality not in ['T1', 'T1+C', 'T2', 'T2 FLAIR']:
-            print('----------------modality{} is not in T1, T1+C, T2, T2 FLAIR----------------'.format(modality))
             continue
         dir_path = dir_list[i]['dir_path']
         dir_path = dir_path = os.path.normpath(dir_path)
@@ -196,40 +195,41 @@ Visualize the nii results.
 '''
 
 
-def show_nii_images(nii_images_dict, save_visualize_basic_path):
-    load_nii_images = {}
-    for image_name, image_path in nii_images_dict.items():
-        load_nii_images[image_name] = nib.load(image_path).get_fdata()
+# def show_nii_images(nii_images_dict, save_visualize_basic_path):
+#     load_nii_images = {}
+#     for image_name, image_path in nii_images_dict.items():
+#         load_nii_images[image_name] = nib.load(image_path).get_fdata()
+#
+#     # show the images
+#     number_of_slices = list(load_nii_images.values())[0].shape[2]
+#     for index in range(0, number_of_slices):
+#
+#         num_figures = len(load_nii_images)
+#         plt.figure(figsize=(5 * num_figures, 5))
+#         j = 0
+#         for image_name, nii_image in load_nii_images.items():
+#             j = j + 1
+#             sub_fig = plt.subplot(1, num_figures, j)
+#             sub_fig.set_title(image_name, fontsize=20)
+#             plt.axis('off')
+#             plt.imshow(nii_image[:, :, index].T)
+#
+#         plt.subplots_adjust(left=0.03, bottom=0.03, right=0.97, top=0.9, wspace=0.03, hspace=0)
+#
+#         basename = os.path.basename(image_path)
+#         save_path = save_visualize_basic_path + '/' + basename[:-5] + '_' + str(index) + '.png'
+#         plt.savefig(save_path)
+#
+#         plt.show()
+#
+#         # Clear the current axes.
+#         plt.cla()
+#         # Clear the current figure.
+#         plt.clf()
+#         # Closes all the figure windows.
+#         plt.close('all')
+#         gc.collect()
 
-    # show the images
-    number_of_slices = list(load_nii_images.values())[0].shape[2]
-    for index in range(0, number_of_slices):
-
-        num_figures = len(load_nii_images)
-        plt.figure(figsize=(5 * num_figures, 5))
-        j = 0
-        for image_name, nii_image in load_nii_images.items():
-            j = j + 1
-            sub_fig = plt.subplot(1, num_figures, j)
-            sub_fig.set_title(image_name, fontsize=20)
-            plt.axis('off')
-            plt.imshow(nii_image[:, :, index].T)
-
-        plt.subplots_adjust(left=0.03, bottom=0.03, right=0.97, top=0.9, wspace=0.03, hspace=0)
-
-        basename = os.path.basename(image_path)
-        save_path = save_visualize_basic_path + '/' + basename[:-5] + '_' + str(index) + '.png'
-        plt.savefig(save_path)
-
-        plt.show()
-
-        # Clear the current axes.
-        plt.cla()
-        # Clear the current figure.
-        plt.clf()
-        # Closes all the figure windows.
-        plt.close('all')
-        gc.collect()
 def main():
     dir_list = if_use_data()
     dest_dir = 'G:/Nii_Dataset'
