@@ -18,40 +18,37 @@ import pandas as pd
 import pydicom
 import scipy.ndimage
 import scipy.misc
-import scipy.ndimage
-import scipy.misc
+import gc
+import os
 import nibabel as nib
+from deepbrain import Extractor
 
-def thresh_based(img):
-    import numpy as np
-    import nibabel as nib
-    from skimage import filters
 
-    # 加载nii文件
-    img = nib.load(img).get_fdata()
 
-    # 计算阈值
-    thresh = filters.threshold_otsu(img)
+def extract_brain_mask(image_path, save_brain_mask_path, save_visualize_basic_path=None, show_results=False):
+    '''
+    Run brain Extraction by deepbrain package.
+    See https://github.com/iitzco/deepbrain/blob/master/bin/deepbrain-extractor.
+    '''
 
-    # 应用阈值
-    mask = img > thresh
+    print('\nBegin to extract the brain of {}.'.format(image_path))
 
-    # 保存输出
-    nib.save(nib.Nifti1Image(mask.astype(np.uint8), affine=None), 'output.nii.gz')
+    # read data
+    image = nib.load(image_path)
+    affine = image.affine
+    image = image.get_fdata()
 
-def edge_based(img):
-    # 加载nii文件
-    img = nib.load(img).get_fdata()
+    # extract brain
+    ext = Extractor()
+    prob = ext.run(
+        image)  # `prob` will be a 3d numpy image containing probability of being brain tissue for each of the voxels in `img`
+    mask = prob > 0.5
 
-    # 计算边缘
-    edges = filters.sobel(img)
-
-    # 应用阈值
-    thresh = filters.threshold_otsu(edges)
-    mask = edges > thresh
-
-    # 保存输出
-    nib.save(nib.Nifti1Image(mask.astype(np.uint8), affine=None), 'output.nii.gz')
+    # Save mask as nifti
+    brain_mask = (1 * mask).astype(np.uint8)
+    brain_mask = nib.Nifti1Image(brain_mask, affine)
+    nib.save(brain_mask, save_brain_mask_path)
+    print('\n Finsh saving the mask to {}.'.format(save_brain_mask_path))
 
 if __name__ == "__main__":
-    edge_based('test.nii.gz')
+    extract_brain_mask('/media/spgou/ZYJ/Nii_Dataset/0000004868_20110712/0000004868_T2_20110712.nii.gz', 'masked.nii.gz')
