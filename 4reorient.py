@@ -1,6 +1,6 @@
 import os
 import numpy as np
-import SimpleITK as itk
+import itk
 from tqdm import tqdm
 
 
@@ -25,9 +25,9 @@ def reorient_to_rai(image):
 
 
 if __name__ == '__main__':
-    data_dir = r".\xiangya_Dataset"
+    data_dir = r"./xiangya_Dataset"
     case_dir_list = [os.path.join(data_dir, case) for case in os.listdir(data_dir)]
-    target_dir = r".\RAI_xiangya_Dataset"
+    target_dir = r"./RAI_xiangya_Dataset"
     if not os.path.exists(target_dir):
         os.mkdir(target_dir)
 

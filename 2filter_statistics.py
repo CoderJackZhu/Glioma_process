@@ -1,13 +1,12 @@
 # -*- coding:utf-8 -*-
 # @PROJECT_NAME :Glioma_process
-# @FileName     :select_from_excel.py
+# @FileName     :2filter_statistics.py
 # @Time         :2023/3/21 11:02
 # @Author       :Jack Zhu
 import os
 import pandas as pd
 from DcmData import DcmData
-from multi_process_process import get_data_paths, try_get_data, multi_process_save
-
+from tqdm import tqdm
 
 def analyze_MRISequence(SeriesDescription):
     if 't1' in SeriesDescription:
@@ -182,7 +181,26 @@ def find_patient_amount():
             f.write(patient + '\n')
     # print(patient_sequence_dict)
 
+# 按日期和病人ID划分，得到7433个文件夹，对其中每天每个病人的文件夹查找，找到4种模态全的文件夹，记录下来，共有2993个文件夹
+def count4modality(dir_path):
+    files = os.listdir(dir_path)
+    num_count = 0
+    for file in tqdm(files):
+        file_path = os.path.join(dir_path, file)
+        nii_files = os.listdir(file_path)
+        nii_list = []
+        for nii_file in nii_files:
+            nii_file_path = os.path.join(file_path, nii_file)
+            modality = nii_file.split('_')[1]
+            if modality not in nii_list:
+                nii_list.append(modality)
+        if len(nii_list) == 4:
+            num_count += 1
+            with open('result_file/4modality.txt', 'a') as f:
+                f.write(file + '\n')
 
 if __name__ == "__main__":
     # select_sequence_from_excel()
     find_patient_amount()
+    # dir_path = 'G:/Nii_Dataset'
+    # count4modality(dir_path)

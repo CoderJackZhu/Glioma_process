@@ -5,7 +5,7 @@ import subprocess
 
 def skull_strip():
     mgz_path = '/media/spgou/DATA/ZYJ/Dataset/skull-strip_mgz'
-    files_dir = '/media/spgou/DATA/ZYJ/Dcm_process/some_nii_data'
+    files_dir = '/xiangya_Dataset_origin'
     output_dir = '/media/spgou/DATA/ZYJ/Dataset/skull-strip_out'
     a = "#!/bin/bash export FREESURFER_HOME=$HOME/freesurfer;"
     b = "source $FREESURFER_HOME/SetUpFreeSurfer.sh;"

@@ -8,8 +8,8 @@ import shutil
 
 
 if __name__ == "__main__":
-    origin_path = r'./some_Nii_Dataset_origin'
-    target_path = r'./some_Nii_Dataset'
+    origin_path = r'./xiangya_Dataset_origin'
+    target_path = r'../xiangya_Dataset'
     if not os.path.exists(target_path):
         os.mkdir(target_path)
     for case in os.listdir(origin_path):

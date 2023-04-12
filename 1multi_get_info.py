@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 # @PROJECT_NAME :Glioma_process
-# @FileName     :multi_process_process.py
+# @FileName     :1multi_get_info.py
 # @Time         :2023/3/18 21:38
 # @Author       :Jack Zhu
 

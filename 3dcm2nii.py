@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 # @PROJECT_NAME :Glioma_process
-# @FileName     :dcm2nii.py
+# @FileName     :3dcm2nii.py
 # @Time         :2023/3/25 22:00
 # @Author       :Jack Zhu
 import os

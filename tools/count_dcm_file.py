@@ -9,7 +9,7 @@ from multiprocessing import Pool
 from DcmData import DcmData
 
 if __name__ == "__main__":
-    with open('failed.txt', 'rb') as f:
+    with open('../reference/failed.txt', 'rb') as f:
         images_paths = f.readlines()
         images_paths = [path.decode('gbk').strip() for path in images_paths]
         for path in images_paths:

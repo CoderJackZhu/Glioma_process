@@ -1,5 +1,8 @@
 .idea/
 __pycache__/
 some_Nii_Dataset/
-some_nii_data/
+xiangya_Dataset_origin/
 some_Nii_Dataset_origin/
+Registration_Dataset/
+xiangya_Dataset/
+RAI_xiangya_Dataset/

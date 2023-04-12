@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 # @PROJECT_NAME :Glioma_process
-# @FileName     :skull-stripping.py
+# @FileName     :deep_brain_skull-strip.py
 # @Time         :2023/4/5 21:51
 # @Author       :Jack Zhu
 import os
