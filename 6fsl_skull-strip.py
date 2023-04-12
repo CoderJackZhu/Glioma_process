@@ -4,10 +4,9 @@ import pandas as pd
 from tqdm import tqdm
 import numpy as np
 import SimpleITK as sitk
-import xlrd
 def select_after_operation():
-    operation_info = xlrd.open_workbook(r"./reference/12321321.xls")
-    print(operation_info[0])
+    operation_info = pd.read_csv('./reference/12321321.csv')
+    print(operation_info.iloc[0])
 
 
 def skull_strip(registrated_dir, skull_stripped_dir):
