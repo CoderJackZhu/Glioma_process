@@ -6,7 +6,7 @@ import numpy as np
 import SimpleITK as sitk
 
 
-def select_if_operation(patient_id, check_date):
+def check_if_operation(patient_id, check_date):
     operation_info = pd.read_csv('./reference/12321321.csv')
     for i in tqdm(range(len(operation_info))):
         id = operation_info.iloc[i, 0]
@@ -29,5 +29,5 @@ if __name__ == "__main__":
     skull_stripped_dir = r"./skull_stripped"
     if not os.path.exists(skull_stripped_dir):
         os.mkdir(skull_stripped_dir)
-    select_if_operation()
+    check_if_operation()
     skull_strip(registrated_dir, skull_stripped_dir)
