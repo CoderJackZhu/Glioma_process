@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# @PROJECT_NAME :Dcm_process
+# @PROJECT_NAME :Glioma_process
 # @FileName     :count_4modality.py
 # @Time         :2023/4/5 20:44
 # @Author       :Jack Zhu

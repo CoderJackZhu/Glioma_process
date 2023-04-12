@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# @PROJECT_NAME :Dcm_process
+# @PROJECT_NAME :Glioma_process
 # @FileName     :skull-stripping.py
 # @Time         :2023/4/5 21:51
 # @Author       :Jack Zhu

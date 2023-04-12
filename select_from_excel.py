@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# @PROJECT_NAME :Dcm_process
+# @PROJECT_NAME :Glioma_process
 # @FileName     :select_from_excel.py
 # @Time         :2023/3/21 11:02
 # @Author       :Jack Zhu

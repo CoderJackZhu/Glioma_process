@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# @PROJECT_NAME :Dcm_process
+# @PROJECT_NAME :Glioma_process
 # @FileName     :count_dcm_file.py
 # @Time         :2023/3/20 21:47
 # @Author       :Jack Zhu
