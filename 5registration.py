@@ -20,8 +20,8 @@ def register_images(fixed_image_path, moving_image_path, save_registered_path):
 
 
 if __name__ == '__main__':
-    data_dir = "./RAI_xiangya_Dataset"
-    target_data_dir = "./Registration_Dataset"
+    data_dir = "/media/spgou/ZYJ/Nii_Dataset_RAI"
+    target_data_dir = "/media/spgou/ZYJ/Nii_Dataset_RAI_Registered"
 
     if not os.path.exists(target_data_dir):
         os.mkdir(target_data_dir)
@@ -30,17 +30,20 @@ if __name__ == '__main__':
 
     for case_dir in tqdm(case_dir_list):
         nifty_path_list = [os.path.join(case_dir, nifty) for nifty in os.listdir(case_dir)]
-        splited_case_dir = case_dir.split(os.sep)
-        splited_case_dir[1] = target_data_dir
-        target_case_dir = os.sep.join(splited_case_dir)
+        # splited_case_dir = case_dir.split(os.sep)
+        # splited_case_dir[1] = target_data_dir
+        # target_case_dir = os.sep.join(splited_case_dir)
+        target_case_dir = os.path.join(target_data_dir, case_dir.split(os.sep)[-1])
         if not os.path.exists(target_case_dir):
             os.mkdir(target_case_dir)
+
         for nifty_path in nifty_path_list:
-            target_case_dir = case_dir
-            for nifty_path in nifty_path_list:
-                splited_nifty_path = nifty_path.split(os.sep)
-                splited_nifty_path[1] = target_data_dir
-                target_nifty_path = os.sep.join(splited_nifty_path)
-                register_images("reference/sri24/atlastImage.nii.gz", nifty_path, target_nifty_path)
+            # target_case_dir = case_dir
+            # for nifty_path in nifty_path_list:
+                # splited_nifty_path = nifty_path.split(os.sep)
+                # splited_nifty_path[1] = target_data_dir
+                # target_nifty_path = os.sep.join(splited_nifty_path)
+            target_nifty_path = os.path.join(target_case_dir, nifty_path.split(os.sep)[-1])
+            register_images("reference/sri24/atlastImage.nii.gz", nifty_path, target_nifty_path)
 
 
