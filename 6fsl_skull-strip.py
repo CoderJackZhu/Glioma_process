@@ -15,7 +15,7 @@ def check_if_operation(patient_id, check_date):
         if id == patient_id:
             if type(operation_data) == float:
                 return False
-            operation_data = str(operation_data).replace('-', '')
+            operation_data = str(operation_data).replace('-', '').split(' ')[0]
             print(check_date, operation_data)
             if int(check_date) < int(operation_data):
                 return True
@@ -25,8 +25,11 @@ def check_if_operation(patient_id, check_date):
 
 
 def skull_strip(registrated_dir, skull_stripped_dir):
-    a = "#!/bin/bash; source /etc/bash.bashrc;"
-    b = "export PATH=$PATH:$FSLDIR/bin;"
+    # first = "exec bash;"
+    # aa = "#!/bin/bash; "
+    # a = "source /home/spgou/.bashrc; source /etc/bash.bashrc;"
+    # b = "export PATH=$PATH:$FSLDIR/bin;"
+    # c = "source ${FSLDIR}/etc/fslconf/fsl.csh;"
     for patient in tqdm(os.listdir(registrated_dir)):
         patient_id = patient.split('_')[0]
         patient_date = patient.split('_')[1]
@@ -50,10 +53,18 @@ def skull_strip(registrated_dir, skull_stripped_dir):
             modality = modality.replace(' ', '')
             modality_file = os.path.join(patient_dir, modality)
             skull_stripped_file = os.path.join(skull_stripped_dir, patient, modality)
-            cmd = a + b + f"bet2 {modality_file} {skull_stripped_file} -o -m"
+            if os.path.exists(skull_stripped_file):
+                continue
+            cmd =  f"/home/spgou/fsl/bin/bet2 {modality_file} {skull_stripped_file} -o -m"
             print(cmd)
+            os.environ['FSLOUTPUTTYPE'] = 'NIFTI_GZ'  # 设置环境变量
+            subprocess.call(cmd, shell=True)
+            # os.system(cmd)
             # subprocess.call(cmd, shell=True)
-            os.system(cmd)
+            # env = os.environ.copy()
+            # env['PATH'] = env['PATH'] + ':/home/spgou/fsl/bin'
+            # p = subprocess.Popen(cmd, shell=True, env=env)
+            # p.wait()
 
 
 def select_before_operation():
@@ -62,8 +73,10 @@ def select_before_operation():
 
 
 if __name__ == "__main__":
-    registrated_dir = r"/media/spgou/DATA/ZYJ/Dcm_process/Registration_Dataset"
-    skull_stripped_dir = r"/media/spgou/DATA/ZYJ/Dcm_process/skull_stripped_out"
+    # registrated_dir = r"/media/spgou/DATA/ZYJ/Dcm_process/Registration_Dataset"
+    # skull_stripped_dir = r"/media/spgou/DATA/ZYJ/Dcm_process/skull_stripped_out"
+    registrated_dir = r"/media/spgou/ZYJ//Nii_Dataset_RAI_Registered"
+    skull_stripped_dir = r"/media/spgou/ZYJ//Nii_Dataset_RAI_Registered_Skull_Stripped"
     if not os.path.exists(skull_stripped_dir):
         os.mkdir(skull_stripped_dir)
     skull_strip(registrated_dir, skull_stripped_dir)

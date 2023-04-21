@@ -22,9 +22,9 @@ def analyze_MRISequence(SeriesDescription):
     elif 't2' in SeriesDescription:
         if 'flair' in SeriesDescription or 'darkfluid' in SeriesDescription or 'dark fluid' in SeriesDescription or 'dark-fluid' in SeriesDescription or 'dark_fluid' in SeriesDescription:
             if '+c' in SeriesDescription:
-                return 'T2 FLAIR+C'
+                return 'T2FLAIR+C'
             else:
-                return 'T2 FLAIR'
+                return 'T2FLAIR'
         elif '+c' in SeriesDescription:
             return 'T2+C'
         else:
@@ -96,9 +96,9 @@ def find_patient_amount():
         #         T1_C_count += 1
         #     elif 'T1' == sequence:
         #         T1_count += 1
-        #     elif 'T2 FLAIR+C' == sequence:
+        #     elif 'T2FLAIR+C' == sequence:
         #         T2_FLAIR_C_count += 1
-        #     elif 'T2 FLAIR' == sequence:
+        #     elif 'T2FLAIR' == sequence:
         #         T2_FLAIR_count += 1
         #     elif 'T2+C' == sequence:
         #         T2_C_count += 1
@@ -113,27 +113,27 @@ def find_patient_amount():
             T1_C_count += 1
         if 'T1' in patient_sequence_dict[idx]:
             T1_count += 1
-        if 'T2 FLAIR+C' in patient_sequence_dict[idx]:
+        if 'T2FLAIR+C' in patient_sequence_dict[idx]:
             T2_FLAIR_C_count += 1
-        if 'T2 FLAIR' in patient_sequence_dict[idx]:
+        if 'T2FLAIR' in patient_sequence_dict[idx]:
             T2_FLAIR_count += 1
         if 'T2+C' in patient_sequence_dict[idx]:
             T2_C_count += 1
         if 'T2' in patient_sequence_dict[idx]:
             T2_count += 1
 
-        if 'T1+C' in patient_sequence_dict[idx] and 'T1' in patient_sequence_dict[idx] and 'T2 FLAIR+C' in \
-                patient_sequence_dict[idx] and 'T2 FLAIR' in patient_sequence_dict[idx] and 'T2' in \
+        if 'T1+C' in patient_sequence_dict[idx] and 'T1' in patient_sequence_dict[idx] and 'T2FLAIR+C' in \
+                patient_sequence_dict[idx] and 'T2FLAIR' in patient_sequence_dict[idx] and 'T2' in \
                 patient_sequence_dict[idx]:
             t1c_t1_t2flairc_t2flair_t2_count += 1
         if 'T1' in patient_sequence_dict[idx] and 'T1+C' in patient_sequence_dict[idx] and \
-                'T2 FLAIR' in patient_sequence_dict[idx] and 'T2' in patient_sequence_dict[idx]:
+                'T2FLAIR' in patient_sequence_dict[idx] and 'T2' in patient_sequence_dict[idx]:
             t1c_t1_t2flair_t2_count += 1
             t1c_t1_t2flair_t2_patients.append(idx)
-        if 'T1' in patient_sequence_dict[idx] and 'T2 FLAIR' in patient_sequence_dict[idx] and \
+        if 'T1' in patient_sequence_dict[idx] and 'T2FLAIR' in patient_sequence_dict[idx] and \
                 'T2' in patient_sequence_dict[idx]:
             t1_t2flair_t2_count += 1
-        if 'T1+C' in patient_sequence_dict[idx] and 'T2 FLAIR' in patient_sequence_dict[idx] and \
+        if 'T1+C' in patient_sequence_dict[idx] and 'T2FLAIR' in patient_sequence_dict[idx] and \
                 'T2' in patient_sequence_dict[idx]:
             t1c_t2flair_t2_count += 1
 
@@ -148,8 +148,8 @@ def find_patient_amount():
     # print('T1 FLAIR: ', T1_FLAIR_count)
     print('T1+C: ', T1_C_count)
     print('T1: ', T1_count)
-    print('T2 FLAIR+C: ', T2_FLAIR_C_count)
-    print('T2 FLAIR: ', T2_FLAIR_count)
+    print('T2FLAIR+C: ', T2_FLAIR_C_count)
+    print('T2FLAIR: ', T2_FLAIR_count)
     print('T2+C: ', T2_C_count)
     print('T2: ', T2_count)
     print('t1c_t1_t2flairc_t2flair_t2_count: ', t1c_t1_t2flairc_t2flair_t2_count)
@@ -163,14 +163,14 @@ def find_patient_amount():
         # f.write('T1 FLAIR: ' + str(T1_FLAIR_count) + '\n')
         f.write('T1+C: ' + str(T1_C_count) + '\n')
         f.write('T1: ' + str(T1_count) + '\n')
-        f.write('T2 FLAIR+C: ' + str(T2_FLAIR_C_count) + '\n')
-        f.write('T2 FLAIR: ' + str(T2_FLAIR_count) + '\n')
+        f.write('T2FLAIR+C: ' + str(T2_FLAIR_C_count) + '\n')
+        f.write('T2FLAIR: ' + str(T2_FLAIR_count) + '\n')
         f.write('T2+C: ' + str(T2_C_count) + '\n')
         f.write('T2: ' + str(T2_count) + '\n')
-        f.write('T1, T1+C, T2 FLAIR+C, T2 FLAIR, T2 all_count: ' + str(t1c_t1_t2flairc_t2flair_t2_count) + '\n')
-        f.write('T1, T1+C, T2 FLAIR, T2 all_count: ' + str(t1c_t1_t2flair_t2_count) + '\n')
-        f.write('T1, T2 FLAIR, T2 all_count: ' + str(t1_t2flair_t2_count) + '\n')
-        f.write('T1+C, T2 FLAIR, T2 all_count: ' + str(t1c_t2flair_t2_count) + '\n')
+        f.write('T1, T1+C, T2FLAIR+C, T2FLAIR, T2 all_count: ' + str(t1c_t1_t2flairc_t2flair_t2_count) + '\n')
+        f.write('T1, T1+C, T2FLAIR, T2 all_count: ' + str(t1c_t1_t2flair_t2_count) + '\n')
+        f.write('T1, T2FLAIR, T2 all_count: ' + str(t1_t2flair_t2_count) + '\n')
+        f.write('T1+C, T2FLAIR, T2 all_count: ' + str(t1c_t2flair_t2_count) + '\n')
         # for key, value in attribute_combination_count.items():
         #     f.write(str(key) + ': ' + str(value) + '\n')
 

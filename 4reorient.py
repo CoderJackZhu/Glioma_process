@@ -47,6 +47,8 @@ if __name__ == '__main__':
             # splited_nifty_path[1] = target_dir
             # target_nifty_path = os.sep.join(splited_nifty_path)
             target_nifty_path = os.path.join(target_case_dir, nifty_path.split(os.sep)[-1])
+            if os.path.exists(target_nifty_path):
+                continue
             try:
                 image = itk.imread(nifty_path)
             except RuntimeError:

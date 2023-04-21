@@ -1,22 +1,36 @@
 import ants
 import os
 from tqdm import tqdm
-
+# import multiprocessing
+# import gc
+import traceback
+# multiprocessing.set_start_method('spawn')
+# multiprocessing.Semaphore(1).release()
+# gc.collect()
 '''
 Register images and save the results.
 '''
 
 
 def register_images(fixed_image_path, moving_image_path, save_registered_path):
-    fixed_img = ants.image_read(fixed_image_path)
-    moving_img = ants.image_read(moving_image_path)
+    try:
+        fixed_img = ants.image_read(fixed_image_path)
+        moving_img = ants.image_read(moving_image_path)
 
-    registered_results = ants.registration(fixed=fixed_img, moving=moving_img, type_of_transform='Rigid')
-    registered_moving_image = registered_results['warpedmovout']
-    transform_from_move_to_fix = registered_results['fwdtransforms']
-    transform_from_fix_to_move = registered_results['invtransforms']
+        fixed_img_resampled = ants.resample_image(fixed_img, (240, 240, 155), use_voxels=True)
+        moving_img_resampled = ants.resample_image(moving_img, (240, 240, 155), use_voxels=True)
 
-    ants.image_write(registered_moving_image, save_registered_path)
+        registered_results = ants.registration(fixed=fixed_img_resampled, moving=moving_img_resampled, type_of_transform='Rigid')
+        registered_moving_image = registered_results['warpedmovout']
+        transform_from_move_to_fix = registered_results['fwdtransforms']
+        transform_from_fix_to_move = registered_results['invtransforms']
+
+        ants.image_write(registered_moving_image, save_registered_path)
+
+    except Exception as e:
+        print(f"error happened in func register_images when dealing with {moving_image_path}")
+        with open("registration_error_log.txt", "a") as f:
+            f.write(f"error happened in func register_images when dealing with {moving_image_path}
 
 
 if __name__ == '__main__':
@@ -40,10 +54,10 @@ if __name__ == '__main__':
         for nifty_path in nifty_path_list:
             # target_case_dir = case_dir
             # for nifty_path in nifty_path_list:
-                # splited_nifty_path = nifty_path.split(os.sep)
-                # splited_nifty_path[1] = target_data_dir
-                # target_nifty_path = os.sep.join(splited_nifty_path)
+            # splited_nifty_path = nifty_path.split(os.sep)
+            # splited_nifty_path[1] = target_data_dir
+            # target_nifty_path = os.sep.join(splited_nifty_path)
             target_nifty_path = os.path.join(target_case_dir, nifty_path.split(os.sep)[-1])
-            register_images("reference/sri24/atlastImage.nii.gz", nifty_path, target_nifty_path)
-
-
+            if os.path.exists(target_nifty_path):
+                continue
+            register_images("./reference/sri24/atlastImage.nii.gz", nifty_path, target_nifty_path)
