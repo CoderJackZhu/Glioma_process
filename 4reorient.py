@@ -25,25 +25,30 @@ def reorient_to_rai(image):
 
 
 if __name__ == '__main__':
-    data_dir = r"./xiangya_Dataset"
+    data_dir = r"/media/spgou/ZYJ/Nii_Dataset"
     case_dir_list = [os.path.join(data_dir, case) for case in os.listdir(data_dir)]
-    target_dir = r"./RAI_xiangya_Dataset"
+    target_dir = r"/media/spgou/ZYJ/Nii_Dataset_RAI"
     if not os.path.exists(target_dir):
         os.mkdir(target_dir)
-
     for case_dir in tqdm(case_dir_list):
-        splited_case_dir = case_dir.split(os.sep)
-        splited_case_dir[1] = target_dir
-        target_case_dir = os.sep.join(splited_case_dir)
+        # splited_case_dir = case_dir.split(os.sep)
+        # splited_case_dir[1] = target_dir
+        # target_case_dir = os.sep.join(splited_case_dir)
+        # if not os.path.exists(target_case_dir):
+        #     os.mkdir(target_case_dir)
+        target_case_dir = os.path.join(target_dir, case_dir.split(os.sep)[-1])
         if not os.path.exists(target_case_dir):
             os.mkdir(target_case_dir)
 
         nifty_path_list = [os.path.join(case_dir, nifty) for nifty in os.listdir(case_dir)]
 
         for nifty_path in nifty_path_list:
-            splited_nifty_path = nifty_path.split(os.sep)
-            splited_nifty_path[1] = target_dir
-            target_nifty_path = os.sep.join(splited_nifty_path)
+            # splited_nifty_path = nifty_path.split(os.sep)
+            # splited_nifty_path[1] = target_dir
+            # target_nifty_path = os.sep.join(splited_nifty_path)
+            target_nifty_path = os.path.join(target_case_dir, nifty_path.split(os.sep)[-1])
+            if os.path.exists(target_nifty_path):
+                continue
             try:
                 image = itk.imread(nifty_path)
             except RuntimeError:
