@@ -8,7 +8,7 @@ import subprocess
 
 
 def check_if_operation(patient_id, check_date):
-    operation_info = pd.read_csv('./reference/12321321.csv')
+    operation_info = pd.read_csv('result_file/12321321.csv')
     for i in tqdm(range(len(operation_info))):
         id = operation_info.iloc[i, 0].zfill(10)
         operation_data = operation_info.iloc[i, 1]
