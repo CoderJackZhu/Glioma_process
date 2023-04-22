@@ -1,0 +1,6 @@
+error happened in func register_images when dealing with /media/spgou/ZYJ/Nii_Dataset_RAI/0006844966_20180312/0006844966_T1_20180312.nii.gz
+error happened in func register_images when dealing with /media/spgou/ZYJ/Nii_Dataset_RAI/0008627407_20191207/0008627407_T2FLAIR_20191207.nii.gz
+error happened in func register_images when dealing with /media/spgou/ZYJ/Nii_Dataset_RAI/0006547440_20171103/0006547440_T1_20171103.nii.gz
+error happened in func register_images when dealing with /media/spgou/ZYJ/Nii_Dataset_RAI/0006844966_20180312/0006844966_T1_20180312.nii.gz
+error happened in func register_images when dealing with /media/spgou/ZYJ/Nii_Dataset_RAI/0008627407_20191207/0008627407_T2FLAIR_20191207.nii.gz
+error happened in func register_images when dealing with /media/spgou/ZYJ/Nii_Dataset_RAI/0006547440_20171103/0006547440_T1_20171103.nii.gz

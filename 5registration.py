@@ -17,8 +17,11 @@ def register_images(fixed_image_path, moving_image_path, save_registered_path):
         fixed_img = ants.image_read(fixed_image_path)
         moving_img = ants.image_read(moving_image_path)
 
-        fixed_img_resampled = ants.resample_image(fixed_img, (240, 240, 155), use_voxels=True)
-        moving_img_resampled = ants.resample_image(moving_img, (240, 240, 155), use_voxels=True)
+    # # 转换为单通道图像
+    # moving_img = ants.to_single_component_image(moving_img)
+    #
+    # fixed_img_resampled = ants.resample_image(fixed_img, (240, 240, 155), use_voxels=True)
+    # moving_img_resampled = ants.resample_image(moving_img, (240, 240, 155), use_voxels=True)
 
         registered_results = ants.registration(fixed=fixed_img_resampled, moving=moving_img_resampled, type_of_transform='Rigid')
         registered_moving_image = registered_results['warpedmovout']
@@ -29,8 +32,8 @@ def register_images(fixed_image_path, moving_image_path, save_registered_path):
 
     except Exception as e:
         print(f"error happened in func register_images when dealing with {moving_image_path}")
-        with open("registration_error_log.txt", "a") as f:
-            f.write(f"error happened in func register_images when dealing with {moving_image_path}
+        with open("./result_file/registration_error_log.txt", "a") as f:
+            f.write(f"error happened in func register_images when dealing with {moving_image_path}\n")
 
 
 if __name__ == '__main__':
