@@ -47,7 +47,7 @@ def try_get_data(img_path):
 
     except:
         print(f'----------failed to read file:{img_path}-----------------')
-        f = "failed.txt"
+        f = "result_file/failed.txt"
         with open(f, "a") as file:
             file.write(img_path.encode('utf-8') + '\n'.encode('utf-8'))
 

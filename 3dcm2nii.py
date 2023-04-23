@@ -115,7 +115,7 @@ def dcm2nii(dcm_image_folder, save_nii_image_path, patient_id, nii_modality):
                                           reorient_nifti=True)  # LAS oriented
 
 def get_use_data():
-    info = pd.read_excel('./result_file/selected_result.xlsx')
+    info = pd.read_excel('./result_file/selected_result_v1.xlsx')
     dir_list = []
     for i in tqdm(range(len(info))):
         basic_info = {}

@@ -46,7 +46,7 @@ def analyze_ImagePlane(SeriesDescription):
 
 def select_sequence_from_excel():
     # 读取excel文件
-    data = pd.read_excel('./result_file/all_dataset_result.xlsx')
+    data = pd.read_excel('./result_file/basic_dataset_v1.xlsx')
     for i in range(len(data)):
         if type(data.loc[i, 'SeriesDescription']) != str:
             continue
@@ -54,11 +54,11 @@ def select_sequence_from_excel():
         data.loc[i, 'MRISequence'] = analyze_MRISequence(data.loc[i, 'SeriesDescription'])
         data.loc[i, 'ImagePlane'] = analyze_ImagePlane(data.loc[i, 'SeriesDescription'])
     # 保存为新的excel文件
-    data.to_excel('selected_result.xlsx', index=False)
+    data.to_excel('selected_result_v1.xlsx', index=False)
 
 
 def find_patient_amount():
-    data = pd.read_excel('./result_file/selected_result.xlsx')
+    data = pd.read_excel('./result_file/selected_result_v1.xlsx')
     patient_amount = data['PatientID'].value_counts()
     # print(patient_amount)
     # Name: PatientID, Length: 3485, dtype: int64
