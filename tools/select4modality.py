@@ -20,8 +20,8 @@ def select4mod(input_dir, output_dir):
 
 
 if __name__ == '__main__':
-    input_dir = r"/media/spgou/ZYJ/Nii_Dataset_RAI_Registered_Skull_Stripped"
-    output_dir = r"/media/spgou/ZYJ/Nii_Dataset_RAI_Registered_Skulled_4mod"
+    input_dir = r"/media/spgou/ZYJ/Nii_Dataset_RAI_Registered"
+    output_dir = r"/media/spgou/DATA/ZYJ/Dataset/Nii_Dataset_RAI_Registered_4mod"
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
     select4mod(input_dir, output_dir)

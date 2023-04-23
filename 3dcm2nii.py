@@ -16,6 +16,7 @@ from tqdm import tqdm
 # import ants
 import dicom2nifti
 
+
 # 用python写一个函数把dcm格式的文件转成nii.gz格式的文件
 # 1. 读取dcm文件
 # 2. 保存为nii.gz文件
@@ -60,8 +61,6 @@ import dicom2nifti
 #     # sitk.WriteImage(image, nii_path)
 
 
-
-
 # def dcm2nii_nib(dcm_folder_path, nii_file_path):
 #     if os.path.exists(nii_file_path):
 #         return
@@ -95,7 +94,9 @@ import dicom2nifti
 def dcm2nii(dcm_image_folder, save_nii_image_path, patient_id, nii_modality):
     if os.path.exists(save_nii_image_path):
         return
-    print("patient_id={}, modality={}, dcm_image_folder={}, save_nii_image_path={}".format(patient_id, nii_modality, dcm_image_folder, save_nii_image_path))
+    print("patient_id={}, modality={}, dcm_image_folder={}, save_nii_image_path={}".format(patient_id, nii_modality,
+                                                                                           dcm_image_folder,
+                                                                                           save_nii_image_path))
     # 1.conversion of the DICOM files to the NIFTI file format;
     dicom2nifti.settings.enable_validate_slice_increment()
     dicom2nifti.settings.enable_validate_orthogonal()
@@ -113,6 +114,7 @@ def dcm2nii(dcm_image_folder, save_nii_image_path, patient_id, nii_modality):
         dicom2nifti.settings.disable_validate_orthogonal()
         dicom2nifti.dicom_series_to_nifti(dcm_image_folder, save_nii_image_path,
                                           reorient_nifti=True)  # LAS oriented
+
 
 def get_use_data():
     info = pd.read_excel('./result_file/selected_result_v1.xlsx')
@@ -151,9 +153,6 @@ def if_use_data():
         return dir_list
 
 
-
-
-
 def multi_process(dir_list, dest_dir):
     # 并行处理
     pool = Pool(12)
@@ -168,12 +167,13 @@ def multi_process(dir_list, dest_dir):
         # print(dir_path)
         patient_id = str(dir_list[i]['patient_id'])
         patient_study_date = str(int(dir_list[i]['StudyDate']))
-        patient_dir = os.path.join(dest_dir, patient_id+'_' + patient_study_date)
+        patient_dir = os.path.join(dest_dir, patient_id + '_' + patient_study_date)
         if not os.path.exists(patient_dir):
             os.mkdir(patient_dir)
 
         # print(dir_path)
-        nii_path = os.path.join(dest_dir, patient_dir, patient_id + '_' + str(modality) +'_' + patient_study_date + '.nii.gz')
+        nii_path = os.path.join(dest_dir, patient_dir,
+                                patient_id + '_' + str(modality) + '_' + patient_study_date + '.nii.gz')
         pool.apply_async(dcm2nii, (dir_path, nii_path, patient_id, modality))
     pool.close()
     pool.join()
@@ -238,6 +238,7 @@ def main():
     # 并行处理
     multi_process(dir_list, dest_dir)
 
+
 if __name__ == "__main__":
     main()
     # show_nii_images({'1':'./test.nii.gz'}, '.')
@@ -251,4 +252,3 @@ if __name__ == "__main__":
     # p.join()
     # dcm2nii_itk(dir_path, gz_file_path)
     # dcm2nii(dir_path, gz_file_path, '1', '1')
-

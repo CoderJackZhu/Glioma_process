@@ -11,4 +11,21 @@ import nibabel as nib
 
 
 
+if __name__ == '__main__':
+    input_dir = r"/media/spgou/ZYJ/Nii_Dataset_RAI_Registered_Skulled_4mod"
+    output_dir = r"/media/spgou/ZYJ/Nii_Dataset_RAI_Registered_Skulled_4mod_actT1_mask"
+    if not os.path.exists(output_dir):
+        os.mkdir(output_dir)
+    act_t1_mask(input_dir, output_dir)
+
+
+
+
+
+
+
+
+
+
+
 
