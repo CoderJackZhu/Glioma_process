@@ -87,13 +87,12 @@ def show_registered_images(fixed_image_path, moving_image_path, registered_image
         gc.collect()
 
 
-def visual_registration(moving_patient_dir, registered_patient_dir, save_dir):
+def visual_registration(fixed_image_path, moving_patient_dir, registered_patient_dir, save_dir):
     """
     Visualize the registration results.
     """
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
-    fixed_image_path = '../reference/sri24/atlastImage.nii.gz'
     modalities_list = os.listdir(moving_patient_dir)
     for modality in modalities_list:
         modality_file = os.path.join(moving_patient_dir, modality)
@@ -131,7 +130,16 @@ def visual_registration(moving_patient_dir, registered_patient_dir, save_dir):
     #                 f.write('\n')
 
 if __name__ == '__main__':
-    moving_patient_dir = '/media/spgou/ZYJ/Nii_Dataset_RAI/0002139521_20190212'
-    registered_patient_dir = '/media/spgou/ZYJ/Nii_Dataset_RAI_Registered/0002139521_20190212'
-    save_dir = '/media/spgou/DATA/ZYJ/Dataset/register_visual'
-    visual_registration(moving_patient_dir, registered_patient_dir, save_dir)
+    # moving_patient_dir = '/media/spgou/ZYJ/Nii_Dataset_RAI/0002139521_20190212'
+    # registered_patient_dir = '/media/spgou/ZYJ/Nii_Dataset_RAI_Registered/0002139521_20190212'
+    # save_dir = '/media/spgou/DATA/ZYJ/Dataset/register_visual'
+    # 原模板
+    # fixed_image_path = '../reference/sri24/atlastImage.nii.gz'
+    fixed_image_path = '../reference/sri24/erly_unstrip.nii'
+    # fixed_image_path = '../reference/sri24/late_unstrip.nii'
+    # fixed_image_path = '../reference/sri24/spgr_unstrip.nii'
+    moving_image_path = '../reference/sri24/late_unstrip.nii'
+    registered_image_path = '../test_data/0000000695_T1_20200105.nii.gz'
+    save_visualize_basic_path = '../test_data/visualize_pic'
+    # visual_registration(fixed_image_path, moving_patient_dir, registered_patient_dir, save_dir)
+    show_registered_images(fixed_image_path, moving_image_path, registered_image_path, save_visualize_basic_path)
