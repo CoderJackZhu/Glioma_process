@@ -17,7 +17,6 @@ def check_if_operation(patient_id, check_date):
             if type(operation_data) == float:
                 return False
             operation_data = str(operation_data).replace('-', '').split(' ')[0]
-            print(check_date, operation_data)
             if int(check_date) < int(operation_data):
                 return True
             else:
@@ -48,11 +47,11 @@ def t1_skull_strip(registrated_dir, skull_stripped_dir):
             skull_stripped_file = os.path.join(skull_stripped_dir, patient, modality)
             if os.path.exists(skull_stripped_file):
                 continue
-            # if modality.split('.')[0].split('_')[1] == 'T1':
-            cmd = f"/home/spgou/fsl/bin/bet2 {modality_file} {skull_stripped_file} -o -m"
-            os.environ['FSLOUTPUTTYPE'] = 'NIFTI_GZ'  # 设置环境变量
-            os.system(cmd)
-            break
+            if modality.split('.')[0].split('_')[1] == 'T1':
+                cmd = f"/home/spgou/fsl/bin/bet2 {modality_file} {skull_stripped_file} -o -m"
+                os.environ['FSLOUTPUTTYPE'] = 'NIFTI_GZ'  # 设置环境变量
+                os.system(cmd)
+                break
 
         # for modality in os.listdir(patient_dir):
         #     modality = modality.replace(' ', '')
@@ -103,9 +102,9 @@ def act_t1_mask(input_dir, output_dir):
 if __name__ == "__main__":
     # registrated_dir = r"/media/spgou/DATA/ZYJ/Dcm_process/Registration_Dataset"
     # skull_stripped_dir = r"/media/spgou/DATA/ZYJ/Dcm_process/skull_stripped_out"
-    registrated_dir = r"/media/spgou/ZYJ//Nii_Dataset_RAI_Registered"
-    skull_stripped_dir = r"/media/spgou/DATA/ZYJ/Dataset/Nii_Dataset_RAI_Registered_Skulled"
+    registered_dir = r"/media/spgou/DATA/ZYJ/Dataset/Nii_Dataset_RAI_Registered_4mod"
+    skull_stripped_dir = r"/media/spgou/DATA/ZYJ/Dataset/Nii_Dataset_RAI_Registered_4mod_skulled"
     if not os.path.exists(skull_stripped_dir):
         os.mkdir(skull_stripped_dir)
-    t1_skull_strip(registrated_dir, skull_stripped_dir)
-    act_t1_mask(registrated_dir, skull_stripped_dir)
+    t1_skull_strip(registered_dir, skull_stripped_dir)
+    act_t1_mask(registered_dir, skull_stripped_dir)

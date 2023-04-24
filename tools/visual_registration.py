@@ -87,41 +87,51 @@ def show_registered_images(fixed_image_path, moving_image_path, registered_image
         gc.collect()
 
 
-def visual_registration(moving_patient_dir, registrated_patient_dir, save_dir):
+def visual_registration(moving_patient_dir, registered_patient_dir, save_dir):
     """
     Visualize the registration results.
     """
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
     fixed_image_path = '../reference/sri24/atlastImage.nii.gz'
-    patient_list = os.listdir(moving_patient_dir)
-    for patient in tqdm(patient_list):
-        patient_dir = os.path.join(moving_patient_dir, patient)
-        patient_registered_dir = os.path.join(registrated_patient_dir, patient)
-        patient_save_dir = os.path.join(save_dir, patient)
-        if not os.path.exists(patient_save_dir):
-            os.makedirs(patient_save_dir)
+    modalities_list = os.listdir(moving_patient_dir)
+    for modality in modalities_list:
+        modality_file = os.path.join(moving_patient_dir, modality)
+        modality_registered_file = os.path.join(registered_patient_dir, modality)
+        modality_save_pic_dir = os.path.join(save_dir, modality.split('.')[0])
+        if not os.path.exists(modality_save_pic_dir):
+            os.makedirs(modality_save_pic_dir)
+        # if os.path.exists(modality_file) and os.path.exists(modality_registered_file):
+        show_registered_images(fixed_image_path, modality_file, modality_registered_file, modality_save_pic_dir)
 
-        modalities_list = os.listdir(patient_dir)
-        for modality in modalities_list:
-            modality_file = os.path.join(patient_dir, modality)
-            modality_registered_file = os.path.join(patient_registered_dir, modality)
-            print(modality_file)
-            print(modality_registered_file)
-            modality_save_pic_dir = os.path.join(patient_save_dir, modality.split('.')[0])
-            if not os.path.exists(modality_save_pic_dir):
-                os.makedirs(modality_save_pic_dir)
-            if os.path.exists(modality_file) and os.path.exists(modality_registered_file):
-                show_registered_images(fixed_image_path, modality_file, modality_registered_file, modality_save_pic_dir)
-            else:
-                print('some file does not exist')
-                print('{} or {}'.format(modality_file, modality_registered_file))
-                with open('../result_file/visualize_registration_error.txt', 'a') as f:
-                    f.write('{} or {}'.format(modality_file, modality_registered_file))
-                    f.write('\n')
+
+    # for patient in tqdm(patient_list):
+    #     patient_dir = os.path.join(moving_patient_dir, patient)
+    #     patient_registered_dir = os.path.join(registrated_patient_dir, patient)
+    #     patient_save_dir = os.path.join(save_dir, patient)
+    #     if not os.path.exists(patient_save_dir):
+    #         os.makedirs(patient_save_dir)
+    #
+    #     modalities_list = os.listdir(patient_dir)
+    #     for modality in modalities_list:
+    #         modality_file = os.path.join(patient_dir, modality)
+    #         modality_registered_file = os.path.join(patient_registered_dir, modality)
+    #         print(modality_file)
+    #         print(modality_registered_file)
+    #         modality_save_pic_dir = os.path.join(patient_save_dir, modality.split('.')[0])
+    #         if not os.path.exists(modality_save_pic_dir):
+    #             os.makedirs(modality_save_pic_dir)
+    #         if os.path.exists(modality_file) and os.path.exists(modality_registered_file):
+    #             show_registered_images(fixed_image_path, modality_file, modality_registered_file, modality_save_pic_dir)
+    #         else:
+    #             print('some file does not exist')
+    #             print('{} or {}'.format(modality_file, modality_registered_file))
+    #             with open('../result_file/visualize_registration_error.txt', 'a') as f:
+    #                 f.write('{} or {}'.format(modality_file, modality_registered_file))
+    #                 f.write('\n')
 
 if __name__ == '__main__':
-    moving_patient_dir = '/media/spgou/ZYJ/Nii_Dataset_RAI'
-    registered_patient_dir = '/media/spgou/ZYJ/Nii_Dataset_RAI_registered'
+    moving_patient_dir = '/media/spgou/ZYJ/Nii_Dataset_RAI/0002139521_20190212'
+    registered_patient_dir = '/media/spgou/ZYJ/Nii_Dataset_RAI_Registered/0002139521_20190212'
     save_dir = '/media/spgou/DATA/ZYJ/Dataset/register_visual'
     visual_registration(moving_patient_dir, registered_patient_dir, save_dir)
