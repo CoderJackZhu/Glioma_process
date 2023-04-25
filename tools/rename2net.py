@@ -12,16 +12,16 @@ def rename2net(input_dir, output_dir):
         modalities = os.listdir(patient_dir)
         for modality in tqdm(modalities):
             modality_file = os.path.join(patient_dir, modality)
-            med_image = nib.load(modality_file)
-            try:
-                med_image = med_image.get_fdata()
-                if med_image.shape != (240, 240, 155):
-                    print('Warning: modality shape error! modality shape is: {}'.format(med_image.shape))
-                    continue
-            except Exception as e:
-                print('Warning: modality info error! modality info is: {}'.format(e))
+            # med_image = nib.load(modality_file)
+            # try:
+            #     med_image = med_image.get_fdata()
+            #     if med_image.shape != (240, 240, 155):
+            #         print('Warning: modality shape error! modality shape is: {}'.format(med_image.shape))
+            #         continue
+            # except Exception as e:
+            #     print('Warning: modality info error! modality info is: {}'.format(e))
 
-            if len(modality.split('.')[0].split('_')) == 3:
+            if len(modality.split('.')[0].split('_')) == 3 or modality.split('.')[0].split('_')[-1] == 't1mask':
                 patient_id = modality.split('.')[0].split('_')[0]
                 patient_date = modality.split('.')[0].split('_')[2]
                 modality_type = modality.split('.')[0].split('_')[1]
@@ -39,12 +39,14 @@ def rename2net(input_dir, output_dir):
                     continue
                 new_modality_name = patient_id + '_' + patient_date + '_' + modality_id + '.nii.gz'
                 new_modality_file = os.path.join(output_dir, new_modality_name)
+                if os.path.exists(new_modality_file):
+                    continue
                 shutil.copy(modality_file, new_modality_file)
             else:
                 continue
 
 
 if __name__ == '__main__':
-    input_dir = r"/media/spgou/DATA/ZYJ/Dataset/Nii_Dataset_RAI_Registered_Skulled_4mod_Normal"
-    output_dir = r"/media/spgou/DATA/ZYJ/Dataset/Nii_Dataset_RAI_Registered_Skulled_4mod_Normal_rename"
+    input_dir = r"/media/spgou/DATA/ZYJ/Dataset/Nii_Dataset_RAI_Registered_4mod_skulled"
+    output_dir = r"/media/spgou/DATA/ZYJ/Dataset/Nii_Dataset_RAI_Registered_4mod_skulled_rename"
     rename2net(input_dir, output_dir)

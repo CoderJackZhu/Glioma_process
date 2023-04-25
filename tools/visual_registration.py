@@ -139,9 +139,12 @@ if __name__ == '__main__':
     fixed_image_path = '../reference/sri24_rai/spgr_unstrip.nii'
     # fixed_image_path = '../reference/sri24_rai/late_unstrip.nii'
     # fixed_image_path = '../reference/sri24_rai/spgr_unstrip.nii'
-    moving_image_path = '../reference/sri24_rai/late_unstrip.nii'
+    moving_image_path = '../test_data/0000798625_20220409/0000798625_T2FLAIR_20220409.nii.gz'
     # registered_image_path = '../test_data/0000000695_T1_20200105.nii.gz'
-    registered_image_path = '../reference/sri24_rai/late_unstrip.nii'
-    save_visualize_basic_path = '../test_data/visual_pic'
+    registered_image_path = '../test_data/0000798625_20220409_registered/0000798625_T2FLAIR_20220409_spgr.nii.gz'
+    save_visualize_basic_path = '../test_data/' + registered_image_path.split(os.sep)[-1].split('.')[0] + '_visual'
+    if not os.path.exists(save_visualize_basic_path):
+        os.makedirs(save_visualize_basic_path)
+
     # visual_registration(fixed_image_path, moving_patient_dir, registered_patient_dir, save_dir)
     show_registered_images(fixed_image_path, moving_image_path, registered_image_path, save_visualize_basic_path)
