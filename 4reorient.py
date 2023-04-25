@@ -24,6 +24,19 @@ def reorient_to_rai(image):
         return reoriented
 
 
+def one_reorient_to_rai(case_dir, target_dir):
+    """
+    Reorient all images in a case to RAI orientation.
+    :param case_dir: Input case directory.
+    :return: None.
+    """
+    for modality in os.listdir(case_dir):
+        modality_file = os.path.join(case_dir, modality)
+        image = itk.imread(modality_file)
+        reoriented = reorient_to_rai(image)
+        if reoriented is not None:
+            itk.imwrite(reoriented, os.path.join(target_dir, modality))
+
 if __name__ == '__main__':
     data_dir = r"/media/spgou/ZYJ/Nii_Dataset"
     case_dir_list = [os.path.join(data_dir, case) for case in os.listdir(data_dir)]

@@ -63,4 +63,4 @@ if __name__ == '__main__':
             target_nifty_path = os.path.join(target_case_dir, nifty_path.split(os.sep)[-1])
             if os.path.exists(target_nifty_path):
                 continue
-            register_images("./reference/sri24/atlastImage.nii.gz", nifty_path, target_nifty_path)
+            register_images("reference/sri24_rai/atlastImage.nii.gz", nifty_path, target_nifty_path)

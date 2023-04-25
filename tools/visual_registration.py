@@ -73,7 +73,8 @@ def show_registered_images(fixed_image_path, moving_image_path, registered_image
         plt.subplots_adjust(left=0.03, bottom=0.03, right=0.97, top=0.9, wspace=0.03, hspace=0)
 
         basename = os.path.basename(moving_image_path)
-        save_path = save_visualize_basic_path + '/' + basename[:-5] + '_' + str(index) + '.png'
+        save_path = os.path.join(save_visualize_basic_path, basename.split('.')[0] + '_' + str(index) + '.png')
+        print(save_path)
         plt.savefig(save_path)
 
         # plt.show()
@@ -134,12 +135,12 @@ if __name__ == '__main__':
     # registered_patient_dir = '/media/spgou/ZYJ/Nii_Dataset_RAI_Registered/0002139521_20190212'
     # save_dir = '/media/spgou/DATA/ZYJ/Dataset/register_visual'
     # 原模板
-    # fixed_image_path = '../reference/sri24/atlastImage.nii.gz'
-    fixed_image_path = '../reference/sri24/erly_unstrip.nii'
-    # fixed_image_path = '../reference/sri24/late_unstrip.nii'
-    # fixed_image_path = '../reference/sri24/spgr_unstrip.nii'
-    moving_image_path = '../reference/sri24/late_unstrip.nii'
+    # fixed_image_path = '../reference/sri24_rai/atlastImage.nii.gz'
+    fixed_image_path = '../reference/sri24_rai/erly_unstrip.nii'
+    # fixed_image_path = '../reference/sri24_rai/late_unstrip.nii'
+    # fixed_image_path = '../reference/sri24_rai/spgr_unstrip.nii'
+    moving_image_path = '../reference/sri24_rai/late_unstrip.nii'
     registered_image_path = '../test_data/0000000695_T1_20200105.nii.gz'
-    save_visualize_basic_path = '../test_data/visualize_pic'
+    save_visualize_basic_path = '../test_data/visual_pic'
     # visual_registration(fixed_image_path, moving_patient_dir, registered_patient_dir, save_dir)
     show_registered_images(fixed_image_path, moving_image_path, registered_image_path, save_visualize_basic_path)
