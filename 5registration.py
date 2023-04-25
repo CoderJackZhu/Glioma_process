@@ -39,6 +39,10 @@ def register_images(fixed_image_path, moving_image_path, save_registered_path):
 if __name__ == '__main__':
     data_dir = "/media/spgou/ZYJ/Nii_Dataset_RAI"
     target_data_dir = "/media/spgou/ZYJ/Nii_Dataset_RAI_Registered"
+    atlas_template = "../reference/sri24_rai/atlastImage.nii.gz"
+    erly_template = "../reference/sri24_rai/erly_unstrip.nii"
+    late_template = "../reference/sri24_rai/late_unstrip.nii"
+    spgr_template = "../reference/sri24_rai/spgr_unstrip.nii"
 
     if not os.path.exists(target_data_dir):
         os.mkdir(target_data_dir)
@@ -63,4 +67,5 @@ if __name__ == '__main__':
             target_nifty_path = os.path.join(target_case_dir, nifty_path.split(os.sep)[-1])
             if os.path.exists(target_nifty_path):
                 continue
-            register_images("reference/sri24_rai/atlastImage.nii.gz", nifty_path, target_nifty_path)
+            print(nifty_path.split(os.sep)[-1])
+            register_images(atlas_template, nifty_path, target_nifty_path)

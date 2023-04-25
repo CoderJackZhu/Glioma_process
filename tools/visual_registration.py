@@ -136,11 +136,12 @@ if __name__ == '__main__':
     # save_dir = '/media/spgou/DATA/ZYJ/Dataset/register_visual'
     # 原模板
     # fixed_image_path = '../reference/sri24_rai/atlastImage.nii.gz'
-    fixed_image_path = '../reference/sri24_rai/erly_unstrip.nii'
+    fixed_image_path = '../reference/sri24_rai/spgr_unstrip.nii'
     # fixed_image_path = '../reference/sri24_rai/late_unstrip.nii'
     # fixed_image_path = '../reference/sri24_rai/spgr_unstrip.nii'
     moving_image_path = '../reference/sri24_rai/late_unstrip.nii'
-    registered_image_path = '../test_data/0000000695_T1_20200105.nii.gz'
+    # registered_image_path = '../test_data/0000000695_T1_20200105.nii.gz'
+    registered_image_path = '../reference/sri24_rai/late_unstrip.nii'
     save_visualize_basic_path = '../test_data/visual_pic'
     # visual_registration(fixed_image_path, moving_patient_dir, registered_patient_dir, save_dir)
     show_registered_images(fixed_image_path, moving_image_path, registered_image_path, save_visualize_basic_path)
