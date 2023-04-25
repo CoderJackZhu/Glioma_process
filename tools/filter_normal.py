@@ -65,8 +65,8 @@ def filter_normal(input_dir, output_dir):
 
 
 if __name__ == '__main__':
-    input_dir = r"/media/spgou/ZYJ/Nii_Dataset_RAI_Registered_Skulled_4mod"
-    output_dir = r"/media/spgou/ZYJ/Nii_Dataset_RAI_Registered_Skulled_4mod_Normal"
+    input_dir = r"/media/spgou/DATA/ZYJ/Dataset/Nii_Dataset_RAI_Registered_4mod_skulled"
+    output_dir = r"/media/spgou/DATA/ZYJ/Dataset/Nii_Dataset_RAI_Registered_4mod_skulled_normal"
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
     filter_normal(input_dir, output_dir)
