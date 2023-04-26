@@ -127,12 +127,16 @@ def show_one_patient(image_base_folder, segmentation_folder, patient_id, modalit
         image_slice = image_array[:, :, index].T
         sub_fig = plt.subplot(1, sub_figure_number, i + 1)
 
-        if modality == "t1Gd":
-            title = "T1Gd"
-        elif modality == "flair":
-            title = "T2-FLAIR"
+        if modality == "0000":
+            title = "T1"
+        elif modality == "0001":
+            title = "T1+C"
+        elif modality == "0002":
+            title = "T2"
+        elif modality == "0003":
+            title = "T2FLAIR"
         else:
-            title = str.upper(modality)
+            print("Error: modality={}".format(modality)
         sub_fig.set_title(title, fontsize=20)
 
         plt.axis('off')
@@ -168,14 +172,18 @@ def show_one_patient(image_base_folder, segmentation_folder, patient_id, modalit
     gc.collect()
 
 
-def visualize_image_and_segmentations(image_base_folder, segmentation_folder, modality_list, save_visualization_folder):
-    image_dir = "/media/spgou/DATA/ZYJ/Dataset"
-    pandas
-    patient_id_list = traversalDir_FirstDir(image_base_folder)
+def visualize_image_and_segmentations():
+    image_base_folder = "/media/spgou/DATA/ZYJ/Dataset"
+    segmentation_folder = "/media/spgou/DATA/ZYJ/Segmentation"
+    save_visualization_folder = "/media/spgou/DATA/ZYJ/Visualization"
+    # patient_id_list = traversalDir_FirstDir(image_base_folder)
+    patient_id_list = os.listdir(image_base_folder)
+    patient_id_list = [patient_id.split('.')[0][:-5] for patient_id in patient_id_list]
+    modality_list = [ patient_id.split('.')[0][-4:] for patient_id in patient_id_list]
     for patient_id in patient_id_list:
         show_one_patient(image_base_folder, segmentation_folder, patient_id, modality_list, save_visualization_folder)
 
     print("Finish saving visualization results in {}...".format(save_visualization_folder))
 
 if __name__ == "__main__":
-    run_code = 0
+    visualize_image_and_segmentations()
