@@ -33,7 +33,7 @@ def get_info(excelfile, result_file):
     excel_file.drop(excel_file.columns[0], axis=1, inplace=True)
     excel_file.insert(0, 'nii_file', np.nan)
 
-    nii_dir = r'/media/spgou/DATA/ZYJ/Dataset/Nii_Dataset'
+    nii_dir = r'/media/spgou/ZYJ/Dataset/Nii_Dataset'
     print("Stage 1: Add hyperlink...")
     for i in tqdm(range(len(excel_file))):
         patient_id = excel_file.iloc[i, 3]
@@ -47,7 +47,9 @@ def get_info(excelfile, result_file):
                 for modality_file in os.listdir(patient_dir):
                     if modality_file.split('_')[1] == modality:
                         nii_file = os.path.join(patient_dir, modality_file)
-                        # 给excel表格添加nii文件路径的超链接
+                        # 把路径的前缀替换
+                        nii_file = nii_file.replace(r'/media/spgou/ZYJ', r'G:')
+                        # 添加nii文件的超链接
                         excel_file.iloc[i, 0] = '=HYPERLINK("{}", "{}")'.format(nii_file, nii_file)
 
     excel_file.to_excel(result_file, index=False)
@@ -55,10 +57,11 @@ def get_info(excelfile, result_file):
 
 def fuse_csv(input_excel, output_excel):
     data = pd.read_excel(input_excel)
+    data.insert(1, 'Age', np.nan)
+    data.insert(1, 'Sex', np.nan)
+    data.insert(1, 'Diagnosis', np.nan)
     data.insert(1, 'Operation_data', np.nan)
-    data.insert(2, 'Diagnosis', np.nan)
-    data.insert(3, 'Sex', np.nan)
-    data.insert(4, 'Age', np.nan)
+
     print('Stage 2: Fuse hospital operation info...')
     for i in tqdm(range(len(data))):
         patient_id = data.iloc[i, 7]
@@ -72,5 +75,5 @@ def fuse_csv(input_excel, output_excel):
 
 
 if __name__ == "__main__":
-    # get_info(r'../result_file/selected_result_v1.xlsx', result_file=r'../result_file/fused_result.xlsx')
+    get_info(r'../result_file/selected_result_v1.xlsx', result_file=r'../result_file/fused_result.xlsx')
     fuse_csv(r'../result_file/fused_result.xlsx', r'../result_file/fused_patient_result.xlsx')

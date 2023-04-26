@@ -105,6 +105,38 @@ def visual_registration(fixed_image_path, moving_patient_dir, registered_patient
         show_registered_images(fixed_image_path, modality_file, modality_registered_file, modality_save_pic_dir)
 
 
+
+def batch_visual_registration(fixed_image_path, moving_patient_dir, registered_patient_dir, save_pic_dir):
+    """
+    Visualize the registration results.
+    :param fixed_image_path:
+    :param moving_patient_dir:
+    :param registered_patient_dir:
+    :param save_pic_dir:
+    :return:
+    """
+    if not os.path.exists(save_pic_dir):
+        os.makedirs(save_pic_dir)
+    patient_list = os.listdir(moving_patient_dir)
+    for patient in tqdm(patient_list):
+        patient_dir = os.path.join(moving_patient_dir, patient)
+        patient_registered_dir = os.path.join(registered_patient_dir, patient)
+        patient_save_dir = os.path.join(save_pic_dir, patient)
+        if not os.path.exists(patient_save_dir):
+            os.makedirs(patient_save_dir)
+
+        modalities_list = os.listdir(patient_dir)
+        for modality in modalities_list:
+            modality_file = os.path.join(patient_dir, modality)
+            for modality_registered in os.listdir(patient_registered_dir):
+                if modality.split('.')[0].split('_')[1] == modality_registered.split('.')[0].split('_')[1]:
+                    modality_registered_file = os.path.join(patient_registered_dir, modality_registered)
+                    modality_save_pic_dir = os.path.join(patient_save_dir, modality_registered.split('.')[0])
+                    if not os.path.exists(modality_save_pic_dir):
+                        os.makedirs(modality_save_pic_dir)
+                    # if os.path.exists(modality_file) and os.path.exists(modality_registered_file):
+                    show_registered_images(fixed_image_path, modality_file, modality_registered_file, modality_save_pic_dir)
+
     # for patient in tqdm(patient_list):
     #     patient_dir = os.path.join(moving_patient_dir, patient)
     #     patient_registered_dir = os.path.join(registrated_patient_dir, patient)
@@ -131,20 +163,24 @@ def visual_registration(fixed_image_path, moving_patient_dir, registered_patient
     #                 f.write('\n')
 
 if __name__ == '__main__':
-    # moving_patient_dir = '/media/spgou/ZYJ/Nii_Dataset_RAI/0002139521_20190212'
-    # registered_patient_dir = '/media/spgou/ZYJ/Nii_Dataset_RAI_Registered/0002139521_20190212'
-    # save_dir = '/media/spgou/DATA/ZYJ/Dataset/register_visual'
-    # 原模板
-    # fixed_image_path = '../reference/sri24_rai/atlastImage.nii.gz'
-    fixed_image_path = '../reference/sri24_rai/spgr_unstrip.nii'
-    # fixed_image_path = '../reference/sri24_rai/late_unstrip.nii'
+    # # moving_patient_dir = '/media/spgou/ZYJ/Nii_Dataset_RAI/0002139521_20190212'
+    # # registered_patient_dir = '/media/spgou/ZYJ/Nii_Dataset_RAI_Registered/0002139521_20190212'
+    # # save_dir = '/media/spgou/DATA/ZYJ/Dataset/register_visual'
+    # # 原模板
+    # # fixed_image_path = '../reference/sri24_rai/atlastImage.nii.gz'
     # fixed_image_path = '../reference/sri24_rai/spgr_unstrip.nii'
-    moving_image_path = '../test_data/0000798625_20220409/0000798625_T2FLAIR_20220409.nii.gz'
-    # registered_image_path = '../test_data/0000000695_T1_20200105.nii.gz'
-    registered_image_path = '../test_data/0000798625_20220409_registered/0000798625_T2FLAIR_20220409_spgr.nii.gz'
-    save_visualize_basic_path = '../test_data/' + registered_image_path.split(os.sep)[-1].split('.')[0] + '_visual'
-    if not os.path.exists(save_visualize_basic_path):
-        os.makedirs(save_visualize_basic_path)
-
-    # visual_registration(fixed_image_path, moving_patient_dir, registered_patient_dir, save_dir)
-    show_registered_images(fixed_image_path, moving_image_path, registered_image_path, save_visualize_basic_path)
+    # # fixed_image_path = '../reference/sri24_rai/late_unstrip.nii'
+    # # fixed_image_path = '../reference/sri24_rai/spgr_unstrip.nii'
+    # moving_image_path = '../test_data/0000798625_20220409/0000798625_T2FLAIR_20220409.nii.gz'
+    # # registered_image_path = '../test_data/0000000695_T1_20200105.nii.gz'
+    # registered_image_path = '../test_data/0000798625_20220409_registered/0000798625_T2FLAIR_20220409_spgr.nii.gz'
+    # save_visualize_basic_path = '../test_data/' + registered_image_path.split(os.sep)[-1].split('.')[0] + '_visual'
+    # if not os.path.exists(save_visualize_basic_path):
+    #     os.makedirs(save_visualize_basic_path)
+    #
+    # # visual_registration(fixed_image_path, moving_patient_dir, registered_patient_dir, save_dir)
+    # show_registered_images(fixed_image_path, moving_image_path, registered_image_path, save_visualize_basic_path)
+    atlas_template = "reference/sri24_rai/atlastImage.nii.gz"
+    erly_template = "reference/sri24_rai/erly_unstrip.nii"
+    late_template = "reference/sri24_rai/late_unstrip.nii"
+    spgr_template = "reference/sri24_rai/spgr_unstrip.nii"
