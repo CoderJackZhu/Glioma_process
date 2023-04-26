@@ -37,7 +37,7 @@ def get_info(excelfile, result_file):
     print("Stage 1: Add hyperlink...")
     for i in tqdm(range(len(excel_file))):
         patient_id = excel_file.iloc[i, 3]
-        check_date = excel_file.iloc[i, 11]
+        check_date = str(int(excel_file.iloc[i, 11])) if not pd.isnull(excel_file.iloc[i, 11]) else '0'
         modality = excel_file.iloc[i, 36]
         # patient_dir = os.path.join(nii_dir, patient_id + '_' + check_date)
         # for modality_file in os.listdir(patient_dir):
@@ -51,7 +51,6 @@ def get_info(excelfile, result_file):
                         nii_file = nii_file.replace(r'/media/spgou/ZYJ', r'G:')
                         # 添加nii文件的超链接
                         excel_file.iloc[i, 0] = '=HYPERLINK("{}", "{}")'.format(nii_file, nii_file)
-
     excel_file.to_excel(result_file, index=False)
 
 
