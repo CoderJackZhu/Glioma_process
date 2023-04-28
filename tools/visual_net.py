@@ -25,7 +25,7 @@ from skimage.exposure import adjust_gamma
 
 
 # Creates an image of original brain with segmentation overlay
-def show_lable_on_image(test_img, test_lbl):
+def show_label_on_image(test_img, test_lbl):
     modes = {'flair': 0, 't1': 1, 't1c': 2, 't2': 3}
 
     label_im = test_lbl
@@ -59,7 +59,7 @@ def show_lable_on_image(test_img, test_lbl):
 
 
 # -------------------------------------------------------------------------------------
-def show_lable_on_image4(test_img, label_im):
+def show_label_on_image4(test_img, label_im):
     alpha = 0.8
 
     img = img_as_float(test_img / test_img.max())
@@ -122,7 +122,7 @@ def show_one_patient(image_base_folder, segmentation_folder, patient_id, modalit
 
     # plot MRI images with different modalities
     for i, modality in enumerate(modality_list):
-        image_path = os.path.join(image_base_folder, patient_id, patient_id + "_" + modality + ".nii.gz")
+        image_path = os.path.join(image_base_folder, patient_id + "_" + modality + ".nii.gz")
         image_array = nib.load(image_path).get_fdata()
         image_slice = image_array[:, :, index].T
         sub_fig = plt.subplot(1, sub_figure_number, i + 1)
@@ -136,7 +136,7 @@ def show_one_patient(image_base_folder, segmentation_folder, patient_id, modalit
         elif modality == "0003":
             title = "T2FLAIR"
         else:
-            print("Error: modality={}".format(modality)
+            print("Error: modality={}".format(modality))
         sub_fig.set_title(title, fontsize=20)
 
         plt.axis('off')
@@ -153,7 +153,7 @@ def show_one_patient(image_base_folder, segmentation_folder, patient_id, modalit
     plt.imshow(segmentation_slice, interpolation='none', alpha=0.6)
 
     # ---- method 2 ----
-    label_image = show_lable_on_image4(image_slice, segmentation_slice)
+    label_image = show_label_on_image4(image_slice, segmentation_slice)
     # label_image = show_lable_on_image(image_slice, segmentation_slice)
     plt.imshow(label_image, interpolation='none')
 
@@ -173,13 +173,16 @@ def show_one_patient(image_base_folder, segmentation_folder, patient_id, modalit
 
 
 def visualize_image_and_segmentations():
-    image_base_folder = "/media/spgou/DATA/ZYJ/Dataset"
-    segmentation_folder = "/media/spgou/DATA/ZYJ/Segmentation"
-    save_visualization_folder = "/media/spgou/DATA/ZYJ/Visualization"
+    image_base_folder = "/media/spgou/DATA/ZYJ/Dataset/Nii_Dataset_RAI_Registered_4mod_skulled_rename"
+    segmentation_folder = "/media/spgou/DATA/ZYJ/Dataset/nnUNet_raw/Dataset137_BraTS2021/first_inference"
+    save_visualization_folder = "/media/spgou/DATA/ZYJ/Dataset/Visualization_Net"
+    if not os.path.exists(save_visualization_folder):
+        os.makedirs(save_visualization_folder)
     # patient_id_list = traversalDir_FirstDir(image_base_folder)
     patient_id_list = os.listdir(image_base_folder)
     patient_id_list = [patient_id.split('.')[0][:-5] for patient_id in patient_id_list]
-    modality_list = [ patient_id.split('.')[0][-4:] for patient_id in patient_id_list]
+    # modality_list = [ patient_id.split('.')[0][-4:] for patient_id in patient_info_list]
+    modality_list = ["0000", "0001", "0002", "0003"]
     for patient_id in patient_id_list:
         show_one_patient(image_base_folder, segmentation_folder, patient_id, modality_list, save_visualization_folder)
 

@@ -74,7 +74,7 @@ def show_registered_images(fixed_image_path, moving_image_path, registered_image
 
         basename = os.path.basename(moving_image_path)
         save_path = os.path.join(save_visualize_basic_path, basename.split('.')[0] + '_' + str(index) + '.png')
-        print(save_path)
+
         plt.savefig(save_path)
 
         # plt.show()
@@ -105,8 +105,7 @@ def visual_registration(fixed_image_path, moving_patient_dir, registered_patient
         show_registered_images(fixed_image_path, modality_file, modality_registered_file, modality_save_pic_dir)
 
 
-
-def batch_visual_registration(fixed_image_path, moving_patient_dir, registered_patient_dir, save_pic_dir):
+def batch_visual_registration(moving_patient_dir, registered_patient_dir, save_pic_dir):
     """
     Visualize the registration results.
     :param fixed_image_path:
@@ -115,6 +114,12 @@ def batch_visual_registration(fixed_image_path, moving_patient_dir, registered_p
     :param save_pic_dir:
     :return:
     """
+
+    atlas_template = "../reference/sri24_rai/atlastImage.nii.gz"
+    erly_template = "../reference/sri24_rai/erly_unstrip.nii"
+    late_template = "../reference/sri24_rai/late_unstrip.nii"
+    spgr_template = "../reference/sri24_rai/spgr_unstrip.nii"
+
     if not os.path.exists(save_pic_dir):
         os.makedirs(save_pic_dir)
     patient_list = os.listdir(moving_patient_dir)
@@ -135,7 +140,21 @@ def batch_visual_registration(fixed_image_path, moving_patient_dir, registered_p
                     if not os.path.exists(modality_save_pic_dir):
                         os.makedirs(modality_save_pic_dir)
                     # if os.path.exists(modality_file) and os.path.exists(modality_registered_file):
-                    show_registered_images(fixed_image_path, modality_file, modality_registered_file, modality_save_pic_dir)
+                    if modality_registered.split('.')[0].split('_')[-1] == 'atlas':
+                        fixed_image_path = atlas_template
+                    elif modality_registered.split('.')[0].split('_')[-1] == 'erly':
+                        fixed_image_path = erly_template
+                    elif modality_registered.split('.')[0].split('_')[-1] == 'late':
+                        fixed_image_path = late_template
+                    elif modality_registered.split('.')[0].split('_')[-1] == 'spgr':
+                        fixed_image_path = spgr_template
+                    else:
+                        raise ValueError("The template is not exist!")
+                    # print('fixed_image_path: ', fixed_image_path)
+                    # print('moving_file: ', modality_file)
+                    # print('registered_file: ', modality_registered_file)
+                    show_registered_images(fixed_image_path, modality_file, modality_registered_file,
+                                           modality_save_pic_dir)
 
     # for patient in tqdm(patient_list):
     #     patient_dir = os.path.join(moving_patient_dir, patient)
@@ -162,6 +181,7 @@ def batch_visual_registration(fixed_image_path, moving_patient_dir, registered_p
     #                 f.write('{} or {}'.format(modality_file, modality_registered_file))
     #                 f.write('\n')
 
+
 if __name__ == '__main__':
     # # moving_patient_dir = '/media/spgou/ZYJ/Nii_Dataset_RAI/0002139521_20190212'
     # # registered_patient_dir = '/media/spgou/ZYJ/Nii_Dataset_RAI_Registered/0002139521_20190212'
@@ -180,7 +200,6 @@ if __name__ == '__main__':
     #
     # # visual_registration(fixed_image_path, moving_patient_dir, registered_patient_dir, save_dir)
     # show_registered_images(fixed_image_path, moving_image_path, registered_image_path, save_visualize_basic_path)
-    atlas_template = "reference/sri24_rai/atlastImage.nii.gz"
-    erly_template = "reference/sri24_rai/erly_unstrip.nii"
-    late_template = "reference/sri24_rai/late_unstrip.nii"
-    spgr_template = "reference/sri24_rai/spgr_unstrip.nii"
+    moving_patient_dir = '/media/spgou/ZYJ/Dataset/Nii_Dataset_RAI'
+    registered_patient_dir = '/media/spgou/DATA/ZYJ/Dataset/Nii_Dataset_RAI_Registered'
+    batch_visual_registration(moving_patient_dir, registered_patient_dir, save_pic_dir='/media/spgou/DATA/ZYJ/Dataset/visualize_registration')
