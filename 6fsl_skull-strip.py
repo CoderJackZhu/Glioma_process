@@ -6,22 +6,7 @@ import numpy as np
 import SimpleITK as sitk
 import subprocess
 import nibabel as nib
-
-
-def check_if_operation(patient_id, check_date):
-    operation_info = pd.read_csv('result_file/12321321.csv')
-    for i in range(len(operation_info)):
-        id = operation_info.iloc[i, 0].zfill(10)
-        operation_data = operation_info.iloc[i, 1]
-        if id == patient_id:
-            if type(operation_data) == float:
-                return False
-            operation_data = str(operation_data).replace('-', '').split(' ')[0]
-            if int(check_date) < int(operation_data):
-                return True
-            else:
-                return False
-    return False
+from tools.utils import check_if_operation
 
 
 def t1_skull_strip(registrated_dir, skull_stripped_dir):

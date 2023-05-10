@@ -30,6 +30,7 @@ def check_info(patient_path):
 
 
 def select4mod(input_dir, output_dir):
+    print('select 4 modality full data')
     for patient in tqdm(os.listdir(input_dir)):
         patient_dir = os.path.join(input_dir, patient)
         modalities = [modality for modality in os.listdir(patient_dir) if modality.endswith('.nii')]
@@ -179,5 +180,23 @@ def split_case_by_time(data_dir=r".\RAI_xiangya_Dataset"):
                 shutil.copy(nifty_path, target_nifty_path)
 
         shutil.rmtree(case_dir)
+
+
+def check_if_operation(patient_id, check_date):
+    operation_info = pd.read_csv('result_file/12321321.csv')
+    for i in range(len(operation_info)):
+        id = operation_info.iloc[i, 0].zfill(10)
+        operation_data = operation_info.iloc[i, 1]
+        if id == patient_id:
+            if type(operation_data) == float:
+                return False
+            operation_data = str(operation_data).replace('-', '').split(' ')[0]
+            if int(check_date) < int(operation_data):
+                return True
+            else:
+                return False
+    return False
+
+
 if __name__ == "__main__":
     run_code = 0
