@@ -163,7 +163,7 @@ def multi_process(dir_list, dest_dir):
         if modality not in ['T1', 'T1+C', 'T2', 'T2 FLAIR']:
             continue
         dir_path = dir_list[i]['dir_path']
-        dir_path = dir_path = os.path.normpath(dir_path)
+        dir_path = os.path.normpath(dir_path)
         # print(dir_path)
         patient_id = str(dir_list[i]['patient_id'])
         patient_study_date = str(int(dir_list[i]['StudyDate']))
