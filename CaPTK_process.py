@@ -39,10 +39,12 @@ def batch_dcm2nii_captk(dest_dir, pool_num=8, tools_path='C:\\CaPTk_Full\\1.9.0\
     批量并行将dcm文件转换为nii.gz文件
     """
     print("Step1: dcm2nii")
+    if not os.path.exists(dest_dir):
+        os.mkdir(dest_dir)
     if os.path.exists('./result_file/use_dir_list.npy'):
         dir_list = np.load('./result_file/use_dir_list.npy', allow_pickle=True)
     else:
-        info = pd.read_excel('./result_file/fused_result_v1.xlsx')
+        info = pd.read_excel('./result_file/fused_result_v2.xlsx')
         dir_list = []
         for i in tqdm(range(len(info))):
             basic_info = {}
@@ -62,7 +64,7 @@ def batch_dcm2nii_captk(dest_dir, pool_num=8, tools_path='C:\\CaPTk_Full\\1.9.0\
     for i in tqdm(range(len(dir_list))):
         # 筛掉不用的模态
         modality = dir_list[i]['modility']
-        if modality not in ['T1', 'T1+C', 'T2', 'T2 FLAIR']:
+        if modality not in ['T1', 'T1+C', 'T2', 'T2FLAIR']:
             continue
         dir_path = dir_list[i]['dir_path']
         dir_path = os.path.normpath(dir_path)
@@ -72,10 +74,47 @@ def batch_dcm2nii_captk(dest_dir, pool_num=8, tools_path='C:\\CaPTk_Full\\1.9.0\
         patient_dir = os.path.join(dest_dir, patient_id + '_' + patient_study_date)
         if not os.path.exists(patient_dir):
             os.mkdir(patient_dir)
-        pool.apply_async(dcm2nii_captk, args=(dir_path, patient_dir, tools_path))
+        modality_dir = os.path.join(patient_dir, modality)
+        if not os.path.exists(modality_dir):
+            os.mkdir(modality_dir)
+        pool.apply_async(dcm2nii_captk, args=(dir_path, modality_dir, tools_path))
     pool.close()
     pool.join()
 
+
+def rename2normal(source_dir, dest_dir):
+    """
+    将CaPTK转换后的文件名改为普通格式即每个病人日期文件夹下包含id+模态T1、T1+C、T2、T2FLAIR+日期四个文件
+    """
+    print('Step2: rename')
+    if not os.path.exists(dest_dir):
+        os.mkdir(dest_dir)
+    patient_dirs = os.listdir(source_dir)
+    for patient_dir in tqdm(patient_dirs):
+        patient_id = patient_dir.split('_')[0]
+        patient_data = patient_dir.split('_')[1]
+        patient_dir_path = os.path.join(source_dir, patient_dir)
+        patient_dest_dir = os.path.join(dest_dir, patient_id + '_' + patient_data)
+        if not os.path.exists(patient_dest_dir):
+            os.mkdir(patient_dest_dir)
+        modality_dirs = os.listdir(patient_dir_path)
+        for modality_dir in modality_dirs:
+            modality_dir_path = os.path.join(patient_dir_path, modality_dir)
+            files = os.listdir(modality_dir_path)
+            files = [file for file in files if file.endswith('.nii')]
+            if len(files) == 1:
+                modality_file = files[0]
+                modality_file_path = os.path.join(modality_dir_path, modality_file)
+            elif len(files) == 0:
+                continue
+            else:
+                axi_files = [file for file in files if 'axi' in file]
+                if len(axi_files) == 0:
+                    modality_file = files[0]
+                else:
+                    modality_file = axi_files[0]
+                modality_file_path = os.path.join(modality_dir_path, modality_file)
+            shutil.copy(modality_file_path, os.path.join(patient_dest_dir, patient_id + '_' + modality_dir + patient_data + '.nii.gz'))
 
 def split_if_operation(source_dir, dest_dir):
     """
@@ -189,11 +228,12 @@ def brats_preprocess_captk(nii_dir, dest_dir, tools_path='C:\\CaPTk_Full\\1.9.0\
 
 
 if __name__ == "__main__":
-    batch_dcm2nii_captk(dest_dir='./result_file/captk_nii', pool_num=8, tools_path='C:\\CaPTk_Full\\1.9.0\\bin')
-    select4mod('./result_file/captk_nii', './result_file/captk_nii_4mod')
-    split_if_operation('./result_file/captk_nii_4mod', './result_file/captk_nii_4mod_operation')
-    anonymize_patient('./result_file/captk_nii_4mod_operation/before_operation',
-                      './result_file/captk_nii_4mod_before_operation_anonymize')
-    brats_preprocess_captk('./result_file/captk_nii_4mod_operation/before_operation_anonymize',
-                           './result_file/captk_nii_4mod_before_operation_anonymize_processed',
-                           tools_path='C:\\CaPTk_Full\\1.9.0\\bin')
+    batch_dcm2nii_captk(dest_dir='D:/ZYJ/Dataset/captk_nii', pool_num=24, tools_path='C:/CaPTk_Full/1.9.0/bin')
+    rename2normal(source_dir='D:/ZYJ/Dataset/captk_nii', dest_dir='D:/ZYJ/Dataset/captk_nii_rename')
+    select4mod('D:/ZYJ/Dataset/captk_nii_rename', 'D:/ZYJ/Dataset/captk_nii_4mod')
+    split_if_operation('D:/ZYJ/Dataset/captk_nii_4mod', 'D:/ZYJ/Dataset/captk_nii_4mod_operation')
+    anonymize_patient('D:/ZYJ/Dataset/captk_nii_4mod_operation/before_operation',
+                      'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize')
+    brats_preprocess_captk('D:/ZYJ/Dataset/captk_nii_4mod_operation/before_operation_anonymize',
+                           'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed',
+                           tools_path='C:/CaPTk_Full/1.9.0/bin')

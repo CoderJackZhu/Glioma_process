@@ -173,9 +173,9 @@ def show_one_patient(image_base_folder, segmentation_folder, patient_id, modalit
 
 
 def visualize_image_and_segmentations():
-    image_base_folder = "/media/spgou/DATA/ZYJ/Dataset/Nii_Dataset_RAI_Registered_4mod_skulled_rename"
-    segmentation_folder = "/media/spgou/DATA/ZYJ/Dataset/nnUNet_raw/Dataset137_BraTS2021/first_inference"
-    save_visualization_folder = "/media/spgou/DATA/ZYJ/Dataset/Visualization_Net"
+    image_base_folder = "F:\\Code\\Medical\\Glioma_process\\test_data\\test_captk_result"
+    segmentation_folder = "F:\\Code\\Medical\\Glioma_process\\test_data\\test_captk_segmentation"
+    save_visualization_folder = "../test_data/visualization_captk"
     if not os.path.exists(save_visualization_folder):
         os.makedirs(save_visualization_folder)
     # patient_id_list = traversalDir_FirstDir(image_base_folder)
