@@ -6,11 +6,11 @@
 
 
 import os
-import sys
+# import sys
 import numpy as np
-import nibabel as nib
-import matplotlib.pyplot as plt
-import SimpleITK as sitk
+# import nibabel as nib
+# import matplotlib.pyplot as plt
+# import SimpleITK as sitk
 import shutil
 from tqdm import tqdm
 import pandas as pd
@@ -22,6 +22,8 @@ def dcm2nii_captk(dcm_dir='./test_data/SE11', output_path='./test_data', tools_p
     """
     使用CaPTK的dcm2nii将dcm文件转换为nii.gz文件
     """
+    if not os.path.exists(output_path):
+        os.mkdir(output_path)
     tools = os.path.join(tools_path, f'dcm2niix.exe')
     tools = os.path.normpath(tools)
     tools = tools.encode('gbk').decode('utf-8')
@@ -114,13 +116,17 @@ def rename2normal(source_dir, dest_dir):
                 else:
                     modality_file = axi_files[0]
                 modality_file_path = os.path.join(modality_dir_path, modality_file)
-            shutil.copy(modality_file_path, os.path.join(patient_dest_dir, patient_id + '_' + modality_dir + patient_data + '.nii.gz'))
+            shutil.copy(modality_file_path,
+                        os.path.join(patient_dest_dir, patient_id + '_' + modality_dir + patient_data + '.nii.gz'))
+
 
 def split_if_operation(source_dir, dest_dir):
     """
     将手术前后的数据分开
     """
     print('Step2: Split if operation')
+    if not os.path.exists(dest_dir):
+        os.mkdir(dest_dir)
     before_operation_dir = os.path.join(dest_dir, 'before_operation')
     after_operation_dir = os.path.join(dest_dir, 'after_operation')
     patient_dirs = os.listdir(source_dir)
@@ -142,6 +148,8 @@ def anonymize_patient(source_dir, dest_dir):
     """
     从匿名表格中获取对应信息并更改为匿名化后的编号
     """
+    if not os.path.exists(dest_dir):
+        os.mkdir(dest_dir)
     anonymize_info = pd.read_excel('reference/Preprocess/anonymous_table.xlsx')
     print('Step3: Anonymize patient')
     for i in tqdm(len(anonymize_info)):
@@ -159,12 +167,15 @@ def anonymize_patient(source_dir, dest_dir):
                 shutil.copy(patient_dir_path, patient_anonymize_dir_path)
 
 
-def brats_preprocess_captk(nii_dir, dest_dir, tools_path='C:\\CaPTk_Full\\1.9.0\\bin'):
+def brats_preprocess_captk(nii_dir, dest_dir):
     """
     使用CaPTK的预处框架进行预处理
     """
     print('Step4: CaPTK preprocess')
-    tools = os.path.join(tools_path, 'BraTSPipeline.exe')
+    if not os.path.exists(dest_dir):
+        os.mkdir(dest_dir)
+    tools = 'C:/CaPTk_Full/1.9.0/bin/BraTSPipeline.exe'
+    tools = os.path.normpath(tools)
     patient_dirs = os.listdir(nii_dir)
     for patient_dir in tqdm(patient_dirs):
         patient_dir_path = os.path.join(nii_dir, patient_dir)
@@ -173,28 +184,29 @@ def brats_preprocess_captk(nii_dir, dest_dir, tools_path='C:\\CaPTk_Full\\1.9.0\
             os.mkdir(patient_dest_dir)
         modality_files = os.listdir(patient_dir_path)
         for modality_file in modality_files:
-            modality = modality_file.split('.')[0].split('_')[-1]
+            modality = modality_file.split('.')[0].split('_')[-2]
             if modality == 'T1':
                 t1_file = os.path.join(patient_dir_path, modality_file)
             elif modality == 'T1+C':
-                t1C_file = os.path.join(patient_dir_path, modality_file)
+                t1c_file = os.path.join(patient_dir_path, modality_file)
             elif modality == 'T2':
                 t2_file = os.path.join(patient_dir_path, modality_file)
-            elif modality == 'FLAIR':
+            elif modality == 'T2FLAIR':
                 flair_file = os.path.join(patient_dir_path, modality_file)
             else:
                 print('Wrong modality{} in {}'.format(modality, patient_dir))
             # 确认四个模态文件都存在
-            if os.path.exists(t1_file) and os.path.exists(t1C_file) and os.path.exists(t2_file) and os.path.exists(
-                    flair_file):
-                cmd = tools + '-t1 ' + t1_file + ' -t1c ' + t1C_file + ' -t2 ' + t2_file + ' -fl ' + \
-                      flair_file + ' -o ' + patient_dest_dir
-                try:
-                    os.system(cmd)
-                except Exception as e:
-                    print('Error in {}'.format(patient_dir))
-            else:
-                print('Missing modality file in {}'.format(patient_dir))
+        if os.path.exists(t1_file) and os.path.exists(t1c_file) and os.path.exists(t2_file) and os.path.exists(
+                flair_file):
+            cmd = tools + ' -t1 ' + t1_file + ' -t1c ' + t1c_file + ' -t2 ' + t2_file + ' -fl ' + \
+                  flair_file + ' -o ' + patient_dest_dir
+            print(cmd)
+            try:
+                os.system(cmd)
+            except Exception as e:
+                print('Error in {}'.format(patient_dir))
+        else:
+            print('Missing modality file in {}'.format(patient_dir))
 
         # 命令后可以加参数-b 0 设置不进行分割
         # 参数解释Optional parameters:
@@ -227,6 +239,48 @@ def brats_preprocess_captk(nii_dir, dest_dir, tools_path='C:\\CaPTk_Full\\1.9.0\
         #                        If empty, final output is of the form ${modality}_to_SRI.nii.gz
 
 
+def extract_4mod_segment(patient_dir, patient_normal_dir, patient_seg_dir):
+    """
+    从captk结果中提取四个模态的数据和分割结果
+    """
+    if not os.path.exists(patient_normal_dir):
+        os.mkdir(patient_normal_dir)
+    if not os.path.exists(patient_seg_dir):
+        os.mkdir(patient_seg_dir)
+    patients = os.path.basename(patient_dir)
+    patient_id = patients.split('_')[0]
+    patient_date = patients.split('_')[1]
+    t1_file = os.path.join(patient_dir, 'T1_to_SRI_brain.nii.gz')
+    t1c_file = os.path.join(patient_dir, 'T1CE_to_SRI_brain.nii.gz')
+    t2_file = os.path.join(patient_dir, 'T2_to_SRI_brain.nii.gz')
+    fl_file = os.path.join(patient_dir, 'FL_to_SRI_brain.nii.gz')
+    seg_file = os.path.join(patient_dir, 'brainTumorMask_SRI.nii.gz')
+    try:
+        shutil.copy(t1_file, os.path.join(patient_normal_dir, patient_id + '_' + patient_date + '_T1' + '.nii.gz'))
+        shutil.copy(t1c_file,
+                    os.path.join(patient_normal_dir, patient_id + '_' + patient_date + '_T1+C' + '.nii.gz'))
+        shutil.copy(t2_file, os.path.join(patient_normal_dir, patient_id + '_' + patient_date + '_T2' + '.nii.gz'))
+        shutil.copy(fl_file,
+                    os.path.join(patient_normal_dir, patient_id + '_' + patient_date + '_T2FLAIR' + '.nii.gz'))
+        shutil.copy(seg_file, os.path.join(patient_seg_dir, patient_id + '_' + patient_date + '.nii.gz'))
+    except Exception as e:
+        print('Error in {}'.format(patient_dir))
+
+
+def batch_extract_4mod_segment(source_dir, dest_dir, seg_dir):
+    """
+    批量提取captk结果中的四个模态数据和分割结果
+    """
+    if not os.path.exists(dest_dir):
+        os.mkdir(dest_dir)
+    if not os.path.exists(seg_dir):
+        os.mkdir(seg_dir)
+    patient_dirs = os.listdir(source_dir)
+    for patient_dir in patient_dirs:
+        patient_normal_dir = os.path.join(dest_dir, patient_dir)
+        extract_4mod_segment(os.path.join(source_dir, patient_dir), patient_normal_dir, seg_dir)
+
+
 if __name__ == "__main__":
     batch_dcm2nii_captk(dest_dir='D:/ZYJ/Dataset/captk_nii', pool_num=24, tools_path='C:/CaPTk_Full/1.9.0/bin')
     rename2normal(source_dir='D:/ZYJ/Dataset/captk_nii', dest_dir='D:/ZYJ/Dataset/captk_nii_rename')
@@ -237,3 +291,6 @@ if __name__ == "__main__":
     brats_preprocess_captk('D:/ZYJ/Dataset/captk_nii_4mod_operation/before_operation_anonymize',
                            'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed',
                            tools_path='C:/CaPTk_Full/1.9.0/bin')
+    brats_preprocess_captk('G:\\Dataset\\Nii_Dataset', 'G:\\Dataset\\Nii_Dataset_processed')
+    batch_extract_4mod_segment('G:\\Dataset\\Nii_Dataset_processed', 'G:\\Dataset\\Nii_Dataset_processed_4mod',
+                               'G:\\Dataset\\Nii_Dataset_processed_seg')
