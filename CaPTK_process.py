@@ -110,25 +110,29 @@ def rename2normal(source_dir, dest_dir):
             elif len(files) == 0:
                 continue
             else:
-                axi_files = [file for file in files if 'axi' in file]
+                axi_files = [file for file in files if 'ax' in file or 'Ax' in file]
                 if len(axi_files) == 0:
                     modality_file = files[0]
                 else:
                     modality_file = axi_files[0]
                 modality_file_path = os.path.join(modality_dir_path, modality_file)
             shutil.copy(modality_file_path,
-                        os.path.join(patient_dest_dir, patient_id + '_' + modality_dir + patient_data + '.nii.gz'))
+                        os.path.join(patient_dest_dir, patient_id + '_' + patient_data + '_' + modality_dir + '.nii.gz'))
 
 
 def split_if_operation(source_dir, dest_dir):
     """
     将手术前后的数据分开
     """
-    print('Step2: Split if operation')
+    print('Step4: Split if operation')
     if not os.path.exists(dest_dir):
         os.mkdir(dest_dir)
     before_operation_dir = os.path.join(dest_dir, 'before_operation')
     after_operation_dir = os.path.join(dest_dir, 'after_operation')
+    if not os.path.exists(before_operation_dir):
+        os.mkdir(before_operation_dir)
+    if not os.path.exists(after_operation_dir):
+        os.mkdir(after_operation_dir)
     patient_dirs = os.listdir(source_dir)
     for patient_dir in tqdm(patient_dirs):
         patient_id = patient_dir.split('_')[0]
@@ -139,20 +143,18 @@ def split_if_operation(source_dir, dest_dir):
             patient_dest_dir = os.path.join(before_operation_dir, patient_dir)
         else:
             patient_dest_dir = os.path.join(after_operation_dir, patient_dir)
-        if not os.path.exists(patient_dest_dir):
-            os.mkdir(patient_dest_dir)
-        shutil.copy(patient_dir_path, patient_dest_dir)
+        shutil.copytree(patient_dir_path, patient_dest_dir)
 
 
 def anonymize_patient(source_dir, dest_dir):
     """
     从匿名表格中获取对应信息并更改为匿名化后的编号
     """
+    print('Step5: Anonymize patient')
     if not os.path.exists(dest_dir):
         os.mkdir(dest_dir)
     anonymize_info = pd.read_excel('reference/Preprocess/anonymous_table.xlsx')
-    print('Step3: Anonymize patient')
-    for i in tqdm(len(anonymize_info)):
+    for i in tqdm(range(len(anonymize_info))):
         patient_id = anonymize_info.loc[i, 'PatientID']
         patient_anonymize_id = anonymize_info.loc[i, 'PatientID_anonymized']
         patient_dirs = os.listdir(source_dir)
@@ -162,16 +164,22 @@ def anonymize_patient(source_dir, dest_dir):
                 patient_anonymize_dir = patient_anonymize_id + '_' + patient_dir.split('_')[1]
                 # Gliomas_00001_id_data
                 patient_anonymize_dir_path = os.path.join(dest_dir, patient_anonymize_dir)
-                if not os.path.exists(patient_anonymize_dir_path):
-                    os.mkdir(patient_anonymize_dir_path)
-                shutil.copy(patient_dir_path, patient_anonymize_dir_path)
+                shutil.copytree(patient_dir_path, patient_anonymize_dir_path)
+                # 重命名文件夹中的文件
+                patient_anonymize_files = os.listdir(patient_anonymize_dir_path)
+                for patient_anonymize_file in patient_anonymize_files:
+                    patient_anonymize_file_path = os.path.join(patient_anonymize_dir_path, patient_anonymize_file)
+                    patient_anonymize_file_new_name = patient_anonymize_file.replace(patient_id, patient_anonymize_id)
+                    patient_anonymize_file_new_name_path = os.path.join(patient_anonymize_dir_path, patient_anonymize_file_new_name)
+                    os.rename(patient_anonymize_file_path, patient_anonymize_file_new_name_path)
+
 
 
 def brats_preprocess_captk(nii_dir, dest_dir):
     """
     使用CaPTK的预处框架进行预处理
     """
-    print('Step4: CaPTK preprocess')
+    print('Step6: CaPTK preprocess')
     if not os.path.exists(dest_dir):
         os.mkdir(dest_dir)
     tools = 'C:/CaPTk_Full/1.9.0/bin/BraTSPipeline.exe'
@@ -184,7 +192,7 @@ def brats_preprocess_captk(nii_dir, dest_dir):
             os.mkdir(patient_dest_dir)
         modality_files = os.listdir(patient_dir_path)
         for modality_file in modality_files:
-            modality = modality_file.split('.')[0].split('_')[-2]
+            modality = modality_file.split('.')[0].split('_')[-1]
             if modality == 'T1':
                 t1_file = os.path.join(patient_dir_path, modality_file)
             elif modality == 'T1+C':
@@ -282,15 +290,15 @@ def batch_extract_4mod_segment(source_dir, dest_dir, seg_dir):
 
 
 if __name__ == "__main__":
-    batch_dcm2nii_captk(dest_dir='D:/ZYJ/Dataset/captk_nii', pool_num=24, tools_path='C:/CaPTk_Full/1.9.0/bin')
-    rename2normal(source_dir='D:/ZYJ/Dataset/captk_nii', dest_dir='D:/ZYJ/Dataset/captk_nii_rename')
-    select4mod('D:/ZYJ/Dataset/captk_nii_rename', 'D:/ZYJ/Dataset/captk_nii_4mod')
-    split_if_operation('D:/ZYJ/Dataset/captk_nii_4mod', 'D:/ZYJ/Dataset/captk_nii_4mod_operation')
-    anonymize_patient('D:/ZYJ/Dataset/captk_nii_4mod_operation/before_operation',
-                      'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize')
-    brats_preprocess_captk('D:/ZYJ/Dataset/captk_nii_4mod_operation/before_operation_anonymize',
-                           'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed',
-                           tools_path='C:/CaPTk_Full/1.9.0/bin')
-    brats_preprocess_captk('G:\\Dataset\\Nii_Dataset', 'G:\\Dataset\\Nii_Dataset_processed')
-    batch_extract_4mod_segment('G:\\Dataset\\Nii_Dataset_processed', 'G:\\Dataset\\Nii_Dataset_processed_4mod',
-                               'G:\\Dataset\\Nii_Dataset_processed_seg')
+    # batch_dcm2nii_captk(dest_dir='D:/ZYJ/Dataset/captk_nii', pool_num=12, tools_path='C:/CaPTk_Full/1.9.0/bin')
+    # rename2normal(source_dir='D:/ZYJ/Dataset/captk_nii', dest_dir='D:/ZYJ/Dataset/captk_nii_rename')
+    # select4mod('D:/ZYJ/Dataset/captk_nii_rename', 'D:/ZYJ/Dataset/captk_nii_4mod')
+    # split_if_operation('D:/ZYJ/Dataset/captk_nii_4mod', 'D:/ZYJ/Dataset/captk_nii_4mod_operation')
+    # anonymize_patient('D:/ZYJ/Dataset/captk_nii_4mod_operation/before_operation',
+    #                   'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize')
+    brats_preprocess_captk('D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize',
+                           'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed')
+    # brats_preprocess_captk('G:\\Dataset\\Nii_Dataset', 'G:\\Dataset\\Nii_Dataset_processed')
+    batch_extract_4mod_segment('D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed',
+                               'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed_4mod',
+                               'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed_seg')

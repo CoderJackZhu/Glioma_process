@@ -30,10 +30,12 @@ def check_info(patient_path):
 
 
 def select4mod(input_dir, output_dir):
-    print('select 4 modality full data')
+    print('Step3: select 4 modality full data')
+    if not os.path.exists(output_dir):
+        os.mkdir(output_dir)
     for patient in tqdm(os.listdir(input_dir)):
         patient_dir = os.path.join(input_dir, patient)
-        modalities = [modality for modality in os.listdir(patient_dir) if modality.endswith('.nii')]
+        modalities = [modality for modality in os.listdir(patient_dir) if modality.endswith('.nii.gz')]
         modalities = list(set([modality.split('.')[0].split('_')[-1] for modality in modalities]))
         if len(modalities) == 4:
             if not os.path.exists(os.path.join(output_dir, patient)):
