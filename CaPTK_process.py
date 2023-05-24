@@ -184,6 +184,7 @@ def brats_preprocess_captk(nii_dir, dest_dir):
         os.mkdir(dest_dir)
     tools = 'C:/CaPTk_Full/1.9.0/bin/BraTSPipeline.exe'
     tools = os.path.normpath(tools)
+    cmd_list = []
     patient_dirs = os.listdir(nii_dir)
     for patient_dir in tqdm(patient_dirs):
         patient_dir_path = os.path.join(nii_dir, patient_dir)
@@ -207,44 +208,21 @@ def brats_preprocess_captk(nii_dir, dest_dir):
         if os.path.exists(t1_file) and os.path.exists(t1c_file) and os.path.exists(t2_file) and os.path.exists(
                 flair_file):
             cmd = tools + ' -t1 ' + t1_file + ' -t1c ' + t1c_file + ' -t2 ' + t2_file + ' -fl ' + \
-                  flair_file + ' -o ' + patient_dest_dir
+                  flair_file + ' -o ' + patient_dest_dir + ' -b 0'
             print(cmd)
-            try:
-                os.system(cmd)
-            except Exception as e:
-                print('Error in {}'.format(patient_dir))
-        else:
-            print('Missing modality file in {}'.format(patient_dir))
-
-        # 命令后可以加参数-b 0 设置不进行分割
-        # 参数解释Optional parameters:
-        # 
-        # [  -u, --usage]        Prints basic usage message
-        # 
-        # [  -h, --help]         Prints verbose usage information
-        # 
-        # [  -v, --version]      Prints information about software version
-        # 
-        # [ -rt, --runtest]      Runs the tests
-        # 
-        # [-cwl, --cwl]          Generates a .cwl file for the software
-        # 
-        # [  -s, --skullStrip]   Flag whether to skull strip or not
-        #                        Defaults to 1
-        #                        This uses DeepMedic: https://cbica.github.io/CaPTk/seg_DL.html
-        # 
-        # [  -b, --brainTumor]   Flag whether to segment brain tumors or not
-        #                        Defaults to 1
-        #                        This uses DeepMedic: https://cbica.github.io/CaPTk/seg_DL.html
-        # 
-        # [  -d, --debug]        Print debugging information
-        #                        Defaults to 1
-        # 
-        # [  -i, --interFiles]   Save intermediate files
-        #                        Defaults to 1
-        # 
-        # [  -p, --patientID]    Patient ID to pre-pend to final output file names
-        #                        If empty, final output is of the form ${modality}_to_SRI.nii.gz
+            cmd_list.append(cmd)
+        #     try:
+        #         os.system(cmd)
+        #     except Exception as e:
+        #         print('Error in {}'.format(patient_dir))
+        # else:
+        #     print('Missing modality file in {}'.format(patient_dir))
+    # 多进程运行
+    pool = Pool(processes=4)
+    pool.map(os.system, cmd_list)
+    pool.close()
+    pool.join()
+    # 命令后可以加参数-b 0 设置不进行分割
 
 
 def extract_4mod_segment(patient_dir, patient_normal_dir, patient_seg_dir):
