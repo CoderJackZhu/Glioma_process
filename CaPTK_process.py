@@ -3,8 +3,7 @@
 # @FileName     :CaPTK_process.py
 # @Time         :2023/5/9 22:47
 # @Author       :Jack Zhu
-
-
+import multiprocessing
 import os
 # import sys
 import numpy as np
@@ -180,6 +179,7 @@ def brats_preprocess_captk(nii_dir, dest_dir):
     使用CaPTK的预处框架进行预处理
     """
     print('Step6: CaPTK preprocess')
+    cmd_list = []
     if not os.path.exists(dest_dir):
         os.mkdir(dest_dir)
     tools = 'C:/CaPTk_Full/1.9.0/bin/BraTSPipeline.exe'
@@ -207,54 +207,31 @@ def brats_preprocess_captk(nii_dir, dest_dir):
         if os.path.exists(t1_file) and os.path.exists(t1c_file) and os.path.exists(t2_file) and os.path.exists(
                 flair_file):
             cmd = tools + ' -t1 ' + t1_file + ' -t1c ' + t1c_file + ' -t2 ' + t2_file + ' -fl ' + \
-                  flair_file + ' -o ' + patient_dest_dir
+                  flair_file + ' -o ' + patient_dest_dir + ' -b 0'
             print(cmd)
-            try:
-                os.system(cmd)
-            except Exception as e:
-                print('Error in {}'.format(patient_dir))
+            cmd_list.append(cmd)
+            # try:
+            #     os.system(cmd)
+            # except Exception as e:
+            #     print('Error in {}'.format(patient_dir))
         else:
             print('Missing modality file in {}'.format(patient_dir))
-
-        # 命令后可以加参数-b 0 设置不进行分割
-        # 参数解释Optional parameters:
-        # 
-        # [  -u, --usage]        Prints basic usage message
-        # 
-        # [  -h, --help]         Prints verbose usage information
-        # 
-        # [  -v, --version]      Prints information about software version
-        # 
-        # [ -rt, --runtest]      Runs the tests
-        # 
-        # [-cwl, --cwl]          Generates a .cwl file for the software
-        # 
-        # [  -s, --skullStrip]   Flag whether to skull strip or not
-        #                        Defaults to 1
-        #                        This uses DeepMedic: https://cbica.github.io/CaPTk/seg_DL.html
-        # 
-        # [  -b, --brainTumor]   Flag whether to segment brain tumors or not
-        #                        Defaults to 1
-        #                        This uses DeepMedic: https://cbica.github.io/CaPTk/seg_DL.html
-        # 
-        # [  -d, --debug]        Print debugging information
-        #                        Defaults to 1
-        # 
-        # [  -i, --interFiles]   Save intermediate files
-        #                        Defaults to 1
-        # 
-        # [  -p, --patientID]    Patient ID to pre-pend to final output file names
-        #                        If empty, final output is of the form ${modality}_to_SRI.nii.gz
+    # 多进程处理
+    pool = Pool(processes=8)
+    pool.map(os.system, cmd_list)
+    pool.close()
+    pool.join()
+    # 命令后可以加参数-b 0 设置不进行分割
 
 
-def extract_4mod_segment(patient_dir, patient_normal_dir, patient_seg_dir):
+
+
+def extract_4mod_segment(patient_dir, patient_normal_dir):
     """
     从captk结果中提取四个模态的数据和分割结果
     """
     if not os.path.exists(patient_normal_dir):
         os.mkdir(patient_normal_dir)
-    if not os.path.exists(patient_seg_dir):
-        os.mkdir(patient_seg_dir)
     patients = os.path.basename(patient_dir)
     patient_id = patients.split('_')[0]
     patient_date = patients.split('_')[1]
@@ -262,7 +239,7 @@ def extract_4mod_segment(patient_dir, patient_normal_dir, patient_seg_dir):
     t1c_file = os.path.join(patient_dir, 'T1CE_to_SRI_brain.nii.gz')
     t2_file = os.path.join(patient_dir, 'T2_to_SRI_brain.nii.gz')
     fl_file = os.path.join(patient_dir, 'FL_to_SRI_brain.nii.gz')
-    seg_file = os.path.join(patient_dir, 'brainTumorMask_SRI.nii.gz')
+    # seg_file = os.path.join(patient_dir, 'brainTumorMask_SRI.nii.gz')
     try:
         shutil.copy(t1_file, os.path.join(patient_normal_dir, patient_id + '_' + patient_date + '_T1' + '.nii.gz'))
         shutil.copy(t1c_file,
@@ -270,23 +247,21 @@ def extract_4mod_segment(patient_dir, patient_normal_dir, patient_seg_dir):
         shutil.copy(t2_file, os.path.join(patient_normal_dir, patient_id + '_' + patient_date + '_T2' + '.nii.gz'))
         shutil.copy(fl_file,
                     os.path.join(patient_normal_dir, patient_id + '_' + patient_date + '_T2FLAIR' + '.nii.gz'))
-        shutil.copy(seg_file, os.path.join(patient_seg_dir, patient_id + '_' + patient_date + '.nii.gz'))
+        # shutil.copy(seg_file, os.path.join(patient_seg_dir, patient_id + '_' + patient_date + '.nii.gz'))
     except Exception as e:
         print('Error in {}'.format(patient_dir))
 
 
-def batch_extract_4mod_segment(source_dir, dest_dir, seg_dir):
+def batch_extract_4mod_segment(source_dir, dest_dir):
     """
     批量提取captk结果中的四个模态数据和分割结果
     """
     if not os.path.exists(dest_dir):
         os.mkdir(dest_dir)
-    if not os.path.exists(seg_dir):
-        os.mkdir(seg_dir)
     patient_dirs = os.listdir(source_dir)
     for patient_dir in patient_dirs:
         patient_normal_dir = os.path.join(dest_dir, patient_dir)
-        extract_4mod_segment(os.path.join(source_dir, patient_dir), patient_normal_dir, seg_dir)
+        extract_4mod_segment(os.path.join(source_dir, patient_dir), patient_normal_dir)
 
 
 if __name__ == "__main__":
@@ -298,7 +273,10 @@ if __name__ == "__main__":
     #                   'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize')
     brats_preprocess_captk('D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize',
                            'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed')
+    anonymize_patient('D:/ZYJ/Dataset/captk_nii_4mod_operation/after_operation',
+                      'D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize')
+    brats_preprocess_captk('D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize',
+                           'D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize_processed')
     # brats_preprocess_captk('G:\\Dataset\\Nii_Dataset', 'G:\\Dataset\\Nii_Dataset_processed')
     batch_extract_4mod_segment('D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed',
-                               'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed_4mod',
-                               'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed_seg')
+                               'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed_4mod')
