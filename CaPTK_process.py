@@ -116,7 +116,8 @@ def rename2normal(source_dir, dest_dir):
                     modality_file = axi_files[0]
                 modality_file_path = os.path.join(modality_dir_path, modality_file)
             shutil.copy(modality_file_path,
-                        os.path.join(patient_dest_dir, patient_id + '_' + patient_data + '_' + modality_dir + '.nii.gz'))
+                        os.path.join(patient_dest_dir,
+                                     patient_id + '_' + patient_data + '_' + modality_dir + '.nii.gz'))
 
 
 def split_if_operation(source_dir, dest_dir):
@@ -169,9 +170,9 @@ def anonymize_patient(source_dir, dest_dir):
                 for patient_anonymize_file in patient_anonymize_files:
                     patient_anonymize_file_path = os.path.join(patient_anonymize_dir_path, patient_anonymize_file)
                     patient_anonymize_file_new_name = patient_anonymize_file.replace(patient_id, patient_anonymize_id)
-                    patient_anonymize_file_new_name_path = os.path.join(patient_anonymize_dir_path, patient_anonymize_file_new_name)
+                    patient_anonymize_file_new_name_path = os.path.join(patient_anonymize_dir_path,
+                                                                        patient_anonymize_file_new_name)
                     os.rename(patient_anonymize_file_path, patient_anonymize_file_new_name_path)
-
 
 
 def brats_preprocess_captk(nii_dir, dest_dir):
@@ -224,9 +225,7 @@ def brats_preprocess_captk(nii_dir, dest_dir):
     # 命令后可以加参数-b 0 设置不进行分割
 
 
-
-
-def extract_4mod_segment(patient_dir, patient_normal_dir):
+def extract_4mod(patient_dir, patient_normal_dir):
     """
     从captk结果中提取四个模态的数据和分割结果
     """
@@ -252,7 +251,7 @@ def extract_4mod_segment(patient_dir, patient_normal_dir):
         print('Error in {}'.format(patient_dir))
 
 
-def batch_extract_4mod_segment(source_dir, dest_dir):
+def batch_extract_4mod(source_dir, dest_dir):
     """
     批量提取captk结果中的四个模态数据和分割结果
     """
@@ -261,7 +260,7 @@ def batch_extract_4mod_segment(source_dir, dest_dir):
     patient_dirs = os.listdir(source_dir)
     for patient_dir in patient_dirs:
         patient_normal_dir = os.path.join(dest_dir, patient_dir)
-        extract_4mod_segment(os.path.join(source_dir, patient_dir), patient_normal_dir)
+        extract_4mod(os.path.join(source_dir, patient_dir), patient_normal_dir)
 
 
 if __name__ == "__main__":
@@ -271,12 +270,14 @@ if __name__ == "__main__":
     # split_if_operation('D:/ZYJ/Dataset/captk_nii_4mod', 'D:/ZYJ/Dataset/captk_nii_4mod_operation')
     # anonymize_patient('D:/ZYJ/Dataset/captk_nii_4mod_operation/before_operation',
     #                   'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize')
-    brats_preprocess_captk('D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize',
-                           'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed')
+    # brats_preprocess_captk('D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize',
+    #                        'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed')
     anonymize_patient('D:/ZYJ/Dataset/captk_nii_4mod_operation/after_operation',
                       'D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize')
     brats_preprocess_captk('D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize',
                            'D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize_processed')
     # brats_preprocess_captk('G:\\Dataset\\Nii_Dataset', 'G:\\Dataset\\Nii_Dataset_processed')
-    batch_extract_4mod_segment('D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed',
-                               'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed_4mod')
+    batch_extract_4mod('D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed',
+                       'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed_4mod')
+    batch_extract_4mod('D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize_processed',
+                       'D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize_processed_4mod')
