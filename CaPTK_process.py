@@ -232,20 +232,20 @@ def extract_4mod(patient_dir, patient_normal_dir):
     if not os.path.exists(patient_normal_dir):
         os.mkdir(patient_normal_dir)
     patients = os.path.basename(patient_dir)
-    patient_id = patients.split('_')[0]
-    patient_date = patients.split('_')[1]
+    # patient_id = patients.split('_')[1]
+    # patient_date = patients.split('_')[2]
     t1_file = os.path.join(patient_dir, 'T1_to_SRI_brain.nii.gz')
     t1c_file = os.path.join(patient_dir, 'T1CE_to_SRI_brain.nii.gz')
     t2_file = os.path.join(patient_dir, 'T2_to_SRI_brain.nii.gz')
     fl_file = os.path.join(patient_dir, 'FL_to_SRI_brain.nii.gz')
     # seg_file = os.path.join(patient_dir, 'brainTumorMask_SRI.nii.gz')
     try:
-        shutil.copy(t1_file, os.path.join(patient_normal_dir, patient_id + '_' + patient_date + '_T1' + '.nii.gz'))
+        shutil.copy(t1_file, os.path.join(patient_normal_dir, patients + '_T1' + '.nii.gz'))
         shutil.copy(t1c_file,
-                    os.path.join(patient_normal_dir, patient_id + '_' + patient_date + '_T1+C' + '.nii.gz'))
-        shutil.copy(t2_file, os.path.join(patient_normal_dir, patient_id + '_' + patient_date + '_T2' + '.nii.gz'))
+                    os.path.join(patient_normal_dir, patients + '_T1+C' + '.nii.gz'))
+        shutil.copy(t2_file, os.path.join(patient_normal_dir, patients + '_T2' + '.nii.gz'))
         shutil.copy(fl_file,
-                    os.path.join(patient_normal_dir, patient_id + '_' + patient_date + '_T2FLAIR' + '.nii.gz'))
+                    os.path.join(patient_normal_dir, patients + '_T2FLAIR' + '.nii.gz'))
         # shutil.copy(seg_file, os.path.join(patient_seg_dir, patient_id + '_' + patient_date + '.nii.gz'))
     except Exception as e:
         print('Error in {}'.format(patient_dir))
@@ -263,6 +263,59 @@ def batch_extract_4mod(source_dir, dest_dir):
         extract_4mod(os.path.join(source_dir, patient_dir), patient_normal_dir)
 
 
+def use_before_method():
+    """
+    读取captk处理报错的文件列表，并使用之前的方法处理
+    Returns:
+
+    """
+    anonymize_excel = 'reference/Preprocess/anonymous_table.xlsx'
+    anonymize_df = pd.read_excel(anonymize_excel, header=0)
+    error_txt = "result_file/captk_error.txt"
+    dest_before_dir = 'D:\\ZYJ\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before'
+    if not os.path.exists(dest_before_dir):
+        os.mkdir(dest_before_dir)
+    dest_after_dir = 'D:\\ZYJ\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_after'
+    if not os.path.exists(dest_after_dir):
+        os.mkdir(dest_after_dir)
+
+    with open(error_txt, 'r') as f:
+        lines = f.readlines()
+    for line in lines:
+        line = line.split(' ')[-1]
+        file_name = line.split('\\')[-1].split('\n')[0]
+        anony_name = '_'.join(file_name.split('_')[0:2])
+        patient_data = file_name.split('_')[2]
+        for i in range(len(anonymize_df)):
+            if anonymize_df.iloc[i, 1] == anony_name:
+                patient_id = anonymize_df.iloc[i, 0]
+                break
+        patient_dir = os.path.join('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled', patient_id + '_' + patient_data)
+        if not os.path.exists(patient_dir):
+            print('Error in {}'.format(line))
+            continue
+        if 'before' in line:
+            dest_dir = os.path.join(dest_before_dir, anony_name + '_' + patient_data)
+        elif 'after' in line:
+            dest_dir = os.path.join(dest_after_dir, anony_name + '_' + patient_data)
+        else:
+            print('Error in {}'.format(line))
+        if not os.path.exists(dest_dir):
+            os.mkdir(dest_dir)
+        patients_files = os.listdir(patient_dir)
+        for patients_file in patients_files:
+            modality = patients_file.split('_')[1]
+            if modality == 'T1' and len(patients_file.split('_')) == 3:
+                shutil.copy(os.path.join(patient_dir, patients_file), os.path.join(dest_dir, anony_name + '_' + patient_data + '_T1.nii.gz'))
+            elif modality == 'T1+C':
+                shutil.copy(os.path.join(patient_dir, patients_file), os.path.join(dest_dir, anony_name + '_' + patient_data + '_T1+C.nii.gz'))
+            elif modality == 'T2':
+                shutil.copy(os.path.join(patient_dir, patients_file), os.path.join(dest_dir, anony_name + '_' + patient_data + '_T2.nii.gz'))
+            elif modality == 'T2FLAIR':
+                shutil.copy(os.path.join(patient_dir, patients_file), os.path.join(dest_dir, anony_name + '_' + patient_data + '_T2FLAIR.nii.gz'))
+
+
+
 if __name__ == "__main__":
     # batch_dcm2nii_captk(dest_dir='D:/ZYJ/Dataset/captk_nii', pool_num=12, tools_path='C:/CaPTk_Full/1.9.0/bin')
     # rename2normal(source_dir='D:/ZYJ/Dataset/captk_nii', dest_dir='D:/ZYJ/Dataset/captk_nii_rename')
@@ -272,12 +325,13 @@ if __name__ == "__main__":
     #                   'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize')
     # brats_preprocess_captk('D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize',
     #                        'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed')
-    anonymize_patient('D:/ZYJ/Dataset/captk_nii_4mod_operation/after_operation',
-                      'D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize')
-    brats_preprocess_captk('D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize',
-                           'D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize_processed')
+    # anonymize_patient('D:/ZYJ/Dataset/captk_nii_4mod_operation/after_operation',
+    #                   'D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize')
+    # brats_preprocess_captk('D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize',
+    #                        'D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize_processed')
     # brats_preprocess_captk('G:\\Dataset\\Nii_Dataset', 'G:\\Dataset\\Nii_Dataset_processed')
-    batch_extract_4mod('D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed',
-                       'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed_4mod')
-    batch_extract_4mod('D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize_processed',
-                       'D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize_processed_4mod')
+    # batch_extract_4mod('D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed',
+    #                    'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed_4mod')
+    # batch_extract_4mod('D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize_processed',
+    #                    'D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize_processed_4mod')
+    use_before_method()

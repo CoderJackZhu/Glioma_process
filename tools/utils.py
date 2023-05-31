@@ -44,6 +44,7 @@ def select4mod(input_dir, output_dir):
                 modality_file = os.path.join(patient_dir, modality)
                 shutil.copy(modality_file, os.path.join(output_dir, patient, modality))
 
+
 # if __name__ == '__main__':
 #     input_dir = r"/media/spgou/ZYJ/Nii_Dataset_RAI_Registered"
 #     output_dir = r"/media/spgou/DATA/ZYJ/Dataset/Nii_Dataset_RAI_Registered_4mod"
@@ -95,6 +96,7 @@ def rename2net(input_dir, output_dir):
                 shutil.copy(modality_file, new_modality_file)
             else:
                 continue
+
 
 # if __name__ == '__main__':
 #     input_dir = r"/media/spgou/DATA/ZYJ/Dataset/Nii_Dataset_RAI_Registered_4mod_skulled"
@@ -200,5 +202,22 @@ def check_if_operation(patient_id, check_date):
     return False
 
 
+def check_empty(mod_dir):
+    """
+    检查空文件夹并删除
+    Args:
+        mod_dir:
+
+    Returns:
+
+    """
+    for file in os.listdir(mod_dir):
+        file_path = os.path.join(mod_dir, file)
+        files = os.listdir(file_path)
+        if len(files) == 0:
+            print(file_path)
+            shutil.rmtree(file_path)
+
+
 if __name__ == "__main__":
-    run_code = 0
+    check_empty('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before')
