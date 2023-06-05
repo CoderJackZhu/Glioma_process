@@ -13,7 +13,7 @@ import os
 import shutil
 import pandas as pd
 from tqdm import tqdm
-
+import random
 
 def check_info(patient_path):
     """
@@ -219,5 +219,31 @@ def check_empty(mod_dir):
             shutil.rmtree(file_path)
 
 
+def visualize_result(patient_dir, pic_dir):
+    """
+    对于每个病人的每个模态的影像随机取三张切片并进行可视化
+    Args:
+        patient_dir:
+        pic_dir:
+    Returns:
+
+    """
+    if not os.path.exists(pic_dir):
+        os.mkdir(pic_dir)
+    patients = os.listdir(patient_dir)
+    for patient in tqdm(patients):
+        patient_path = os.path.join(patient_dir, patient)
+        for modality in os.listdir(patient_path):
+            modality_path = os.path.join(patient_path, modality)
+            modality_data = nib.load(modality_path).get_fdata()
+            for i in range(4):
+                slice = random.randint(0, modality_data.shape[2] - 1)
+                slice_data = modality_data[:, :, slice]
+                plt.imshow(slice_data, cmap='gray')
+                plt.savefig(os.path.join(pic_dir, patient + '_' + modality + '_' + str(slice) + '.png'))
+                plt.close()
+
+
 if __name__ == "__main__":
-    check_empty('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before')
+    # check_empty('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before')
+    visualize_result('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before', 'D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before_pic')
