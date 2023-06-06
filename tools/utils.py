@@ -15,6 +15,7 @@ import pandas as pd
 from tqdm import tqdm
 import random
 
+
 def check_info(patient_path):
     """
     确认nii.gz文件中含有病人的多少信息
@@ -244,6 +245,38 @@ def visualize_result(patient_dir, pic_dir):
                 plt.close()
 
 
+def transfer_net_format(input_dir, output_dir):
+    """
+    把病人的数据的文件名转换成nnUNet网络可以分割的格式
+    Args:
+        input_dir:
+        output_dir:
+
+    Returns:
+
+    """
+    if not os.path.exists(output_dir):
+        os.mkdir(output_dir)
+    for patient in tqdm(os.listdir(input_dir)):
+        patient_dir = os.path.join(input_dir, patient)
+        for modality in os.listdir(patient_dir):
+            modality_file = os.path.join(patient_dir, modality)
+            mode = modality.split('.')[0].split('_')[-1]
+            if mode == 'T1':
+                file = '0000.nii.gz'
+            elif mode == 'T1+C':
+                file = '0001.nii.gz'
+            elif mode == 'T2':
+                file = '0002.nii.gz'
+            elif mode == 'T2FLAIR':
+                file = '0003.nii.gz'
+            else:
+                continue
+            file_name = '_'.join(modality.split('.')[0].split('_')[:-1]) + '_' + file
+            shutil.copy(modality_file, os.path.join(output_dir, file_name))
+
 if __name__ == "__main__":
     # check_empty('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before')
-    visualize_result('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before', 'D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before_pic')
+    # visualize_result('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before',
+    #                  'D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before_pic')
+    transfer_net_format('/media/spgou/DATA/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize_processed_4mod', '/media/spgou/DATA/ZYJ/Dataset/captk_after_data_net_format')
