@@ -14,7 +14,7 @@ import shutil
 import pandas as pd
 from tqdm import tqdm
 import random
-
+from sklearn.model_selection import train_test_split
 
 def check_info(patient_path):
     """
@@ -104,6 +104,20 @@ def rename2net(input_dir, output_dir):
 #     output_dir = r"/media/spgou/DATA/ZYJ/Dataset/Nii_Dataset_RAI_Registered_4mod_skulled_rename"
 #     rename2net(input_dir, output_dir)
 
+
+def mkdirs(path):
+    """
+    创建文件夹,如果是列表则创建多个文件夹，
+     如果是多级文件夹则创建多级文件夹，考虑父文件夹不存在的情况
+    :param path: 文件夹路径
+    :return:
+    """
+    if isinstance(path, list):
+        for sub_path in path:
+            mkdirs(sub_path)
+    else:
+        if not os.path.exists(path):
+            os.makedirs(path)
 
 def filter_normal(input_dir, output_dir):
     """
@@ -275,8 +289,68 @@ def transfer_net_format(input_dir, output_dir):
             file_name = '_'.join(modality.split('.')[0].split('_')[:-1]) + '_' + file
             shutil.copy(modality_file, os.path.join(output_dir, file_name))
 
+def modality_rename(input_dir, output_dir):
+    """
+    把病人的数据的文件名模态的名称进行修改
+    Args:
+        input_dir:
+        output_dir:
+
+    Returns:
+
+    """
+    mkdirs(output_dir)
+    for patient in tqdm(os.listdir(input_dir)):
+        patient_dir = os.path.join(input_dir, patient)
+        out_patient_dir = os.path.join(output_dir, patient)
+        mkdirs(out_patient_dir)
+        for modality in os.listdir(patient_dir):
+            modality_file = os.path.join(patient_dir, modality)
+            mode = modality.split('.')[0].split('_')[-1]
+            if mode == 'T1':
+                file = 't1.nii.gz'
+            elif mode == 'T1+C':
+                file = 't1Gd.nii.gz'
+            elif mode == 'T2':
+                file = 't2.nii.gz'
+            elif mode == 'T2FLAIR':
+                file = 'flair.nii.gz'
+            else:
+                continue
+            file_name = '_'.join(modality.split('.')[0].split('_')[:-1]) + '_' + file
+            shutil.copy(modality_file, os.path.join(out_patient_dir, file_name))
+def split_train_test(input_dir, output_dir):
+    """
+    把数据集分成训练集和验证集
+    Args:
+        input_dir:/media/spgou/DATA/ZYJ/Dataset/captk_before_data_rename
+        output_dir:/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital
+    """
+    mkdirs(output_dir)
+    train_dir = os.path.join(output_dir, 'XiangyaHospital_train')
+    test_dir = os.path.join(output_dir, 'XiangyaHospital_val')
+    train_dir_image = os.path.join(train_dir, 'Images')
+    train_dir_seg = os.path.join(train_dir, 'segmentation')
+    test_dir_image = os.path.join(test_dir, 'Images')
+    test_dir_seg = os.path.join(test_dir, 'segmentation')
+    mkdirs([train_dir, test_dir, train_dir_image, train_dir_seg, test_dir_image, test_dir_seg])
+
+    patients = os.listdir(input_dir)
+    train_patients, test_patients = train_test_split(patients, test_size=0.2, random_state=42)
+    for patient in tqdm(train_patients):
+        patient_dir = os.path.join(input_dir, patient)
+        shutil.copytree(patient_dir, os.path.join(train_dir_image, patient))
+    for patient in tqdm(test_patients):
+        patient_dir = os.path.join(input_dir, patient)
+        shutil.copytree(patient_dir, os.path.join(test_dir_image, patient))
+
+
+
+
 if __name__ == "__main__":
     # check_empty('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before')
     # visualize_result('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before',
     #                  'D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before_pic')
     transfer_net_format('/media/spgou/DATA/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize_processed_4mod', '/media/spgou/DATA/ZYJ/Dataset/captk_after_data_net_format')
+    split_train_test('/media/spgou/DATA/ZYJ/Dataset/captk_before_data_rename', '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital')
+
