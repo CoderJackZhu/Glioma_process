@@ -328,7 +328,7 @@ def split_train_test(input_dir, output_dir):
     """
     mkdirs(output_dir)
     train_dir = os.path.join(output_dir, 'XiangyaHospital_train')
-    test_dir = os.path.join(output_dir, 'XiangyaHospital_val')
+    test_dir = os.path.join(output_dir, 'XiangyaHospital_test')
     train_dir_image = os.path.join(train_dir, 'Images')
     train_dir_seg = os.path.join(train_dir, 'segmentation')
     test_dir_image = os.path.join(test_dir, 'Images')
@@ -351,6 +351,7 @@ if __name__ == "__main__":
     # check_empty('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before')
     # visualize_result('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before',
     #                  'D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before_pic')
-    transfer_net_format('/media/spgou/DATA/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize_processed_4mod', '/media/spgou/DATA/ZYJ/Dataset/captk_after_data_net_format')
+    # transfer_net_format('/media/spgou/DATA/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize_processed_4mod', '/media/spgou/DATA/ZYJ/Dataset/captk_after_data_net_format')
+    modality_rename('/media/spgou/DATA/ZYJ/Dataset/captk_before_data', '/media/spgou/DATA/ZYJ/Dataset/captk_before_data_rename')
     split_train_test('/media/spgou/DATA/ZYJ/Dataset/captk_before_data_rename', '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital')
 
