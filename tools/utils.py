@@ -393,4 +393,4 @@ if __name__ == "__main__":
     # modality_rename('/media/spgou/DATA/ZYJ/Dataset/captk_before_data', '/media/spgou/DATA/ZYJ/Dataset/captk_before_data_rename')
     # split_train_test('/media/spgou/DATA/ZYJ/Dataset/captk_before_data_rename', '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital')
     # check_empty('/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/Images')
-    # mv_seg_file()
+    mv_seg_file()
