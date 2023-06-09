@@ -345,6 +345,44 @@ def split_train_test(input_dir, output_dir):
         shutil.copytree(patient_dir, os.path.join(test_dir_image, patient))
 
 
+def check_empty(input_dir):
+    """
+    检查数据集中是否有空的数据
+    Args:
+        input_dir:
+
+    Returns:
+
+    """
+    patients = os.listdir(input_dir)
+    for patient in tqdm(patients):
+        patient_dir = os.path.join(input_dir, patient)
+        for modality in os.listdir(patient_dir):
+            modality_path = os.path.join(patient_dir, modality)
+            modality_data = nib.load(modality_path).get_fdata()
+            if np.sum(modality_data) == 0:
+                print(patient, modality)
+
+
+def mv_seg_file(img_dir='/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/Images',seg_dir='/media/spgou/DATA/ZYJ/Dataset/captk_before_data_net_seg',out_dir='/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/segmentation'):
+    """
+    把图片文件夹对应的seg文件夹中的文件移动到新的文件夹中
+    Args:
+        img_dir:
+        seg_dir:
+        out_dir:
+
+    Returns:
+
+    """
+    mkdirs(out_dir)
+    patients = os.listdir(img_dir)
+    for patient in tqdm(patients):
+        seg_file = os.path.join(seg_dir, patient + '.nii.gz')
+        out_file = os.path.join(out_dir, patient + '.nii.gz')
+        shutil.copy(seg_file, out_file)
+
+
 
 
 if __name__ == "__main__":
@@ -352,6 +390,7 @@ if __name__ == "__main__":
     # visualize_result('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before',
     #                  'D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before_pic')
     # transfer_net_format('/media/spgou/DATA/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize_processed_4mod', '/media/spgou/DATA/ZYJ/Dataset/captk_after_data_net_format')
-    modality_rename('/media/spgou/DATA/ZYJ/Dataset/captk_before_data', '/media/spgou/DATA/ZYJ/Dataset/captk_before_data_rename')
-    split_train_test('/media/spgou/DATA/ZYJ/Dataset/captk_before_data_rename', '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital')
-
+    # modality_rename('/media/spgou/DATA/ZYJ/Dataset/captk_before_data', '/media/spgou/DATA/ZYJ/Dataset/captk_before_data_rename')
+    # split_train_test('/media/spgou/DATA/ZYJ/Dataset/captk_before_data_rename', '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital')
+    # check_empty('/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/Images')
+    # mv_seg_file()
