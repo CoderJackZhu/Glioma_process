@@ -3,7 +3,7 @@
 # @FileName     :utils.py
 # @Time         :2023/5/10 17:12
 # @Author       :Jack Zhu
-
+import multiprocessing
 import os
 import sys
 import numpy as np
@@ -15,6 +15,9 @@ import pandas as pd
 from tqdm import tqdm
 import random
 from sklearn.model_selection import train_test_split
+import SimpleITK as sitk
+
+join = os.path.join
 
 def check_info(patient_path):
     """
@@ -118,6 +121,7 @@ def mkdirs(path):
     else:
         if not os.path.exists(path):
             os.makedirs(path)
+
 
 def filter_normal(input_dir, output_dir):
     """
@@ -289,6 +293,7 @@ def transfer_net_format(input_dir, output_dir):
             file_name = '_'.join(modality.split('.')[0].split('_')[:-1]) + '_' + file
             shutil.copy(modality_file, os.path.join(output_dir, file_name))
 
+
 def modality_rename(input_dir, output_dir):
     """
     把病人的数据的文件名模态的名称进行修改
@@ -319,6 +324,8 @@ def modality_rename(input_dir, output_dir):
                 continue
             file_name = '_'.join(modality.split('.')[0].split('_')[:-1]) + '_' + file
             shutil.copy(modality_file, os.path.join(out_patient_dir, file_name))
+
+
 def split_train_test(input_dir, output_dir):
     """
     把数据集分成训练集和验证集
@@ -364,7 +371,10 @@ def check_empty(input_dir):
                 print(patient, modality)
 
 
-def mv_seg_file(img_dir='/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/Images',seg_dir='/media/spgou/DATA/ZYJ/Dataset/captk_before_data_net_seg',out_dir='/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/segmentation'):
+def mv_seg_file(
+        img_dir='/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/Images',
+        seg_dir='/media/spgou/DATA/ZYJ/Dataset/captk_before_data_net_seg',
+        out_dir='/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/segmentation'):
     """
     把图片文件夹对应的seg文件夹中的文件移动到新的文件夹中
     Args:
@@ -383,6 +393,58 @@ def mv_seg_file(img_dir='/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/Gli
         shutil.copy(seg_file, out_file)
 
 
+def subfiles(folder: str, join: bool = True, prefix: str = None, suffix: str = None, sort: bool = True):
+    if join:
+        l = os.path.join
+    else:
+        l = lambda x, y: y
+    res = [l(folder, i) for i in os.listdir(folder) if os.path.isfile(os.path.join(folder, i))
+           and (prefix is None or i.startswith(prefix))
+           and (suffix is None or i.endswith(suffix))]
+    if sort:
+        res.sort()
+    return res
+
+
+def check_labels(seg_file="/media/spgou/DATA/ZYJ/Dataset/captk_before_data_net_seg/Gliomas_00005_20181117.nii.gz"):
+    """
+    检查标签文件是否有问题
+    Args:
+        seg_file:
+
+    Returns:
+
+    """
+    seg_data = nib.load(seg_file).get_fdata()
+    print(np.unique(seg_data))
+
+
+def convert_labels_back_to_BraTS(seg: np.ndarray):
+    new_seg = np.zeros_like(seg)
+    new_seg[seg == 1] = 2
+    new_seg[seg == 3] = 4
+    new_seg[seg == 2] = 1
+    return new_seg
+
+
+def load_convert_labels_back_to_BraTS(filename, input_folder, output_folder):
+    a = sitk.ReadImage(join(input_folder, filename))
+    b = sitk.GetArrayFromImage(a)
+    c = convert_labels_back_to_BraTS(b)
+    d = sitk.GetImageFromArray(c)
+    d.CopyInformation(a)
+    sitk.WriteImage(d, join(output_folder, filename))
+
+
+def convert_folder_with_preds_back_to_BraTS_labeling_convention(input_folder: str, output_folder: str,
+                                                                num_processes: int = 12):
+    """
+    reads all prediction files (nifti) in the input folder, converts the labels back to BraTS convention and saves the
+    """
+    mkdirs(output_folder)
+    nii = subfiles(input_folder, suffix='.nii.gz', join=False)
+    with multiprocessing.get_context("spawn").Pool(num_processes) as p:
+        p.starmap(load_convert_labels_back_to_BraTS, zip(nii, [input_folder] * len(nii), [output_folder] * len(nii)))
 
 
 if __name__ == "__main__":
@@ -393,4 +455,8 @@ if __name__ == "__main__":
     # modality_rename('/media/spgou/DATA/ZYJ/Dataset/captk_before_data', '/media/spgou/DATA/ZYJ/Dataset/captk_before_data_rename')
     # split_train_test('/media/spgou/DATA/ZYJ/Dataset/captk_before_data_rename', '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital')
     # check_empty('/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/Images')
-    mv_seg_file()
+    # mv_seg_file()
+    # check_labels()
+    convert_folder_with_preds_back_to_BraTS_labeling_convention(
+        '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/segmentation',
+        '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/seg')
