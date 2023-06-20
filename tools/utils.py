@@ -371,7 +371,7 @@ def fuse_infov3():
     # 加匿名化的id到第一列
     results.insert(0, 'anonymous_id', None)
     for i in range(results.shape[0]):
-        results.iloc[i, 0] = get_anonymized_id(results.iloc[i, 8])
+        results.iloc[i, 0] = get_anonymized_id(results.iloc[i, 9])
     results.to_excel('../result_file/fused_result_v3.xlsx', index=False)
 
 
