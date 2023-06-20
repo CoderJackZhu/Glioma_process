@@ -19,6 +19,7 @@ import SimpleITK as sitk
 
 join = os.path.join
 
+
 def check_info(patient_path):
     """
     确认nii.gz文件中含有病人的多少信息
@@ -221,7 +222,7 @@ def check_if_operation(patient_id, check_date):
     return False
 
 
-def check_empty(mod_dir):
+def check_empty_dir(mod_dir):
     """
     检查空文件夹并删除
     Args:
@@ -352,7 +353,29 @@ def split_train_test(input_dir, output_dir):
         shutil.copytree(patient_dir, os.path.join(test_dir_image, patient))
 
 
-def check_empty(input_dir):
+def get_anonymized_id(patient_id):
+    """
+    给出病人的id，通过表格获取匿名化的id
+    Args:
+        patient_id:
+    """
+    df = pd.read_excel('../reference/Preprocess/anonymous_table.xlsx')
+    for i in range(df.shape[0]):
+        if df.iloc[i, 0] == patient_id:
+            return df.iloc[i, 1]
+    return None
+
+
+def fuse_infov3():
+    results = pd.read_excel('../result_file/fused_result_v2.xlsx')
+    # 加匿名化的id到第一列
+    results.insert(0, 'anonymous_id', None)
+    for i in range(results.shape[0]):
+        results.iloc[i, 0] = get_anonymized_id(results.iloc[i, 8])
+    results.to_excel('../result_file/fused_result_v3.xlsx', index=False)
+
+
+def check_empty_data(input_dir):
     """
     检查数据集中是否有空的数据
     Args:
@@ -457,6 +480,7 @@ if __name__ == "__main__":
     # check_empty('/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/Images')
     # mv_seg_file()
     # check_labels()
-    convert_folder_with_preds_back_to_BraTS_labeling_convention(
-        '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/segmentation',
-        '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/seg')
+    # convert_folder_with_preds_back_to_BraTS_labeling_convention(
+    #     '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/segmentation',
+    #     '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/seg')
+    fuse_infov3()
