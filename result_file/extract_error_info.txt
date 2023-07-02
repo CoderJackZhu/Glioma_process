@@ -1,0 +1,1867 @@
+/home/spgou/anaconda3/envs/Radiomics/bin/python /media/spgou/DATA/ZYJ/Radiomics/extract_radiomics_features/main_extract_features.py 
+
+
+=========== Extract features for XiangyaHospital_train. ==========
+
+-image_folder=/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/PreprocessedImages/XiangyaHospital_train/zscore/zscore_normalizedImages, 
+-segmentation_folder=/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_train/segmentation.
+extractor_setting_file path=
+  ./feature_extract_setting.yaml
+-----------  settings of the feature extractor---------------------
+Extraction paramters:
+	 {'minimumROIDimensions': 2, 'minimumROISize': None, 'normalize': False, 'normalizeScale': 1, 'removeOutliers': None, 'resampledPixelSpacing': None, 'interpolator': 'sitkBSpline', 'preCrop': False, 'padDistance': 5, 'distances': [1], 'force2D': False, 'force2Ddimension': 0, 'resegmentRange': None, 'label': 1, 'additionalInfo': True, 'binCount': 64}
+Enabled filters:
+	 {'Original': {}}
+Enabled features:
+	 {'firstorder': None, 'shape': None, 'glrlm': None, 'glszm': None, 'gldm': None, 'ngtdm': None, 'glcm': ['Autocorrelation', 'JointAverage', 'ClusterProminence', 'ClusterShade', 'ClusterTendency', 'Contrast', 'Correlation', 'DifferenceAverage', 'DifferenceEntropy', 'DifferenceVariance', 'JointEnergy', 'JointEntropy', 'Imc1', 'Imc2', 'Idm', 'Idmn', 'Id', 'Idn', 'InverseVariance', 'MaximumProbability', 'SumEntropy', 'SumSquares', 'MCC']}
+- 1/782: Gliomas_01805_20200925
+- 2/782: Gliomas_00005_20181117
+- 3/782: Gliomas_00012_20190906
+- 4/782: Gliomas_00019_20181024
+- 5/782: Gliomas_00028_20191209
+- 6/782: Gliomas_00034_20190214
+- 7/782: Gliomas_00035_20170316
+- 8/782: Gliomas_00036_20141215
+- 9/782: Gliomas_00039_20180109
+- 10/782: Gliomas_00040_20190312
+- 11/782: Gliomas_00045_20190329
+- 12/782: Gliomas_00048_20180830
+Caution!!! - 12/782: Gliomas_00048_20180830, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 13/782: Gliomas_00049_20161010
+- 14/782: Gliomas_00053_20181227
+- 15/782: Gliomas_00057_20180809
+- 16/782: Gliomas_00064_20200210
+Caution!!! - 16/782: Gliomas_00064_20200210, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 17/782: Gliomas_01108_20180418
+- 18/782: Gliomas_01112_20180113
+- 19/782: Gliomas_01122_20190829
+- 20/782: Gliomas_01126_20171023
+- 21/782: Gliomas_01129_20180317
+- 22/782: Gliomas_01135_20190729
+- 23/782: Gliomas_01136_20190513
+- 24/782: Gliomas_01147_20171204
+Caution!!! - 24/782: Gliomas_01147_20171204, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 25/782: Gliomas_01150_20151221
+- 26/782: Gliomas_01157_20190429
+- 27/782: Gliomas_01161_20181012
+- 28/782: Gliomas_01165_20200606
+- 29/782: Gliomas_01168_20151120
+- 30/782: Gliomas_01184_20201001
+Caution!!! - 30/782: Gliomas_01184_20201001, error: mask only contains 1 segmented voxel! Cannot extract features for a single voxel..
+- 31/782: Gliomas_01186_20200611
+- 32/782: Gliomas_01191_20200316
+- 33/782: Gliomas_01194_20171219
+- 34/782: Gliomas_01206_20170422
+- 35/782: Gliomas_01206_20171108
+- 36/782: Gliomas_01207_20180802
+Caution!!! - 36/782: Gliomas_01207_20180802, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 37/782: Gliomas_01217_20190826
+- 38/782: Gliomas_01226_20170914
+- 39/782: Gliomas_01230_20190712
+- 40/782: Gliomas_01232_20200918
+- 41/782: Gliomas_01242_20171016
+Caution!!! - 41/782: Gliomas_01242_20171016, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 42/782: Gliomas_01244_20180829
+- 43/782: Gliomas_01245_20190801
+- 44/782: Gliomas_01254_20180716
+- 45/782: Gliomas_01257_20190705
+- 46/782: Gliomas_01259_20181116
+- 47/782: Gliomas_01754_20151013
+- 48/782: Gliomas_01759_20151211
+- 49/782: Gliomas_01760_20191103
+- 50/782: Gliomas_01761_20190706
+- 51/782: Gliomas_01764_20180402
+- 52/782: Gliomas_01766_20200912
+- 53/782: Gliomas_01766_20200920
+- 54/782: Gliomas_01767_20180711
+- 55/782: Gliomas_01774_20151112
+- 56/782: Gliomas_01778_20160721
+- 57/782: Gliomas_01783_20160426
+- 58/782: Gliomas_01796_20160624
+- 59/782: Gliomas_01796_20190220
+- 60/782: Gliomas_01796_20200720
+- 61/782: Gliomas_01803_20180906
+- 62/782: Gliomas_00075_20200403
+- 63/782: Gliomas_00218_20190225
+Caution!!! - 63/782: Gliomas_00218_20190225, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 64/782: Gliomas_00299_20190918
+- 65/782: Gliomas_00395_20190729
+- 66/782: Gliomas_00465_20190314
+- 67/782: Gliomas_00539_20200312
+- 68/782: Gliomas_00623_20180406
+- 69/782: Gliomas_00707_20191127
+- 70/782: Gliomas_00856_20181206
+- 71/782: Gliomas_00924_20141126
+- 72/782: Gliomas_01008_20190719
+Caution!!! - 72/782: Gliomas_01008_20190719, error: mask has too few dimensions (number of dimensions 1, minimum required 2).
+- 73/782: Gliomas_01108_20171205
+- 74/782: Gliomas_01191_20200305
+- 75/782: Gliomas_01260_20180226
+- 76/782: Gliomas_01322_20170721
+- 77/782: Gliomas_01437_20190822
+- 78/782: Gliomas_01495_20190111
+- 79/782: Gliomas_01577_20200929
+- 80/782: Gliomas_01744_20190118
+Caution!!! - 80/782: Gliomas_01744_20190118, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 81/782: Gliomas_00219_20190616
+- 82/782: Gliomas_00224_20180405
+- 83/782: Gliomas_00227_20180602
+- 84/782: Gliomas_00247_20191210
+- 85/782: Gliomas_00250_20200224
+- 86/782: Gliomas_00264_20200112
+- 87/782: Gliomas_00265_20181101
+- 88/782: Gliomas_00268_20190824
+- 89/782: Gliomas_00273_20170419
+- 90/782: Gliomas_00274_20170502
+- 91/782: Gliomas_00274_20180619
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:224: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(gln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:240: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:316: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:389: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(hglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:208: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:440: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:372: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:355: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(re, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:256: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:272: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rlnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:335: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:191: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:423: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:406: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:258: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ac, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:276: RuntimeWarning: Mean of empty slice.
+  return self.coefficients['ux'].mean((1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/numpy/core/_methods.py:184: RuntimeWarning: invalid value encountered in divide
+  ret = um.true_divide(
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:294: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:312: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cs, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:329: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ct, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:344: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cont, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:374: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(corr, (1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:390: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffavg, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:405: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(difent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:421: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffvar, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ene, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:474: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:567: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc1, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:602: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc2, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:618: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idm, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:676: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idmn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:691: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(invDiff, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:709: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:723: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(inv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:740: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(maxprob, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:799: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sumentr, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:827: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ss, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:656: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(MCC, 1).real
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:224: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(gln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:240: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:316: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:389: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(hglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:208: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:440: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:372: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:355: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(re, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:256: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:272: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rlnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:335: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:191: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:423: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:406: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:258: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ac, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:276: RuntimeWarning: Mean of empty slice.
+  return self.coefficients['ux'].mean((1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/numpy/core/_methods.py:184: RuntimeWarning: invalid value encountered in divide
+  ret = um.true_divide(
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:294: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:312: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cs, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:329: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ct, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:344: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cont, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:374: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(corr, (1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:390: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffavg, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:405: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(difent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:421: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffvar, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ene, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:474: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:567: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc1, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:602: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc2, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:618: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idm, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:676: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idmn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:691: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(invDiff, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:709: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:723: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(inv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:740: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(maxprob, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:799: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sumentr, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:827: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ss, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:656: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(MCC, 1).real
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:224: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(gln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:240: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:316: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:389: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(hglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:208: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:440: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:372: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:355: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(re, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:256: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:272: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rlnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:335: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:191: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:423: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:406: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:258: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ac, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:276: RuntimeWarning: Mean of empty slice.
+  return self.coefficients['ux'].mean((1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/numpy/core/_methods.py:184: RuntimeWarning: invalid value encountered in divide
+  ret = um.true_divide(
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:294: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:312: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cs, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:329: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ct, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:344: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cont, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:374: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(corr, (1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:390: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffavg, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:405: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(difent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:421: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffvar, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ene, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:474: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:567: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc1, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:602: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc2, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:618: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idm, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:676: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idmn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:691: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(invDiff, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:709: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:723: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(inv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:740: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(maxprob, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:799: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sumentr, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:827: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ss, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:656: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(MCC, 1).real
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:224: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(gln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:240: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:316: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:389: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(hglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:208: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:440: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:372: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:355: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(re, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:256: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:272: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rlnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:335: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:191: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:423: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:406: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:258: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ac, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:276: RuntimeWarning: Mean of empty slice.
+  return self.coefficients['ux'].mean((1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/numpy/core/_methods.py:184: RuntimeWarning: invalid value encountered in divide
+  ret = um.true_divide(
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:294: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:312: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cs, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:329: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ct, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:344: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cont, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:374: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(corr, (1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:390: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffavg, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:405: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(difent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:421: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffvar, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ene, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:474: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:567: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc1, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:602: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc2, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:618: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idm, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:676: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idmn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:691: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(invDiff, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:709: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:723: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(inv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:740: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(maxprob, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:799: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sumentr, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:827: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ss, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:656: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(MCC, 1).real
+- 92/782: Gliomas_00284_20171028
+- 93/782: Gliomas_00289_20200401
+- 94/782: Gliomas_00293_20191220
+- 95/782: Gliomas_00296_20190929
+- 96/782: Gliomas_02963_20200325
+- 97/782: Gliomas_02965_20180726
+- 98/782: Gliomas_02970_20190818
+- 99/782: Gliomas_02971_20161111
+- 100/782: Gliomas_02983_20190315
+- 101/782: Gliomas_02987_20180608
+- 102/782: Gliomas_02989_20191115
+- 103/782: Gliomas_02997_20181117
+- 104/782: Gliomas_02999_20190602
+- 105/782: Gliomas_02999_20190605
+- 106/782: Gliomas_03003_20200312
+- 107/782: Gliomas_03006_20200417
+- 108/782: Gliomas_03009_20190924
+- 109/782: Gliomas_03022_20190818
+- 110/782: Gliomas_03026_20190607
+- 111/782: Gliomas_03027_20181101
+- 112/782: Gliomas_01440_20181129
+- 113/782: Gliomas_01441_20140620
+- 114/782: Gliomas_01450_20171208
+- 115/782: Gliomas_01452_20181008
+- 116/782: Gliomas_01453_20170913
+- 117/782: Gliomas_01458_20170920
+- 118/782: Gliomas_01460_20200411
+- 119/782: Gliomas_01462_20171109
+- 120/782: Gliomas_01462_20171113
+- 121/782: Gliomas_01463_20160310
+- 122/782: Gliomas_01465_20160715
+- 123/782: Gliomas_01467_20190212
+- 124/782: Gliomas_01480_20200613
+- 125/782: Gliomas_01485_20190216
+- 126/782: Gliomas_01489_20170322
+Caution!!! - 126/782: Gliomas_01489_20170322, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 127/782: Gliomas_02821_20180712
+- 128/782: Gliomas_02823_20190811
+Caution!!! - 128/782: Gliomas_02823_20190811, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 129/782: Gliomas_02824_20161230
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:224: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(gln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:240: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:316: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:389: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(hglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:208: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:440: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:372: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:355: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(re, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:256: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:272: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rlnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:335: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:191: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:423: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:406: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:258: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ac, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:276: RuntimeWarning: Mean of empty slice.
+  return self.coefficients['ux'].mean((1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/numpy/core/_methods.py:184: RuntimeWarning: invalid value encountered in divide
+  ret = um.true_divide(
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:294: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:312: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cs, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:329: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ct, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:344: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cont, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:374: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(corr, (1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:390: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffavg, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:405: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(difent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:421: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffvar, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ene, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:474: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:567: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc1, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:602: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc2, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:618: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idm, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:676: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idmn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:691: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(invDiff, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:709: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:723: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(inv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:740: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(maxprob, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:799: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sumentr, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:827: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ss, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:656: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(MCC, 1).real
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:224: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(gln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:240: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:316: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:389: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(hglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:208: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:440: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:372: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:355: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(re, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:256: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:272: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rlnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:335: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:191: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:423: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:406: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:258: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ac, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:276: RuntimeWarning: Mean of empty slice.
+  return self.coefficients['ux'].mean((1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/numpy/core/_methods.py:184: RuntimeWarning: invalid value encountered in divide
+  ret = um.true_divide(
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:294: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:312: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cs, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:329: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ct, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:344: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cont, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:374: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(corr, (1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:390: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffavg, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:405: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(difent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:421: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffvar, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ene, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:474: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:567: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc1, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:602: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc2, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:618: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idm, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:676: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idmn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:691: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(invDiff, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:709: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:723: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(inv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:740: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(maxprob, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:799: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sumentr, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:827: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ss, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:656: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(MCC, 1).real
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:224: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(gln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:240: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:316: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:389: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(hglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:208: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:440: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:372: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:355: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(re, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:256: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:272: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rlnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:335: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:191: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:423: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:406: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:258: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ac, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:276: RuntimeWarning: Mean of empty slice.
+  return self.coefficients['ux'].mean((1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/numpy/core/_methods.py:184: RuntimeWarning: invalid value encountered in divide
+  ret = um.true_divide(
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:294: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:312: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cs, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:329: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ct, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:344: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cont, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:374: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(corr, (1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:390: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffavg, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:405: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(difent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:421: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffvar, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ene, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:474: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:567: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc1, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:602: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc2, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:618: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idm, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:676: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idmn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:691: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(invDiff, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:709: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:723: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(inv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:740: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(maxprob, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:799: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sumentr, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:827: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ss, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:656: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(MCC, 1).real
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:224: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(gln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:240: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:316: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:389: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(hglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:208: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:440: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:372: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:355: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(re, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:256: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:272: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rlnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:335: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:191: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:423: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:406: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:258: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ac, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:276: RuntimeWarning: Mean of empty slice.
+  return self.coefficients['ux'].mean((1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/numpy/core/_methods.py:184: RuntimeWarning: invalid value encountered in divide
+  ret = um.true_divide(
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:294: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:312: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cs, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:329: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ct, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:344: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cont, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:374: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(corr, (1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:390: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffavg, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:405: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(difent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:421: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffvar, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ene, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:474: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:567: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc1, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:602: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc2, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:618: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idm, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:676: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idmn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:691: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(invDiff, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:709: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:723: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(inv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:740: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(maxprob, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:799: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sumentr, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:827: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ss, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:656: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(MCC, 1).real
+- 130/782: Gliomas_02826_20190729
+- 131/782: Gliomas_02830_20200427
+- 132/782: Gliomas_02834_20150705
+- 133/782: Gliomas_02837_20180727
+- 134/782: Gliomas_02840_20200411
+- 135/782: Gliomas_02854_20170307
+- 136/782: Gliomas_02855_20201007
+- 137/782: Gliomas_02860_20200608
+- 138/782: Gliomas_02861_20200221
+- 139/782: Gliomas_02870_20190930
+- 140/782: Gliomas_02894_20171226
+- 141/782: Gliomas_02895_20170925
+- 142/782: Gliomas_00466_20181101
+- 143/782: Gliomas_00469_20170811
+- 144/782: Gliomas_00470_20190617
+- 145/782: Gliomas_00472_20190904
+- 146/782: Gliomas_00482_20190130
+- 147/782: Gliomas_00491_20171130
+- 148/782: Gliomas_00502_20180714
+- 149/782: Gliomas_00512_20190411
+- 150/782: Gliomas_00514_20190811
+- 151/782: Gliomas_00517_20191227
+- 152/782: Gliomas_00518_20201014
+- 153/782: Gliomas_00528_20180818
+- 154/782: Gliomas_00531_20190117
+- 155/782: Gliomas_00531_20190120
+- 156/782: Gliomas_00539_20200304
+- 157/782: Gliomas_02230_20191215
+- 158/782: Gliomas_02231_20180718
+- 159/782: Gliomas_02231_20180723
+- 160/782: Gliomas_02234_20191011
+- 161/782: Gliomas_02236_20200102
+- 162/782: Gliomas_02239_20200119
+- 163/782: Gliomas_02243_20191212
+- 164/782: Gliomas_02249_20190717
+- 165/782: Gliomas_02250_20200412
+- 166/782: Gliomas_02255_20151120
+- 167/782: Gliomas_02268_20141003
+- 168/782: Gliomas_02270_20181117
+- 169/782: Gliomas_02270_20181121
+Caution!!! - 169/782: Gliomas_02270_20181121, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 170/782: Gliomas_02279_20190502
+- 171/782: Gliomas_02288_20160822
+- 172/782: Gliomas_02289_20200828
+- 173/782: Gliomas_00078_20161220
+- 174/782: Gliomas_00081_20180224
+- 175/782: Gliomas_00082_20191122
+- 176/782: Gliomas_00082_20191206
+- 177/782: Gliomas_00087_20200319
+- 178/782: Gliomas_00095_20200906
+- 179/782: Gliomas_00106_20180920
+- 180/782: Gliomas_00108_20170218
+- 181/782: Gliomas_00113_20191110
+- 182/782: Gliomas_00115_20171115
+- 183/782: Gliomas_00117_20180212
+- 184/782: Gliomas_00125_20190530
+- 185/782: Gliomas_00127_20191212
+- 186/782: Gliomas_00129_20180108
+- 187/782: Gliomas_00140_20180828
+- 188/782: Gliomas_00140_20180905
+- 189/782: Gliomas_00141_20200914
+- 190/782: Gliomas_00147_20171107
+- 191/782: Gliomas_00150_20181114
+- 192/782: Gliomas_00171_20151011
+- 193/782: Gliomas_00174_20181121
+- 194/782: Gliomas_00180_20180607
+- 195/782: Gliomas_00182_20190807
+- 196/782: Gliomas_00186_20160201
+- 197/782: Gliomas_00186_20180122
+Caution!!! - 197/782: Gliomas_00186_20180122, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 198/782: Gliomas_00186_20181109
+- 199/782: Gliomas_00188_20190514
+Caution!!! - 199/782: Gliomas_00188_20190514, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 200/782: Gliomas_00200_20191205
+- 201/782: Gliomas_00202_20190515
+Caution!!! - 201/782: Gliomas_00202_20190515, error: Image/Mask geometry mismatch. Potential fix: increase tolerance using geometryTolerance, see Documentation:Usage:Customizing the Extraction:Settings:geometryTolerance for more information.
+- 202/782: Gliomas_00204_20200419
+- 203/782: Gliomas_00207_20200728
+- 204/782: Gliomas_01497_20191208
+- 205/782: Gliomas_01501_20180105
+- 206/782: Gliomas_01509_20150417
+- 207/782: Gliomas_01536_20201008
+- 208/782: Gliomas_01538_20170828
+Caution!!! - 208/782: Gliomas_01538_20170828, error: mask has too few dimensions (number of dimensions 1, minimum required 2).
+- 209/782: Gliomas_01539_20191108
+- 210/782: Gliomas_01545_20200709
+- 211/782: Gliomas_01550_20200119
+- 212/782: Gliomas_01553_20190708
+- 213/782: Gliomas_01553_20200808
+Caution!!! - 213/782: Gliomas_01553_20200808, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 214/782: Gliomas_01555_20181115
+- 215/782: Gliomas_01557_20180212
+- 216/782: Gliomas_01559_20170508
+- 217/782: Gliomas_01559_20170817
+- 218/782: Gliomas_01569_20190217
+- 219/782: Gliomas_00713_20160928
+- 220/782: Gliomas_00713_20190920
+- 221/782: Gliomas_00714_20200921
+- 222/782: Gliomas_00719_20180604
+- 223/782: Gliomas_00720_20140307
+- 224/782: Gliomas_00724_20190814
+- 225/782: Gliomas_00725_20151222
+- 226/782: Gliomas_00732_20181019
+- 227/782: Gliomas_00734_20190306
+- 228/782: Gliomas_00735_20200410
+- 229/782: Gliomas_00739_20200710
+- 230/782: Gliomas_00744_20141205
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+- 231/782: Gliomas_00747_20180803
+- 232/782: Gliomas_00754_20190129
+- 233/782: Gliomas_00766_20171218
+- 234/782: Gliomas_00768_20160925
+- 235/782: Gliomas_00770_20171110
+Caution!!! - 235/782: Gliomas_00770_20171110, error: mask has too few dimensions (number of dimensions 1, minimum required 2).
+- 236/782: Gliomas_00782_20190910
+Caution!!! - 236/782: Gliomas_00782_20190910, error: mask has too few dimensions (number of dimensions 1, minimum required 2).
+- 237/782: Gliomas_00786_20180713
+- 238/782: Gliomas_00787_20171125
+- 239/782: Gliomas_00811_20190327
+- 240/782: Gliomas_00811_20190331
+- 241/782: Gliomas_00818_20171023
+- 242/782: Gliomas_00829_20190213
+- 243/782: Gliomas_00831_20190626
+- 244/782: Gliomas_00835_20191227
+- 245/782: Gliomas_00844_20171104
+- 246/782: Gliomas_00851_20190418
+- 247/782: Gliomas_00852_20180502
+- 248/782: Gliomas_03044_20200803
+- 249/782: Gliomas_03050_20190428
+- 250/782: Gliomas_03057_20180927
+- 251/782: Gliomas_03061_20180806
+- 252/782: Gliomas_03071_20191018
+Caution!!! - 252/782: Gliomas_03071_20191018, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 253/782: Gliomas_03076_20180404
+- 254/782: Gliomas_03086_20200528
+- 255/782: Gliomas_03101_20180906
+- 256/782: Gliomas_03107_20200428
+- 257/782: Gliomas_03116_20171129
+- 258/782: Gliomas_03117_20191221
+- 259/782: Gliomas_03123_20170216
+Caution!!! - 259/782: Gliomas_03123_20170216, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 260/782: Gliomas_03123_20170918
+Caution!!! - 260/782: Gliomas_03123_20170918, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 261/782: Gliomas_03123_20190913
+- 262/782: Gliomas_03128_20200423
+- 263/782: Gliomas_03129_20200325
+- 264/782: Gliomas_03221_20200517
+- 265/782: Gliomas_03224_20140926
+- 266/782: Gliomas_03225_20190911
+Caution!!! - 266/782: Gliomas_03225_20190911, error: mask only contains 1 segmented voxel! Cannot extract features for a single voxel..
+- 267/782: Gliomas_03228_20190715
+- 268/782: Gliomas_03230_20180519
+- 269/782: Gliomas_03231_20180705
+- 270/782: Gliomas_03232_20180725
+- 271/782: Gliomas_03236_20170309
+- 272/782: Gliomas_03241_20190824
+- 273/782: Gliomas_03242_20180724
+- 274/782: Gliomas_03249_20191221
+- 275/782: Gliomas_03251_20180924
+- 276/782: Gliomas_03251_20180928
+- 277/782: Gliomas_03251_20181025
+- 278/782: Gliomas_03254_20190324
+- 279/782: Gliomas_02538_20180315
+- 280/782: Gliomas_02549_20200511
+- 281/782: Gliomas_02557_20171220
+- 282/782: Gliomas_02569_20181029
+- 283/782: Gliomas_02570_20150811
+- 284/782: Gliomas_02582_20151029
+- 285/782: Gliomas_02583_20181012
+- 286/782: Gliomas_02584_20191219
+- 287/782: Gliomas_02584_20200305
+- 288/782: Gliomas_02594_20190904
+- 289/782: Gliomas_02597_20180609
+- 290/782: Gliomas_02602_20180112
+- 291/782: Gliomas_02606_20200429
+- 292/782: Gliomas_02617_20200811
+- 293/782: Gliomas_02618_20180907
+- 294/782: Gliomas_02619_20200718
+- 295/782: Gliomas_02621_20170915
+- 296/782: Gliomas_02623_20180403
+- 297/782: Gliomas_02628_20200605
+- 298/782: Gliomas_02631_20200824
+- 299/782: Gliomas_02642_20180521
+- 300/782: Gliomas_02648_20170526
+- 301/782: Gliomas_02652_20190119
+- 302/782: Gliomas_02664_20181119
+- 303/782: Gliomas_02666_20170804
+Caution!!! - 303/782: Gliomas_02666_20170804, error: mask has too few dimensions (number of dimensions 1, minimum required 2).
+- 304/782: Gliomas_02676_20170914
+- 305/782: Gliomas_02676_20190606
+- 306/782: Gliomas_02678_20170904
+- 307/782: Gliomas_02687_20180211
+- 308/782: Gliomas_02697_20200105
+- 309/782: Gliomas_02703_20180826
+- 310/782: Gliomas_00545_20190315
+- 311/782: Gliomas_00547_20170829
+- 312/782: Gliomas_00553_20191208
+- 313/782: Gliomas_00559_20180308
+- 314/782: Gliomas_00559_20180315
+- 315/782: Gliomas_00560_20190704
+- 316/782: Gliomas_00570_20181201
+- 317/782: Gliomas_00572_20181108
+- 318/782: Gliomas_00574_20190131
+- 319/782: Gliomas_00586_20191114
+- 320/782: Gliomas_00595_20170727
+- 321/782: Gliomas_00600_20190410
+- 322/782: Gliomas_00607_20160405
+- 323/782: Gliomas_00619_20200925
+- 324/782: Gliomas_00619_20201012
+- 325/782: Gliomas_02705_20190421
+- 326/782: Gliomas_02709_20180724
+- 327/782: Gliomas_02713_20191201
+- 328/782: Gliomas_02715_20191228
+- 329/782: Gliomas_02717_20170922
+- 330/782: Gliomas_02719_20181018
+- 331/782: Gliomas_02721_20190602
+- 332/782: Gliomas_02723_20190403
+- 333/782: Gliomas_02732_20190708
+- 334/782: Gliomas_02734_20160623
+- 335/782: Gliomas_02750_20200803
+- 336/782: Gliomas_02751_20190313
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+- 337/782: Gliomas_02752_20200319
+- 338/782: Gliomas_02754_20200517
+- 339/782: Gliomas_02765_20200417
+- 340/782: Gliomas_02776_20181217
+- 341/782: Gliomas_02780_20150816
+- 342/782: Gliomas_02781_20190217
+Caution!!! - 342/782: Gliomas_02781_20190217, error: Image/Mask geometry mismatch. Potential fix: increase tolerance using geometryTolerance, see Documentation:Usage:Customizing the Extraction:Settings:geometryTolerance for more information.
+- 343/782: Gliomas_02791_20180608
+- 344/782: Gliomas_02794_20160818
+- 345/782: Gliomas_02797_20190419
+- 346/782: Gliomas_02805_20181123
+- 347/782: Gliomas_02806_20200911
+Caution!!! - 347/782: Gliomas_02806_20200911, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 348/782: Gliomas_02818_20190127
+- 349/782: Gliomas_02040_20190408
+- 350/782: Gliomas_02044_20190213
+- 351/782: Gliomas_02052_20190514
+- 352/782: Gliomas_02053_20200512
+- 353/782: Gliomas_02055_20181122
+- 354/782: Gliomas_02058_20181029
+Caution!!! - 354/782: Gliomas_02058_20181029, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 355/782: Gliomas_02061_20200429
+- 356/782: Gliomas_02061_20200507
+- 357/782: Gliomas_02071_20181124
+- 358/782: Gliomas_02076_20181016
+- 359/782: Gliomas_02086_20200515
+- 360/782: Gliomas_02089_20180727
+- 361/782: Gliomas_02095_20180224
+- 362/782: Gliomas_02095_20180306
+Caution!!! - 362/782: Gliomas_02095_20180306, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 363/782: Gliomas_02097_20161209
+- 364/782: Gliomas_02290_20191014
+- 365/782: Gliomas_02293_20190325
+- 366/782: Gliomas_02294_20141029
+- 367/782: Gliomas_02310_20200602
+- 368/782: Gliomas_02314_20180320
+- 369/782: Gliomas_02317_20200618
+- 370/782: Gliomas_02318_20171122
+- 371/782: Gliomas_02318_20181108
+- 372/782: Gliomas_02323_20200217
+- 373/782: Gliomas_02323_20200805
+- 374/782: Gliomas_02326_20200815
+- 375/782: Gliomas_02327_20191213
+- 376/782: Gliomas_02329_20191221
+- 377/782: Gliomas_02333_20190307
+- 378/782: Gliomas_02334_20200724
+- 379/782: Gliomas_03136_20181213
+- 380/782: Gliomas_03138_20180331
+- 381/782: Gliomas_03146_20160701
+- 382/782: Gliomas_03146_20180321
+- 383/782: Gliomas_03146_20190212
+- 384/782: Gliomas_03148_20190718
+- 385/782: Gliomas_03171_20180104
+- 386/782: Gliomas_03172_20191220
+- 387/782: Gliomas_03176_20160824
+Encountered 1 eigenvalues < 0 and > -1e-10, rounding to 0
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:224: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(gln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:240: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:316: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:389: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(hglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:208: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:440: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:372: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:355: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(re, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:256: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:272: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rlnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:335: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:191: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:423: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:406: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:258: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ac, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:276: RuntimeWarning: Mean of empty slice.
+  return self.coefficients['ux'].mean((1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/numpy/core/_methods.py:184: RuntimeWarning: invalid value encountered in divide
+  ret = um.true_divide(
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:294: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:312: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cs, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:329: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ct, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:344: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cont, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:374: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(corr, (1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:390: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffavg, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:405: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(difent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:421: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffvar, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ene, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:474: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:567: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc1, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:602: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc2, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:618: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idm, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:676: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idmn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:691: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(invDiff, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:709: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:723: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(inv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:740: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(maxprob, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:799: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sumentr, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:827: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ss, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:656: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(MCC, 1).real
+Encountered 1 eigenvalues < 0 and > -1e-10, rounding to 0
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:224: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(gln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:240: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:316: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:389: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(hglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:208: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:440: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:372: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:355: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(re, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:256: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:272: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rlnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:335: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:191: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:423: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:406: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:258: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ac, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:276: RuntimeWarning: Mean of empty slice.
+  return self.coefficients['ux'].mean((1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/numpy/core/_methods.py:184: RuntimeWarning: invalid value encountered in divide
+  ret = um.true_divide(
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:294: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:312: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cs, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:329: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ct, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:344: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cont, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:374: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(corr, (1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:390: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffavg, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:405: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(difent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:421: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffvar, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ene, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:474: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:567: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc1, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:602: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc2, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:618: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idm, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:676: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idmn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:691: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(invDiff, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:709: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:723: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(inv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:740: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(maxprob, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:799: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sumentr, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:827: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ss, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:656: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(MCC, 1).real
+Encountered 1 eigenvalues < 0 and > -1e-10, rounding to 0
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:224: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(gln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:240: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:316: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:389: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(hglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:208: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:440: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:372: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:355: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(re, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:256: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:272: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rlnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:335: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:191: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:423: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:406: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:258: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ac, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:276: RuntimeWarning: Mean of empty slice.
+  return self.coefficients['ux'].mean((1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/numpy/core/_methods.py:184: RuntimeWarning: invalid value encountered in divide
+  ret = um.true_divide(
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:294: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:312: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cs, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:329: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ct, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:344: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cont, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:374: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(corr, (1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:390: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffavg, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:405: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(difent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:421: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffvar, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ene, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:474: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:567: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc1, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:602: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc2, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:618: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idm, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:676: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idmn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:691: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(invDiff, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:709: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:723: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(inv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:740: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(maxprob, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:799: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sumentr, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:827: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ss, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:656: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(MCC, 1).real
+Encountered 1 eigenvalues < 0 and > -1e-10, rounding to 0
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/firstorder.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(numpy.absolute(percentileArray - numpy.nanmean(percentileArray, 1, keepdims=True)), 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:224: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(gln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:240: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:316: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(glv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:389: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(hglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:208: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:440: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lrlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:372: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(lglre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:355: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(re, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:256: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rln, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:272: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rlnn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:297: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:335: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(rv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:191: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sre, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:423: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srhgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glrlm.py:406: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(srlgle, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:258: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ac, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:276: RuntimeWarning: Mean of empty slice.
+  return self.coefficients['ux'].mean((1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/numpy/core/_methods.py:184: RuntimeWarning: invalid value encountered in divide
+  ret = um.true_divide(
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:294: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cp, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:312: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cs, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:329: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ct, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:344: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(cont, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:374: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(corr, (1, 2, 3))
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:390: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffavg, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:405: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(difent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:421: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(diffvar, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:457: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ene, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:474: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ent, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:567: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc1, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:602: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(imc2, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:618: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idm, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:676: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idmn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:691: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(invDiff, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:709: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(idn, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:723: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(inv, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:740: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(maxprob, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:799: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(sumentr, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:827: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(ss, 1)
+/home/spgou/anaconda3/envs/Radiomics/lib/python3.9/site-packages/radiomics/glcm.py:656: RuntimeWarning: Mean of empty slice
+  return numpy.nanmean(MCC, 1).real
+- 388/782: Gliomas_03181_20170926
+- 389/782: Gliomas_03181_20171019
+- 390/782: Gliomas_03184_20200316
+- 391/782: Gliomas_03187_20181022
+- 392/782: Gliomas_03192_20180719
+- 393/782: Gliomas_03197_20171218
+- 394/782: Gliomas_03198_20181201
+- 395/782: Gliomas_03205_20190720
+- 396/782: Gliomas_03210_20180101
+- 397/782: Gliomas_03211_20170613
+- 398/782: Gliomas_03215_20151218
+- 399/782: Gliomas_03220_20190925
+- 400/782: Gliomas_02352_20190523
+- 401/782: Gliomas_02361_20200403
+- 402/782: Gliomas_02365_20161215
+- 403/782: Gliomas_02366_20180123
+- 404/782: Gliomas_02372_20190411
+Caution!!! - 404/782: Gliomas_02372_20190411, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 405/782: Gliomas_02376_20190921
+- 406/782: Gliomas_02387_20180921
+- 407/782: Gliomas_02388_20200718
+- 408/782: Gliomas_02391_20180814
+- 409/782: Gliomas_02393_20190709
+- 410/782: Gliomas_02396_20190218
+- 411/782: Gliomas_02399_20200418
+- 412/782: Gliomas_02400_20200306
+- 413/782: Gliomas_02404_20180110
+- 414/782: Gliomas_02415_20151011
+- 415/782: Gliomas_03267_20171101
+- 416/782: Gliomas_03269_20190609
+- 417/782: Gliomas_03272_20190608
+- 418/782: Gliomas_03273_20170912
+- 419/782: Gliomas_03276_20191220
+- 420/782: Gliomas_03293_20181016
+- 421/782: Gliomas_03302_20181129
+- 422/782: Gliomas_03303_20181122
+- 423/782: Gliomas_03303_20191214
+- 424/782: Gliomas_03307_20200805
+Caution!!! - 424/782: Gliomas_03307_20200805, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 425/782: Gliomas_03314_20160923
+Caution!!! - 425/782: Gliomas_03314_20160923, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 426/782: Gliomas_03318_20180108
+- 427/782: Gliomas_03319_20200527
+- 428/782: Gliomas_03324_20171011
+- 429/782: Gliomas_03334_20171027
+- 430/782: Gliomas_03339_20200218
+- 431/782: Gliomas_03340_20200311
+- 432/782: Gliomas_03340_20200323
+- 433/782: Gliomas_03342_20200415
+- 434/782: Gliomas_03344_20200309
+- 435/782: Gliomas_03349_20181128
+- 436/782: Gliomas_03351_20181105
+- 437/782: Gliomas_03361_20190129
+- 438/782: Gliomas_03362_20190302
+- 439/782: Gliomas_03364_20200713
+- 440/782: Gliomas_03371_20171007
+- 441/782: Gliomas_03379_20170728
+- 442/782: Gliomas_03383_20200727
+- 443/782: Gliomas_03385_20200516
+- 444/782: Gliomas_00859_20180831
+- 445/782: Gliomas_00860_20190408
+- 446/782: Gliomas_00865_20190909
+- 447/782: Gliomas_00872_20170906
+- 448/782: Gliomas_00875_20151010
+- 449/782: Gliomas_00886_20181023
+- 450/782: Gliomas_00887_20200924
+- 451/782: Gliomas_00891_20180425
+- 452/782: Gliomas_00902_20160730
+- 453/782: Gliomas_00904_20200416
+- 454/782: Gliomas_00917_20191221
+- 455/782: Gliomas_00922_20160201
+- 456/782: Gliomas_00922_20190122
+- 457/782: Gliomas_00923_20200901
+- 458/782: Gliomas_00924_20140528
+Caution!!! - 458/782: Gliomas_00924_20140528, error: Image/Mask geometry mismatch. Potential fix: increase tolerance using geometryTolerance, see Documentation:Usage:Customizing the Extraction:Settings:geometryTolerance for more information.
+- 459/782: Gliomas_01806_20170905
+- 460/782: Gliomas_01807_20191229
+- 461/782: Gliomas_01808_20181212
+- 462/782: Gliomas_01811_20170411
+- 463/782: Gliomas_01812_20190510
+- 464/782: Gliomas_01819_20180528
+- 465/782: Gliomas_01821_20190930
+- 466/782: Gliomas_01824_20190512
+- 467/782: Gliomas_01828_20201012
+- 468/782: Gliomas_01828_20201018
+- 469/782: Gliomas_01831_20200929
+- 470/782: Gliomas_01832_20171122
+- 471/782: Gliomas_01836_20190614
+- 472/782: Gliomas_01838_20190522
+- 473/782: Gliomas_01843_20180413
+- 474/782: Gliomas_01578_20190818
+- 475/782: Gliomas_01579_20200815
+- 476/782: Gliomas_01581_20160702
+- 477/782: Gliomas_01591_20181005
+- 478/782: Gliomas_01599_20181014
+- 479/782: Gliomas_01601_20190930
+Caution!!! - 479/782: Gliomas_01601_20190930, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 480/782: Gliomas_01603_20201026
+- 481/782: Gliomas_01604_20191124
+- 482/782: Gliomas_01608_20181022
+- 483/782: Gliomas_01612_20191102
+- 484/782: Gliomas_01613_20170907
+- 485/782: Gliomas_01620_20191216
+- 486/782: Gliomas_01623_20181225
+- 487/782: Gliomas_01631_20141207
+- 488/782: Gliomas_01634_20191223
+- 489/782: Gliomas_01637_20180129
+- 490/782: Gliomas_01640_20191026
+Caution!!! - 490/782: Gliomas_01640_20191026, error: Image/Mask geometry mismatch. Potential fix: increase tolerance using geometryTolerance, see Documentation:Usage:Customizing the Extraction:Settings:geometryTolerance for more information.
+- 491/782: Gliomas_01644_20200911
+- 492/782: Gliomas_01649_20200116
+Caution!!! - 492/782: Gliomas_01649_20200116, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 493/782: Gliomas_01652_20140109
+- 494/782: Gliomas_01652_20140430
+- 495/782: Gliomas_01652_20200330
+- 496/782: Gliomas_01655_20181214
+- 497/782: Gliomas_01671_20200703
+- 498/782: Gliomas_01674_20190828
+- 499/782: Gliomas_01696_20200423
+- 500/782: Gliomas_01701_20200423
+- 501/782: Gliomas_01717_20200320
+Caution!!! - 501/782: Gliomas_01717_20200320, error: mask has too few dimensions (number of dimensions 1, minimum required 2).
+- 502/782: Gliomas_01727_20180923
+- 503/782: Gliomas_02120_20200722
+- 504/782: Gliomas_02126_20190101
+- 505/782: Gliomas_02128_20190510
+- 506/782: Gliomas_02132_20200920
+- 507/782: Gliomas_02134_20171231
+- 508/782: Gliomas_02140_20161228
+Caution!!! - 508/782: Gliomas_02140_20161228, error: Image/Mask geometry mismatch. Potential fix: increase tolerance using geometryTolerance, see Documentation:Usage:Customizing the Extraction:Settings:geometryTolerance for more information.
+- 509/782: Gliomas_02145_20190531
+- 510/782: Gliomas_02147_20190404
+- 511/782: Gliomas_02150_20181215
+- 512/782: Gliomas_02154_20190709
+- 513/782: Gliomas_02158_20190930
+- 514/782: Gliomas_02160_20190411
+- 515/782: Gliomas_02166_20200901
+- 516/782: Gliomas_02167_20200112
+- 517/782: Gliomas_02178_20181231
+- 518/782: Gliomas_02189_20150907
+- 519/782: Gliomas_02189_20150919
+- 520/782: Gliomas_02193_20200812
+- 521/782: Gliomas_02197_20190228
+- 522/782: Gliomas_02198_20200402
+Caution!!! - 522/782: Gliomas_02198_20200402, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 523/782: Gliomas_02199_20190116
+- 524/782: Gliomas_02207_20190727
+- 525/782: Gliomas_02207_20190805
+- 526/782: Gliomas_02209_20180404
+- 527/782: Gliomas_02212_20171012
+- 528/782: Gliomas_02222_20181021
+- 529/782: Gliomas_02224_20200518
+- 530/782: Gliomas_02224_20200923
+Caution!!! - 530/782: Gliomas_02224_20200923, error: Image/Mask geometry mismatch. Potential fix: increase tolerance using geometryTolerance, see Documentation:Usage:Customizing the Extraction:Settings:geometryTolerance for more information.
+- 531/782: Gliomas_02225_20200713
+- 532/782: Gliomas_02225_20200804
+- 533/782: Gliomas_00629_20181206
+- 534/782: Gliomas_00631_20160908
+- 535/782: Gliomas_00632_20200918
+- 536/782: Gliomas_00634_20170822
+- 537/782: Gliomas_00636_20180609
+Caution!!! - 537/782: Gliomas_00636_20180609, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 538/782: Gliomas_00642_20170801
+- 539/782: Gliomas_00644_20151112
+- 540/782: Gliomas_00649_20181124
+- 541/782: Gliomas_00649_20200815
+- 542/782: Gliomas_00650_20191216
+- 543/782: Gliomas_00650_20191221
+- 544/782: Gliomas_00651_20170818
+- 545/782: Gliomas_00671_20181023
+- 546/782: Gliomas_00680_20190923
+- 547/782: Gliomas_00685_20190613
+- 548/782: Gliomas_00696_20190331
+- 549/782: Gliomas_00705_20190426
+- 550/782: Gliomas_00928_20190911
+- 551/782: Gliomas_00931_20200805
+- 552/782: Gliomas_00934_20191017
+- 553/782: Gliomas_00938_20200609
+- 554/782: Gliomas_00951_20171223
+- 555/782: Gliomas_00953_20181112
+Caution!!! - 555/782: Gliomas_00953_20181112, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 556/782: Gliomas_00953_20181113
+Caution!!! - 556/782: Gliomas_00953_20181113, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 557/782: Gliomas_00958_20160322
+Caution!!! - 557/782: Gliomas_00958_20160322, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 558/782: Gliomas_00961_20180223
+- 559/782: Gliomas_00963_20190615
+- 560/782: Gliomas_00968_20200330
+- 561/782: Gliomas_00976_20171018
+- 562/782: Gliomas_00979_20190707
+Caution!!! - 562/782: Gliomas_00979_20190707, error: mask only contains 1 segmented voxel! Cannot extract features for a single voxel..
+- 563/782: Gliomas_00981_20181210
+- 564/782: Gliomas_00981_20181228
+- 565/782: Gliomas_01846_20200613
+Caution!!! - 565/782: Gliomas_01846_20200613, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 566/782: Gliomas_01846_20200622
+- 567/782: Gliomas_01849_20200531
+Caution!!! - 567/782: Gliomas_01849_20200531, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 568/782: Gliomas_01857_20160917
+- 569/782: Gliomas_01870_20181016
+- 570/782: Gliomas_01875_20171013
+- 571/782: Gliomas_01895_20200305
+- 572/782: Gliomas_01900_20200913
+- 573/782: Gliomas_01904_20190519
+- 574/782: Gliomas_01905_20190526
+- 575/782: Gliomas_01909_20190818
+- 576/782: Gliomas_01917_20190409
+- 577/782: Gliomas_01930_20151012
+- 578/782: Gliomas_01930_20190810
+- 579/782: Gliomas_01933_20190407
+- 580/782: Gliomas_01945_20200110
+- 581/782: Gliomas_01945_20200117
+- 582/782: Gliomas_01946_20191205
+- 583/782: Gliomas_01948_20180629
+- 584/782: Gliomas_01956_20190430
+- 585/782: Gliomas_01959_20180222
+- 586/782: Gliomas_01963_20180930
+- 587/782: Gliomas_01972_20191013
+- 588/782: Gliomas_01977_20190411
+- 589/782: Gliomas_01982_20200803
+- 590/782: Gliomas_01984_20190319
+- 591/782: Gliomas_01985_20170914
+- 592/782: Gliomas_01989_20200425
+- 593/782: Gliomas_01993_20200706
+- 594/782: Gliomas_01994_20170522
+Caution!!! - 594/782: Gliomas_01994_20170522, error: mask only contains 1 segmented voxel! Cannot extract features for a single voxel..
+- 595/782: Gliomas_01994_20180223
+- 596/782: Gliomas_01994_20180309
+- 597/782: Gliomas_02000_20200320
+- 598/782: Gliomas_02001_20180804
+- 599/782: Gliomas_02006_20190220
+- 600/782: Gliomas_02012_20190523
+- 601/782: Gliomas_02014_20191124
+- 602/782: Gliomas_02025_20180907
+- 603/782: Gliomas_02032_20181129
+- 604/782: Gliomas_01843_20180420
+- 605/782: Gliomas_01936_20190707
+- 606/782: Gliomas_02034_20190625
+- 607/782: Gliomas_02100_20201018
+- 608/782: Gliomas_02229_20191016
+- 609/782: Gliomas_02290_20191008
+- 610/782: Gliomas_02342_20190315
+- 611/782: Gliomas_02429_20180311
+- 612/782: Gliomas_02537_20181016
+- 613/782: Gliomas_02704_20180131
+- 614/782: Gliomas_02820_20181025
+- 615/782: Gliomas_02896_20190925
+- 616/782: Gliomas_02962_20170831
+- 617/782: Gliomas_03036_20180405
+- 618/782: Gliomas_03131_20191024
+- 619/782: Gliomas_03221_20200424
+- 620/782: Gliomas_03256_20181011
+- 621/782: Gliomas_03386_20200928
+- 622/782: Gliomas_03391_20200925
+- 623/782: Gliomas_03404_20191228
+- 624/782: Gliomas_03408_20171027
+- 625/782: Gliomas_03409_20180125
+- 626/782: Gliomas_03410_20181121
+- 627/782: Gliomas_03415_20190527
+- 628/782: Gliomas_03420_20170818
+- 629/782: Gliomas_03423_20191224
+- 630/782: Gliomas_03425_20200221
+- 631/782: Gliomas_03425_20200225
+- 632/782: Gliomas_03433_20161224
+- 633/782: Gliomas_03444_20170710
+- 634/782: Gliomas_03445_20180429
+- 635/782: Gliomas_03447_20200306
+- 636/782: Gliomas_03450_20200409
+- 637/782: Gliomas_03457_20190429
+- 638/782: Gliomas_03459_20200115
+- 639/782: Gliomas_03464_20190618
+- 640/782: Gliomas_03471_20190726
+- 641/782: Gliomas_03479_20190808
+- 642/782: Gliomas_03482_20200925
+- 643/782: Gliomas_01261_20160801
+- 644/782: Gliomas_01265_20171115
+- 645/782: Gliomas_01278_20181113
+- 646/782: Gliomas_01286_20200620
+- 647/782: Gliomas_01289_20190413
+- 648/782: Gliomas_01289_20190418
+- 649/782: Gliomas_01293_20170823
+- 650/782: Gliomas_01296_20190128
+- 651/782: Gliomas_01299_20171120
+- 652/782: Gliomas_01303_20181224
+- 653/782: Gliomas_01304_20181205
+- 654/782: Gliomas_01307_20181124
+- 655/782: Gliomas_01307_20181130
+- 656/782: Gliomas_01315_20181114
+- 657/782: Gliomas_01321_20141126
+- 658/782: Gliomas_01324_20171028
+Caution!!! - 658/782: Gliomas_01324_20171028, error: mask has too few dimensions (number of dimensions 1, minimum required 2).
+- 659/782: Gliomas_01329_20170526
+- 660/782: Gliomas_01333_20180522
+- 661/782: Gliomas_01341_20200710
+- 662/782: Gliomas_01350_20200603
+- 663/782: Gliomas_01351_20170509
+- 664/782: Gliomas_01353_20170803
+- 665/782: Gliomas_01368_20190214
+- 666/782: Gliomas_01370_20200802
+- 667/782: Gliomas_01374_20171027
+- 668/782: Gliomas_01387_20200119
+- 669/782: Gliomas_01389_20180702
+- 670/782: Gliomas_01390_20190801
+- 671/782: Gliomas_01390_20190811
+- 672/782: Gliomas_01394_20190118
+- 673/782: Gliomas_01402_20200419
+Caution!!! - 673/782: Gliomas_01402_20200419, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 674/782: Gliomas_01409_20201012
+- 675/782: Gliomas_01410_20200911
+- 676/782: Gliomas_01412_20180207
+- 677/782: Gliomas_01415_20181210
+- 678/782: Gliomas_01416_20200404
+- 679/782: Gliomas_01432_20190305
+- 680/782: Gliomas_00398_20190529
+- 681/782: Gliomas_00402_20200330
+- 682/782: Gliomas_00403_20181124
+- 683/782: Gliomas_00403_20181207
+- 684/782: Gliomas_00409_20170912
+- 685/782: Gliomas_00410_20200211
+- 686/782: Gliomas_00412_20200606
+- 687/782: Gliomas_00427_20171121
+- 688/782: Gliomas_00431_20190810
+- 689/782: Gliomas_00437_20190301
+- 690/782: Gliomas_00443_20200830
+- 691/782: Gliomas_00452_20191011
+- 692/782: Gliomas_00456_20180130
+- 693/782: Gliomas_00458_20190619
+- 694/782: Gliomas_00458_20190626
+- 695/782: Gliomas_00299_20191227
+- 696/782: Gliomas_00304_20170831
+- 697/782: Gliomas_00313_20191108
+- 698/782: Gliomas_00315_20190610
+- 699/782: Gliomas_00315_20190616
+- 700/782: Gliomas_00322_20171004
+- 701/782: Gliomas_00329_20181015
+- 702/782: Gliomas_00337_20190505
+- 703/782: Gliomas_00337_20190512
+- 704/782: Gliomas_00339_20200706
+- 705/782: Gliomas_00341_20190507
+- 706/782: Gliomas_00349_20190101
+- 707/782: Gliomas_00350_20180125
+- 708/782: Gliomas_00351_20190531
+- 709/782: Gliomas_00357_20190317
+- 710/782: Gliomas_00369_20170324
+- 711/782: Gliomas_00372_20190616
+Caution!!! - 711/782: Gliomas_00372_20190616, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 712/782: Gliomas_00374_20160418
+- 713/782: Gliomas_00378_20200526
+- 714/782: Gliomas_00391_20170531
+- 715/782: Gliomas_00392_20190712
+- 716/782: Gliomas_01009_20190921
+- 717/782: Gliomas_01015_20190416
+- 718/782: Gliomas_01024_20170816
+- 719/782: Gliomas_01039_20200728
+- 720/782: Gliomas_01050_20170110
+- 721/782: Gliomas_01051_20180802
+- 722/782: Gliomas_01052_20190531
+- 723/782: Gliomas_01054_20180521
+- 724/782: Gliomas_01061_20200516
+- 725/782: Gliomas_01063_20180207
+- 726/782: Gliomas_01064_20190119
+- 727/782: Gliomas_01073_20190107
+- 728/782: Gliomas_01075_20171117
+- 729/782: Gliomas_01079_20180920
+- 730/782: Gliomas_01086_20180521
+- 731/782: Gliomas_01096_20151201
+Caution!!! - 731/782: Gliomas_01096_20151201, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 732/782: Gliomas_01100_20200105
+- 733/782: Gliomas_01103_20191122
+- 734/782: Gliomas_01106_20151020
+- 735/782: Gliomas_01108_20170201
+Caution!!! - 735/782: Gliomas_01108_20170201, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 736/782: Gliomas_01108_20170904
+- 737/782: Gliomas_02433_20160702
+- 738/782: Gliomas_02435_20190218
+- 739/782: Gliomas_02439_20170825
+- 740/782: Gliomas_02441_20180511
+- 741/782: Gliomas_02443_20200429
+- 742/782: Gliomas_02446_20191217
+- 743/782: Gliomas_02446_20191218
+- 744/782: Gliomas_02447_20170703
+- 745/782: Gliomas_02448_20200709
+- 746/782: Gliomas_02458_20180817
+- 747/782: Gliomas_02461_20170713
+- 748/782: Gliomas_02462_20180705
+- 749/782: Gliomas_02466_20180925
+- 750/782: Gliomas_02467_20171214
+- 751/782: Gliomas_02473_20141203
+- 752/782: Gliomas_02475_20170101
+- 753/782: Gliomas_02477_20201014
+- 754/782: Gliomas_02480_20160824
+Caution!!! - 754/782: Gliomas_02480_20160824, error: mask has too few dimensions (number of dimensions 1, minimum required 2).
+- 755/782: Gliomas_02490_20181017
+- 756/782: Gliomas_02498_20190311
+- 757/782: Gliomas_02508_20160107
+- 758/782: Gliomas_02509_20180714
+- 759/782: Gliomas_02511_20170609
+- 760/782: Gliomas_02517_20190702
+- 761/782: Gliomas_02519_20181213
+- 762/782: Gliomas_02520_20190629
+Caution!!! - 762/782: Gliomas_02520_20190629, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 763/782: Gliomas_02525_20190221
+- 764/782: Gliomas_02528_20190831
+- 765/782: Gliomas_02534_20170807
+- 766/782: Gliomas_02897_20190124
+- 767/782: Gliomas_02902_20200119
+- 768/782: Gliomas_02906_20191114
+- 769/782: Gliomas_02907_20160624
+- 770/782: Gliomas_02907_20160630
+- 771/782: Gliomas_02917_20170403
+Caution!!! - 771/782: Gliomas_02917_20170403, error: No labels found in this mask (i.e. nothing is segmented)!.
+- 772/782: Gliomas_02925_20191124
+- 773/782: Gliomas_02925_20191130
+- 774/782: Gliomas_02927_20180514
+- 775/782: Gliomas_02936_20141008
+- 776/782: Gliomas_02942_20200729
+- 777/782: Gliomas_02943_20200414
+- 778/782: Gliomas_02944_20200402
+- 779/782: Gliomas_02946_20181021
+- 780/782: Gliomas_02948_20180919
+- 781/782: Gliomas_02952_20170905
+- 782/782: Gliomas_02960_20180820
+Traceback (most recent call last):
+  File "/media/spgou/DATA/ZYJ/Radiomics/extract_radiomics_features/main_extract_features.py", line 240, in <module>
+    All_features=main_extract_features(feature_extract_settings)
+  File "/media/spgou/DATA/ZYJ/Radiomics/extract_radiomics_features/main_extract_features.py", line 221, in main_extract_features
+    excel_writer.save()
+AttributeError: 'OpenpyxlWriter' object has no attribute 'save'
+
+进程已结束,退出代码1
+
+https://blog.csdn.net/L1114187703/article/details/108880355

@@ -374,6 +374,20 @@ def fuse_infov3():
         results.iloc[i, 0] = get_anonymized_id(results.iloc[i, 9])
     results.to_excel('../result_file/fused_result_v3.xlsx', index=False)
 
+def fuse_infov4():
+    results = pd.read_excel('../result_file/fused_result_v3.xlsx')
+    # 把病人信息加到v3的结果中
+    add_info  = pd.read_excel('../reference/已补充-缺少病理数据的病人ID.xlsx')
+    for i in range(add_info.shape[0]):
+        for j in range(results.shape[0]):
+            patient_id = str(add_info.iloc[i, 0]).zfill(10)
+            if patient_id == results.iloc[j, 9]:
+                results.iloc[j, 3] = add_info.iloc[i, 2]
+                results.iloc[j, 4] = add_info.iloc[i, 1]
+                continue
+    results.to_excel('../result_file/fused_result_v4.xlsx', index=False)
+
+
 
 def check_empty_data(input_dir):
     """
