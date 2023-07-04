@@ -497,4 +497,4 @@ if __name__ == "__main__":
     # convert_folder_with_preds_back_to_BraTS_labeling_convention(
     #     '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/segmentation',
     #     '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/seg')
-    fuse_infov3()
+    fuse_infov4()
