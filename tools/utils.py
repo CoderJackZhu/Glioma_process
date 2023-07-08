@@ -484,6 +484,25 @@ def convert_folder_with_preds_back_to_BraTS_labeling_convention(input_folder: st
         p.starmap(load_convert_labels_back_to_BraTS, zip(nii, [input_folder] * len(nii), [output_folder] * len(nii)))
 
 
+def merge_diagnose_info():
+    """
+    合并两次的诊断信息表格，并把附加其他病人的诊断信息附加到主诊断信息表格后面
+    """
+    main_diagnose = pd.read_csv('../result_file/12321321.csv', header=0)
+    added_diagnose = pd.read_excel('../reference/已补充-缺少病理数据的病人ID.xlsx', header=0)
+    length = len(main_diagnose)
+    for i in range(len(added_diagnose)):
+        # 合并两次的诊断信息表格，并把附加其他病人的诊断信息附加到主诊断信息表格后面
+        main_diagnose.loc[length + i] = [added_diagnose.iloc[i, 0], None, added_diagnose.iloc[i, 2], added_diagnose.iloc[i, 1], None, None]
+        # main_diagnose.iloc[length + i, 0] = added_diagnose.iloc[i, 0]
+        # main_diagnose.iloc[length + i, 2] = added_diagnose.iloc[i, 2]
+        # main_diagnose.iloc[length + i, 3] = added_diagnose.iloc[i, 1]
+    main_diagnose.to_excel('../result_file/diagnose_info.xlsx', index=False)
+
+
+
+
+
 if __name__ == "__main__":
     # check_empty('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before')
     # visualize_result('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before',
@@ -497,4 +516,5 @@ if __name__ == "__main__":
     # convert_folder_with_preds_back_to_BraTS_labeling_convention(
     #     '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/segmentation',
     #     '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/seg')
-    fuse_infov4()
+    # fuse_infov4()
+    merge_diagnose_info()

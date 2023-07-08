@@ -10,3 +10,4 @@ skull_stripped_out/
 test_data/*
 !test_data/.gitkeep
 data/
+*/.ipynb_checkpoints/*
