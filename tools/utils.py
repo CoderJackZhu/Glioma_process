@@ -501,7 +501,7 @@ def merge_diagnose_info():
     main_diagnose.to_excel('../result_file/diagnose_info.xlsx', index=False)
 
 
-def get_and_merge_patient_who_grade(excel_path='../result_file/features_XiangyaHospital_test.xlsx', save_path='../result_file/features_XiangyaHospital_test_who.xlsx'):
+def get_and_merge_patient_who_grade(excel_path='../result_file/features_XiangyaHospital_train.xlsx', save_path='../result_file/features_XiangyaHospital_train_who.xlsx'):
     """
     给训练和测试的特征列表加一列who等级，等级的数据从诊断信息的表格中提取，然后匿名化并对应到特征列表中
     """
