@@ -374,10 +374,11 @@ def fuse_infov3():
         results.iloc[i, 0] = get_anonymized_id(results.iloc[i, 9])
     results.to_excel('../result_file/fused_result_v3.xlsx', index=False)
 
+
 def fuse_infov4():
     results = pd.read_excel('../result_file/fused_result_v3.xlsx')
     # 把病人信息加到v3的结果中
-    add_info  = pd.read_excel('../reference/已补充-缺少病理数据的病人ID.xlsx')
+    add_info = pd.read_excel('../reference/已补充-缺少病理数据的病人ID.xlsx')
     for i in range(add_info.shape[0]):
         for j in range(results.shape[0]):
             patient_id = str(add_info.iloc[i, 0]).zfill(10)
@@ -386,7 +387,6 @@ def fuse_infov4():
                 results.iloc[j, 4] = add_info.iloc[i, 1]
                 continue
     results.to_excel('../result_file/fused_result_v4.xlsx', index=False)
-
 
 
 def check_empty_data(input_dir):
@@ -493,14 +493,36 @@ def merge_diagnose_info():
     length = len(main_diagnose)
     for i in range(len(added_diagnose)):
         # 合并两次的诊断信息表格，并把附加其他病人的诊断信息附加到主诊断信息表格后面
-        main_diagnose.loc[length + i] = [added_diagnose.iloc[i, 0], None, added_diagnose.iloc[i, 2], added_diagnose.iloc[i, 1], None, None]
+        main_diagnose.loc[length + i] = [added_diagnose.iloc[i, 0], None, added_diagnose.iloc[i, 2],
+                                         added_diagnose.iloc[i, 1], None, None]
         # main_diagnose.iloc[length + i, 0] = added_diagnose.iloc[i, 0]
         # main_diagnose.iloc[length + i, 2] = added_diagnose.iloc[i, 2]
         # main_diagnose.iloc[length + i, 3] = added_diagnose.iloc[i, 1]
     main_diagnose.to_excel('../result_file/diagnose_info.xlsx', index=False)
 
 
+def get_and_merge_patient_who_grade(excel_path='../result_file/features_XiangyaHospital_test.xlsx', save_path='../result_file/features_XiangyaHospital_test_who.xlsx'):
+    """
+    给训练和测试的特征列表加一列who等级，等级的数据从诊断信息的表格中提取，然后匿名化并对应到特征列表中
+    """
+    features = pd.read_excel(excel_path, header=0)
+    diagnose_info = pd.read_excel('../result_file/PathologicalData_DropNull_manualCorrected_analyzed.xlsx', header=0)
+    # 给特征列表加一列who等级
+    features['WHO_grade'] = None
+    df = pd.read_excel('../reference/Preprocess/anonymous_table.xlsx')
 
+    for i in range(len(features)):
+        anonymized_id = features.iloc[i, 0]
+        for j in range(len(diagnose_info)):
+            patient_id = diagnose_info.loc[j, 'PatientID']
+            for k in range(df.shape[0]):
+                if df.iloc[k, 0] == patient_id.zfill(10):
+                    anony_id = df.iloc[k, 1]
+                    break
+            if '_'.join(anony_id.split(' ')[:2]) == anonymized_id:
+                features.iloc[i, -1] = diagnose_info.loc[j, 'WHO_grade']
+                break
+    features.to_excel(save_path, index=False)
 
 
 if __name__ == "__main__":
@@ -517,4 +539,5 @@ if __name__ == "__main__":
     #     '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/segmentation',
     #     '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/seg')
     # fuse_infov4()
-    merge_diagnose_info()
+    # merge_diagnose_info()
+    get_and_merge_patient_who_grade()
