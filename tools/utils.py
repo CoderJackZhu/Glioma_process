@@ -511,7 +511,7 @@ def get_and_merge_patient_who_grade(excel_path='../result_file/features_XiangyaH
     features['WHO_grade'] = None
     df = pd.read_excel('../reference/Preprocess/anonymous_table.xlsx')
 
-    for i in range(len(features)):
+    for i in tqdm(range(len(features))):
         anonymized_id = features.iloc[i, 0]
         for j in range(len(diagnose_info)):
             patient_id = diagnose_info.loc[j, 'PatientID']
@@ -519,7 +519,8 @@ def get_and_merge_patient_who_grade(excel_path='../result_file/features_XiangyaH
                 if df.iloc[k, 0] == patient_id.zfill(10):
                     anony_id = df.iloc[k, 1]
                     break
-            if '_'.join(anony_id.split(' ')[:2]) == anonymized_id:
+            if anony_id == '_'.join(anonymized_id.split('_')[:2]):
+                print(anonymized_id, patient_id, diagnose_info.loc[j, 'WHO_grade'])
                 features.iloc[i, -1] = diagnose_info.loc[j, 'WHO_grade']
                 break
     features.to_excel(save_path, index=False)
