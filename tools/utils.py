@@ -528,7 +528,7 @@ def get_and_merge_patient_who_grade(excel_path='../result_file/features_XiangyaH
 def merge_pathological_data_anonymized():
     """给提取到的病理信息加一列匿名化的病人ID
     """
-    pathological_data = pd.read_excel('../result_file/PathologicalData_DropNull_manualCorrected.xlsx', header=0)
+    pathological_data = pd.read_excel('../result_file/PathologicalData_DropNull_manualCorrected_analyzed.xlsx', header=0)
     df = pd.read_excel('../reference/Preprocess/anonymous_table.xlsx')
     # 匿名化后的ID插入到第一列
     pathological_data.insert(0, 'PatientID_anonymized', None)
@@ -538,7 +538,19 @@ def merge_pathological_data_anonymized():
             if df.iloc[j, 0] == patient_id.zfill(10):
                 pathological_data.iloc[i, 0] = df.iloc[j, 1]
                 break
-    pathological_data.to_excel('../result_file/PathologicalData_DropNull_manualCorrected_anonymized.xlsx', index=False)
+    pathological_data.to_excel('../result_file/PathologicalData_DropNull_manualCorrected_analyzed_anonymized.xlsx', index=False)
+
+
+def rm_nan_row():
+    """
+    删除最后一列是空值的行
+    """
+    features = pd.read_excel('../result_file/features_XiangyaHospital_test_who.xlsx', header=0)
+    features = features.dropna(axis=0, how='any')
+    features.to_excel('../result_file/features_XiangyaHospital_test_who_rm_nan.xlsx', index=False)
+
+
+
 
 if __name__ == "__main__":
     # check_empty('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before')
@@ -555,4 +567,5 @@ if __name__ == "__main__":
     #     '/media/spgou/DATA/ZYJ/Dataset/RadiogenomicsProjects/GliomasSubtypes/originalData/XiangyaHospital/XiangyaHospital_test/seg')
     # fuse_infov4()
     # merge_diagnose_info()
-    get_and_merge_patient_who_grade()
+    # get_and_merge_patient_who_grade()
+    rm_nan_row()
