@@ -501,9 +501,10 @@ def merge_diagnose_info():
     main_diagnose.to_excel('../result_file/diagnose_info.xlsx', index=False)
 
 
-def get_and_merge_patient_who_grade(excel_path='../result_file/features_XiangyaHospital_train.xlsx', save_path='../result_file/features_XiangyaHospital_train_who.xlsx'):
+def get_and_merge_patient_who_grade(excel_path='../result_file/features_XiangyaHospital_train.xlsx',
+                                    save_path='../result_file/features_XiangyaHospital_train_who.xlsx'):
     """
-    给训练和测试的特征列表加一列who等级，等级的数据从诊断信息的表格中提取，然后匿名化并对应到特征列表中
+    给训练和测试的特征列表加who等级，等级的数据从诊断信息的表格中提取，然后匿名化并对应到特征列表中,其中who等级有四个，分别是I、II、III、IV，对应的是1、2、3、4，加四列分别为WHO_grade_1、WHO_grade_2、WHO_grade_3、WHO_grade_4，onehot编码
     """
     features = pd.read_excel(excel_path, header=0)
     diagnose_info = pd.read_excel('../result_file/PathologicalData_DropNull_manualCorrected_analyzed.xlsx', header=0)
@@ -525,10 +526,45 @@ def get_and_merge_patient_who_grade(excel_path='../result_file/features_XiangyaH
                 break
     features.to_excel(save_path, index=False)
 
+
+def convert_who_grade2onehot():
+    grade_excel = pd.read_excel('../result_file/features_XiangyaHospital_train_who_rm_nan.xlsx', header=0)
+    grade_excel['WHO_grade_1'] = None
+    grade_excel['WHO_grade_2'] = None
+    grade_excel['WHO_grade_3'] = None
+    grade_excel['WHO_grade_4'] = None
+    for i in tqdm(range(len(grade_excel))):
+        grade = grade_excel.loc[i, 'WHO_grade']
+        # 是指定的类则置1，否则置0
+        if grade == 1:
+            grade_excel.loc[i, 'WHO_grade_1'] = 1
+            grade_excel.loc[i, 'WHO_grade_2'] = 0
+            grade_excel.loc[i, 'WHO_grade_3'] = 0
+            grade_excel.loc[i, 'WHO_grade_4'] = 0
+        elif grade == 2:
+            grade_excel.loc[i, 'WHO_grade_1'] = 0
+            grade_excel.loc[i, 'WHO_grade_2'] = 1
+            grade_excel.loc[i, 'WHO_grade_3'] = 0
+            grade_excel.loc[i, 'WHO_grade_4'] = 0
+        elif grade == 3:
+            grade_excel.loc[i, 'WHO_grade_1'] = 0
+            grade_excel.loc[i, 'WHO_grade_2'] = 0
+            grade_excel.loc[i, 'WHO_grade_3'] = 1
+            grade_excel.loc[i, 'WHO_grade_4'] = 0
+        else:
+            grade_excel.loc[i, 'WHO_grade_1'] = 0
+            grade_excel.loc[i, 'WHO_grade_2'] = 0
+            grade_excel.loc[i, 'WHO_grade_3'] = 0
+            grade_excel.loc[i, 'WHO_grade_4'] = 1
+
+    grade_excel.to_excel('../result_file/features_XiangyaHospital_train_who_rm_nan_onehot.xlsx', index=False)
+
+
 def merge_pathological_data_anonymized():
     """给提取到的病理信息加一列匿名化的病人ID
     """
-    pathological_data = pd.read_excel('../result_file/PathologicalData_DropNull_manualCorrected_analyzed.xlsx', header=0)
+    pathological_data = pd.read_excel('../result_file/PathologicalData_DropNull_manualCorrected_analyzed.xlsx',
+                                      header=0)
     df = pd.read_excel('../reference/Preprocess/anonymous_table.xlsx')
     # 匿名化后的ID插入到第一列
     pathological_data.insert(0, 'PatientID_anonymized', None)
@@ -538,7 +574,8 @@ def merge_pathological_data_anonymized():
             if df.iloc[j, 0] == patient_id.zfill(10):
                 pathological_data.iloc[i, 0] = df.iloc[j, 1]
                 break
-    pathological_data.to_excel('../result_file/PathologicalData_DropNull_manualCorrected_analyzed_anonymized.xlsx', index=False)
+    pathological_data.to_excel('../result_file/PathologicalData_DropNull_manualCorrected_analyzed_anonymized.xlsx',
+                               index=False)
 
 
 def rm_nan_row():
@@ -548,8 +585,6 @@ def rm_nan_row():
     features = pd.read_excel('../result_file/features_XiangyaHospital_test_who.xlsx', header=0)
     features = features.dropna(axis=0, how='any')
     features.to_excel('../result_file/features_XiangyaHospital_test_who_rm_nan.xlsx', index=False)
-
-
 
 
 if __name__ == "__main__":
@@ -568,4 +603,5 @@ if __name__ == "__main__":
     # fuse_infov4()
     # merge_diagnose_info()
     # get_and_merge_patient_who_grade()
-    rm_nan_row()
+    # rm_nan_row()
+    convert_who_grade2onehot()
