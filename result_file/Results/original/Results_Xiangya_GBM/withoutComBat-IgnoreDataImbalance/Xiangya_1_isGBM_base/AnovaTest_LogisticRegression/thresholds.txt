@@ -1,0 +1,1 @@
+{"data_description": "train_data", "threshold_by_gmeans": 0.3431883325161678, "max_gmeans": 0.6927492754630891, "threshold_by_f1": 0.30000000000000004, "max_f1": 0.624113475177305, "threshold_0.5": 0.5}
