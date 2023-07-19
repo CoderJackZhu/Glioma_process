@@ -587,6 +587,34 @@ def rm_nan_row():
     features.to_excel('../result_file/features_XiangyaHospital_test_who_rm_nan.xlsx', index=False)
 
 
+def compute_mean_std(data_dir):
+    """
+    计算数据集的均值和标准差
+    """
+    num_samples = 0
+    running_sum = 0.0
+    running_sum_squared = 0.0
+
+    for filename in os.listdir(data_dir):
+        if filename.endswith('.nii.gz'):
+            filepath = os.path.join(data_dir, filename)
+            img = nib.load(filepath).get_fdata()
+
+            # 如果是第一个文件，直接赋值
+            if num_samples == 0:
+                overall_mean = img.mean()
+                overall_var = img.var()
+            else:
+                delta = img.mean() - overall_mean
+                overall_mean += delta / (num_samples + 1)
+                overall_var += delta * (img.mean() - overall_mean)
+
+            num_samples += 1
+
+    overall_std = np.sqrt(overall_var / num_samples)
+
+    return overall_mean, overall_std
+
 if __name__ == "__main__":
     # check_empty('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before')
     # visualize_result('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before',
