@@ -1,0 +1,11 @@
+captk_after_data_net_seg 手术后的数据，对应的分割标签
+captk_before_data_net_seg 手术前的数据，对应的分割标签
+
+captk_before_data 手术前的数据，经过初步的处理，如配准，重采样，变成的nii.gz格式的文件，四个模态都全的数据，绝大部分是使用captk处理的，有约30个数据是采用之前的方法处理的。无zscore
+captk_before_data_zscore_normalizedImages 对captk_before_data的数据进行zscore处理后的数据
+
+captk_nii_4mod_after_operation_anonymize_processed_4mod 手术后的数据，经过初步的处理，如配准，重采样，变成的nii.gz格式的文件，四个模态都全的数据，全部使用captk处理的
+
+
+captk_before_data_net_format 手术前的数据，经过初步处理之后从文件夹格式变成没有子文件夹的格式，无zscore
+captk_after_data_net_format 手术后的数据，经过初步处理之后从文件夹格式变成没有子文件夹的格式，无zscore
