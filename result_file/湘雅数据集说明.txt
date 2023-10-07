@@ -9,3 +9,5 @@ captk_nii_4mod_after_operation_anonymize_processed_4mod 手术后的数据，经
 
 captk_before_data_net_format 手术前的数据，经过初步处理之后从文件夹格式变成没有子文件夹的格式，无zscore
 captk_after_data_net_format 手术后的数据，经过初步处理之后从文件夹格式变成没有子文件夹的格式，无zscore
+
+PathologicalData_DropNull_manualCorrected_analyzed_anonymized_all 表格包含了数据的病理信息，已经经过了匿名化处理，排除了patientID和病人姓名
