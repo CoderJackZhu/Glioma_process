@@ -578,6 +578,21 @@ def merge_pathological_data_anonymized():
                                index=False)
 
 
+def add_pathological_data():
+    """
+    把后来补充的缺少病理数据的病人的病理数据加到病理数据表格中
+    """
+    pathological_data = pd.read_excel('../result_file/PathologicalData_DropNull_manualCorrected_analyzed.xlsx',
+                                      header=0)
+    df = pd.read_excel('../result_file/已补充-缺少病理数据的病人ID.xlsx')
+    for i in range(len(df)):
+        if df.iloc[i, 0] == pathological_data.iloc[i, 2]:
+            pathological_data.iloc[i, 4] = df.iloc[i, 2]
+            pathological_data.iloc[i, 5] = df.iloc[i, 1]
+    pathological_data.to_excel('../result_file/PathologicalData_DropNull_manualCorrected_analyzed_anonymized_with2.xlsx',
+                               index=False)
+    # 此代码尚未使用
+
 def rm_nan_row():
     """
     删除最后一列是空值的行
