@@ -24,3 +24,11 @@
 5. 读取匿名化表格并将nii文件按照新的id匿名化
 6. 使用BraTS pipeline进行预处理
 7. 挑选出四个模态文件和分割文件
+
+## 其他问题
+fsl的安装非常麻烦，可以使用nipype，python库，可以直接使用pip安装
+例如，使用
+```python
+ from nipype.interfaces.fsl import BET
+>>> BET.help()
+```
