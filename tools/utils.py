@@ -630,6 +630,24 @@ def compute_mean_std(data_dir):
 
     return overall_mean, overall_std
 
+
+def load_nifti_info(nifti_file):
+    """
+    加载nifti文件的信息
+    Args:
+        nifti_file:
+
+    Returns:
+
+    """
+    nifti = nib.load(nifti_file)
+    # 获取nii.gz文件的数据
+    affine = nifti.affine
+    header = nifti.header
+    print(affine)
+    print(header)
+    return affine, header
+
 if __name__ == "__main__":
     # check_empty('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before')
     # visualize_result('D:\\ZYJ\\Dataset\\Nii_Dataset_RAI_Registered_4mod_skulled_resolve_before',
@@ -647,4 +665,6 @@ if __name__ == "__main__":
     # merge_diagnose_info()
     # get_and_merge_patient_who_grade()
     # rm_nan_row()
-    convert_who_grade2onehot()
+    # convert_who_grade2onehot()
+    # load_nifti_info("E:\\check_data_50\\Gliomas_00511_20180311\\Gliomas_00511_20180311_T1.nii.gz")
+    load_nifti_info("E:\\TCGA-02-0003_t1.nii.gz")
