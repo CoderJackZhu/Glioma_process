@@ -334,4 +334,7 @@ if __name__ == "__main__":
     #                    'D:/ZYJ/Dataset/captk_nii_4mod_before_operation_anonymize_processed_4mod')
     # batch_extract_4mod('D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize_processed',
     #                    'D:/ZYJ/Dataset/captk_nii_4mod_after_operation_anonymize_processed_4mod')
-    use_before_method()
+    # use_before_method()
+    select4mod('/media/spgou/DATA/ZYJ/Dataset/xiangya_source_data/captk_nii_rename', '/media/spgou/DATA/ZYJ/Dataset/xiangya_source_data/captk_nii_4mod')
+    anonymize_patient('/media/spgou/DATA/ZYJ/Dataset/xiangya_source_data/captk_nii_4mod',
+                      '/media/spgou/DATA/ZYJ/Dataset/xiangya_source_data/captk_nii_4mod_anonymized')
