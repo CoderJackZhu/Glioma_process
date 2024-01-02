@@ -12,3 +12,5 @@ test_data/*
 data/
 */.ipynb_checkpoints/*
 /reference/Preprocess/.ipynb_checkpoints/analyse_pathological_data-checkpoint.ipynb
+result_file/
+reference/
